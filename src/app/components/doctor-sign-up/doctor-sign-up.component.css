@@ -16,3 +16,6 @@
     background-color: var(--main-Color);
     color: white;
 }
+.signIn{
+    color: var(--primary-Color);
+}

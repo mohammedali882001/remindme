@@ -49,3 +49,6 @@
     font-size: 40px;
     font-weight: 500;
 }
+.signIn{
+    color: var(--primary-color);
+}
