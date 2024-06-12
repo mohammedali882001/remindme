@@ -2,6 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+// import { MDBBootstrapModule } from 'angular-bootstrap-md';
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
