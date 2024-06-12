@@ -4,14 +4,18 @@ import { NavBarComponent } from './components/NavBar/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/Footer/footer/footer.component';
 import { CardComponent } from './components/Card/card/card.component';
 
+import { LandingComponent } from './components/landing/landing.component';
+import { DoctorSignUpComponent } from './components/doctor-sign-up/doctor-sign-up.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
-  imports: [RouterOutlet,NavBarComponent,FooterComponent ,CardComponent],
+  imports: [RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
+    DoctorSignUpComponent],
 
 templateUrl: './app.component.html',
+
   styleUrl: './app.component.css'
 })
 
