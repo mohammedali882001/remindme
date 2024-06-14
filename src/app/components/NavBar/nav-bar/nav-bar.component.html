@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+  <div class="container d-flex justify-content-between">
+    <img class="logo" src="assets/logo.svg" alt="logo">
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleNavbar()"
+      aria-controls="navbarText"
+      aria-expanded="!isNavbarCollapsed"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div
+      [ngClass]="{'collapse': isNavbarCollapsed, 'navbar-collapse': true}"
+      id="navbarText" class="navbar-collapse collapse d-lg-flex justify-content-between"
+    >
+      <ul class="navbar-nav mb-lg-0 d-flex mr-5">
+        <li class="nav-item px-3">
+          <a class="nav-link active p-lg-2" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link p-lg-2" href="#">Services</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link p-lg-2" aria-current="page" href="#">Doctors</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link p-lg-2" aria-current="page" href="#">Pages</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link p-lg-2" aria-current="page" href="#">Blog</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link p-lg-2" aria-current="page" href="#">Contact Us</a>
+        </li>
+      </ul>
+      <div class="search d-none d-lg-flex pr-5 ">
+        <i class="fa-solid fa-magnifying-glass px-3 searchIcon"></i>
+        <i class="fa-regular fa-user px-3"></i>
+        <i class="fa-regular fa-calendar px-3"></i>
+        <i class="fa-regular fa-bell px-3"></i>
+      </div>
+
+    </div>
+    <a href="#logout" class="btn rounded-pill main-btn">Log out</a>
+  </div>
+</nav>
