@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
-import { DoctorprofileComponent } from './pages/DoctorProfile/doctorprofile/doctorprofile.component';
-import { HomeComponent } from './pages/Home/home/home.component';
-
+import { LandingComponent } from './components/landing/landing.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'profile/:id',component:DoctorprofileComponent}
+
+{ path: '', redirectTo: 'landing', pathMatch: 'full' },
+{ path: 'landing', component: LandingComponent },
+{path:'login',component:LoginComponent},
+
 ];
