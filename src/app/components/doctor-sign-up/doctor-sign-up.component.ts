@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { DoctorRegisterService } from '../../services/AuthenticationServices/DoctorAuthentication/doctor-register.service';
 import { DoctorRegisterDTO } from '../../models/Authentication/doctor-register-dto';
 import { CommonModule } from '@angular/common';
+import { uniqueUsernameValidator } from '../../validators/unique-username-validator.validator';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-doctor-sign-up',
@@ -43,6 +45,11 @@ export class DoctorSignUpComponent {
         next: (response) => {
           // Handle successful response
           console.log('Account Created Successfully', response);
+          Swal.fire({
+            title: "Good job!",
+            text: "Registered Successfully",
+            icon: "success"
+          });
           // Optionally, you can reset the form after successful submission
           this.registerForm.reset();
           this.isFormSubmitted = false; // Reset form submission flag
@@ -61,6 +68,10 @@ export class DoctorSignUpComponent {
     this.registerForm.patchValue({
       gender: value === 'female' ? 1 : 0
     });
+  }
+
+  get f() {
+    return this.registerForm.controls;
   }
 }
 

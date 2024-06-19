@@ -14,4 +14,7 @@ export class DoctorRegisterService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this._httpClient.post(this.apiUrl, registerDto, { headers });
   }
+  isUsernameTaken(userName: string): Observable<boolean> {
+    return this._httpClient.get<boolean>(`${this.apiUrl}/CheckUsername`, { params: { userName } });
+  }
 }
