@@ -5,59 +5,60 @@
         <p class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut
             labore.
         </p>
-        <form action="" class="mx-4 mt-2">
+        <form action="" class="mx-4 mt-2" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
             <div class="d-flex justify-content-between align-items-center">
                 <div class="w-50 me-3">
                     <label for="fName">First Name</label>
-                    <input id="fName " type="text" class="form-control my-3 ">
+                    <input id="fName " type="text" class="form-control my-3 " formControlName="firstName" name="firstname">
                 </div>
                 <div class="w-50">
                     <label for="lName">Last Name</label>
-                    <input id="lName " type="text" class="form-control my-3 ">
+                    <input id="lName " type="text" class="form-control my-3 " formControlName="lastName" name="lastname">
                 </div>
             </div>
             <div class="">
                 <label for="userName">User Name</label>
-                <input id="userName " type="text" class="form-control my-3">
+                <input id="userName " type="text" class="form-control my-3" formControlName="userName" name="username">
             </div>
 
             <div class="">
                 <label for="email">Email Address</label>
-                <input id="email" type="email" class="form-control my-3">
+                <input id="email" type="email" class="form-control my-3" formControlName="email" name="email">
             </div>
             <div class="">
                 <label for="address"> Address</label>
-                <input id="address" type="text" class="form-control my-3">
+                <input id="address" type="text" class="form-control my-3" formControlName="address" name="address">
             </div>
             <div class="">
                 <label for="phone"> Phone</label>
-                <input id="phone" type="text" class="form-control my-3">
+                <input id="phone" type="text" class="form-control my-3" formControlName="phone" name="phone">
             </div>
             <div class="">
                 <label for="docId"> Card Number</label>
-                <input id="docId" type="text" class="form-control my-3">
+                <input id="docId" type="text" class="form-control my-3" formControlName="cardNumber" name="cardnumber">
             </div>
             <div class="">
                 <label for="age"> Age</label>
-                <input id="age" type="text" class="form-control my-3">
+                <input id="age" type="text" class="form-control my-3" formControlName="age" name="age">
             </div>
             <div class="mb-2">
                 <p>Gender</p>
 
-                <input type="radio" id="male" name="gender" value="male" class="me-2">
+                <input type="radio" id="male" name="gender"  class="me-2" name="gender" formControlName="gender" [value]="0" (change)="onGenderChanged('male')">
                 <label for="male">Male</label><br>
 
-                <input type="radio" id="female" name="gender" value="female" class="me-2 ">
+                <input type="radio" id="female" name="gender"  class="me-2 " name="gender" formControlName="gender" [value]="1"  (change)="onGenderChanged('female')">
                 <label for="female" >Female</label><br>
             </div>
             <div class="">
                 <label for="password">Password</label>
-                <input id="password" type="password" class="form-control my-3">
+                <input id="password" type="password" class="form-control my-3" name="password" formControlName="password">
             </div>
-            <div class="">
+            <!-- <div class="">
                 <label for="cPassword">Comfirm Password</label>
-                <input id="cPpassword" type="password" class="form-control my-3">
-            </div>
+                <input id="cPpassword" type="password" class="form-control my-3" name="confirm" formControlName="confirmPassword">
+            </div> -->
             <p>you have already account?<span class="signIn">sign in</span></p>
             <button class="btn btnSignUp" type="submit">Create Account</button>
         </form>
