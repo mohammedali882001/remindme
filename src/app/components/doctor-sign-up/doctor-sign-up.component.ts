@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { DoctorRegisterService } from '../../services/AuthenticationServices/DoctorAuthentication/doctor-register.service';
 import { DoctorRegisterDTO } from '../../models/Authentication/doctor-register-dto';
 import { CommonModule } from '@angular/common';
-import { uniqueUsernameValidator } from '../../validators/unique-username-validator.validator';
+//import { uniqueUsernameValidator } from '../../validators/unique-username-validator.validator';
 import Swal from 'sweetalert2';
 
 @Component({
