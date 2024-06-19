@@ -16,7 +16,7 @@ import { RestPasswordComponent } from './components/rest-password/rest-password.
   standalone: true,
 
   imports: [RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
-    DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent],
+    DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet],
 
 
 
