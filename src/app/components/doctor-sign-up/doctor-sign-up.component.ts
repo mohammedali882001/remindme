@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './doctor-sign-up.component.html',
   styleUrl: './doctor-sign-up.component.css'
 })
+
 export class DoctorSignUpComponent {
   isFormSubmitted = false;
   registerForm: FormGroup;
