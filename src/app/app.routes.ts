@@ -10,7 +10,7 @@ export const routes: Routes = [
 { path: '', redirectTo: 'landing', pathMatch: 'full' },
 { path: 'landing', component: LandingComponent },
 {path:'login',component:LoginComponent},
-{path:'doctor',component:DoctorprofileComponent},
+{path:'doctorProfile',component:DoctorprofileComponent},
 {path:'registerDoctor',component:DoctorSignUpComponent},
 {path:'registerRelative',component:RelativeSignUpComponent}
 
