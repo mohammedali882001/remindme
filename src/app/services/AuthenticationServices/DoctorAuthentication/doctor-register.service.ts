@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,10 @@ export class DoctorRegisterService {
     return this._httpClient.post(this.apiUrl, registerDto, { headers });
   }
   isUsernameTaken(userName: string): Observable<boolean> {
-    return this._httpClient.get<boolean>(`${this.apiUrl}/CheckUsername`, { params: { userName } });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const checkUsernameDto = { userName };
+    return this._httpClient.post<any>(`${this.apiUrl}/Account/CheckUsername`, checkUsernameDto, { headers }).pipe(
+      map(response => !response.isSuccess) // `true` if taken, `false` if available
+    );
   }
 }

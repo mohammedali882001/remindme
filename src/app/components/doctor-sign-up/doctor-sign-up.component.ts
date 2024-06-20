@@ -5,6 +5,7 @@ import { DoctorRegisterDTO } from '../../models/Authentication/doctor-register-d
 import { CommonModule } from '@angular/common';
 //import { uniqueUsernameValidator } from '../../validators/unique-username-validator.validator';
 import Swal from 'sweetalert2';
+import { uniqueUsernameValidator } from '../../validators/unique-username-validator.validator';
 
 @Component({
   selector: 'app-doctor-sign-up',
@@ -22,7 +23,8 @@ export class DoctorSignUpComponent {
     this.registerForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      userName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      userName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)],
+      [uniqueUsernameValidator(this.doctorRegisterService)]],
       email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
@@ -73,5 +75,7 @@ export class DoctorSignUpComponent {
   get f() {
     return this.registerForm.controls;
   }
+
+  
 }
 
