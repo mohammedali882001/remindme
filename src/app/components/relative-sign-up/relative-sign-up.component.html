@@ -6,15 +6,25 @@
             labore.
         </p>
         <form action="" class="mx-4 mt-2">
+
             <div class="d-flex justify-content-between align-items-center">
-                <div class="w-50 me-3">
+                <div class="w-30 me-3">
                     <label for="fName">First Name</label>
-                    <input id="fName " type="text" class="form-control my-3 ">
+                    <input id="fName " type="text" class="form-control my-3"
+                     required minlength="2" maxlength="25" >
                 </div>
-                <div class="w-50">
+               
+
+                <div class="w-30">
                     <label for="lName">Last Name</label>
                     <input id="lName " type="text" class="form-control my-3 ">
                 </div>
+            
+                <div class="text-danger">
+                    <p>*Required</p>
+                    <p>must be more than one character and less than 26 character</p>
+                </div>
+
             </div>
             <div class="">
                 <label for="userName">User Name</label>
@@ -32,10 +42,6 @@
             <div class="">
                 <label for="phone"> Phone</label>
                 <input id="phone" type="text" class="form-control my-3">
-            </div>
-            <div class="">
-                <label for="relativeId"> Card Number</label>
-                <input id="relativeId" type="text" class="form-control my-3">
             </div>
             <div class="">
                 <label for="age"> Age</label>
@@ -58,8 +64,39 @@
                 <label for="cPassword">Comfirm Password</label>
                 <input id="cPpassword" type="password" class="form-control my-3">
             </div>
+
+            <!-- start patient register part -->
+            <div class="w-50 me-3">
+                <label for="PatientfName">Patient First Name</label>
+                <input id="PatientfName " type="text" class="form-control my-3 ">
+            </div>
+            <div class="w-50">
+                <label for="PatientlName">Patient Last Name</label>
+                <input id="PatientlName " type="text" class="form-control my-3 ">
+            </div>
+
+            <div class="">
+                <label for="PatientAge">Patient Age</label>
+                <input id="PatientAge" type="text" class="form-control my-3">
+            </div>
+
+            <div class="">
+                <label for="PatientAddress">Patient Address</label>
+                <input id="PatientAddress" type="text" class="form-control my-3">
+            </div>
+
+            <div class="mb-2">
+                <p>Gender</p>
+
+                <input type="radio" id="PatientMale" name="PatientGender" value="male" class="me-2">
+                <label for="PatientMale">Male</label><br>
+
+                <input type="radio" id="PatientFemale" name="PatientGender" value="female" class="me-2 ">
+                <label for="PatientFemale" >Female</label><br>
+            </div>
+
             <p>you have already account?<span class="signIn">sign in</span></p>
-            <button class="btn btnSignUp" type="submit">Create Account</button>
+            <button class="btn btnSignUp btn-primary" type="submit" >Create Account</button>
         </form>
     </div>
 </section>
