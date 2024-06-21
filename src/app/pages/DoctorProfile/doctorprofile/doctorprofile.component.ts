@@ -23,7 +23,9 @@ export class DoctorprofileComponent implements OnInit {
     this.doctorProfileService.getProfile().subscribe({
       next: (data) => {
         console.log(data);
-        this.profileData = data.Data;
+        this.profileData = data.data;
+        console.log("proooofile",this.profileData);
+
       },
       error: (error) => {
         console.error('Error fetching profile data:', error);
