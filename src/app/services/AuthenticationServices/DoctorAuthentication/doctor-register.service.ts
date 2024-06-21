@@ -15,12 +15,4 @@ export class DoctorRegisterService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this._httpClient.post(this.apiUrl, registerDto, { headers });
   }
-
-  // isUsernameTaken(userName: string): Observable<boolean> {
-  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  //   const checkUsernameDto = { userName };
-  //   return this._httpClient.post<any>(`${this.apiUrl}/Account/CheckUsername`, checkUsernameDto, { headers }).pipe(
-  //     map(response => !response.isSuccess) // `true` if taken, `false` if available
-  //   );
-  // }
 }

@@ -10,4 +10,5 @@ export interface DoctorGetDTO {
   averageRating: number;
   worksIn: string;
   history: string;
+  /////////
 }

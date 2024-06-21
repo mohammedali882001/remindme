@@ -9,10 +9,11 @@ import { DoctorGetDTO } from '../../models/Doctor/doctor-get-dto';
 })
 export class DoctorProfileService {
 
-  private apiUrl = `${environment.baseUrl}/Doctor`;
+  private profileUrl = `${environment.baseUrl}/Doctor`; // Adjust URL as needed
+
   constructor(private http: HttpClient) {}
 
-  getDoctorProfile(): Observable<DoctorGetDTO> {
-    return this.http.get<DoctorGetDTO>(this.apiUrl);
+  getProfile(): Observable<any> {
+    return this.http.get<any>(this.profileUrl);
   }
 }

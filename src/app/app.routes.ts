@@ -13,7 +13,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'landing', component: LandingComponent },
   { path: 'login', component: LoginComponent },
-
   { path: 'doctorProfile', component: DoctorprofileComponent },
   { path: 'patientProfile', component: PatientProfileComponent },
   { path: 'registerDoctor', component: DoctorSignUpComponent },

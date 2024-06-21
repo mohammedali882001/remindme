@@ -9,6 +9,4 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './relative-sign-up.component.html',
   styleUrl: './relative-sign-up.component.css',
 })
-export class RelativeSignUpComponent {
-  // Relative : Relative;
-}
+export class RelativeSignUpComponent {}
