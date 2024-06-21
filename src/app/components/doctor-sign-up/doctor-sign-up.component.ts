@@ -3,9 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { DoctorRegisterService } from '../../services/AuthenticationServices/DoctorAuthentication/doctor-register.service';
 import { DoctorRegisterDTO } from '../../models/Authentication/doctor-register-dto';
 import { CommonModule } from '@angular/common';
-//import { uniqueUsernameValidator } from '../../validators/unique-username-validator.validator';
 import Swal from 'sweetalert2';
-import { uniqueUsernameValidator } from '../../validators/unique-username-validator.validator';
 
 @Component({
   selector: 'app-doctor-sign-up',
@@ -23,8 +21,7 @@ export class DoctorSignUpComponent {
     this.registerForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      userName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)],
-      [uniqueUsernameValidator(this.doctorRegisterService)]],
+      userName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)],],
       email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
@@ -32,7 +29,8 @@ export class DoctorSignUpComponent {
       age: ['', [Validators.required, Validators.min(25), Validators.max(90)]],
       gender: [null, Validators.required],
       password: ['', Validators.required],
-     // confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      price:['',Validators.required]
     });
   }
 
@@ -46,19 +44,39 @@ export class DoctorSignUpComponent {
       this.doctorRegisterService.registerDoctor(registerDto).subscribe({
         next: (response) => {
           // Handle successful response
-          console.log('Account Created Successfully', response);
-          Swal.fire({
-            title: "Good job!",
-            text: "Registered Successfully",
-            icon: "success"
-          });
+          console.log('Account Created Successfully', response.data[0].code);
+          if (response.isSuccess==false && response.data[0].code==='DuplicateUserName')
+            {
+              // console.log("noooooooooo");
+              this.registerForm.controls['userName'].setErrors({ notUnique: true });
+            }
+            else{
+              Swal.fire({
+                title: "Good job!",
+                text: "Registered Successfully",
+                icon: "success"
+              });
+            }
+
           // Optionally, you can reset the form after successful submission
-          this.registerForm.reset();
-          this.isFormSubmitted = false; // Reset form submission flag
+
         },
         error: (err) => {
           // Handle error response
-          console.error('Error:', err);
+          console.error('Erroooor:', err);
+          console.log("hiiiiiiiiii" );
+
+          if (err.error && err.error.data && err.error.data[0].code === 'DuplicateUserName') {
+            this.registerForm.controls['userName'].setErrors({ notUnique: true });
+          }
+          if(err.error.errors.ConfirmPassword[0]==='The password and confirmation password do not match.')
+            {
+              this.registerForm.controls['confirmPassword'].setErrors({ notMatched: true });
+            }
+          if(err.error.errors.$.age[0]==='The JSON value could not be converted to System.In… $.age | LineNumber: 0 | BytePositionInLine: 163.')
+            {
+              this.registerForm.controls['age'].setErrors({ notText: true });
+            }
         }
       });
     } else {
@@ -76,6 +94,5 @@ export class DoctorSignUpComponent {
     return this.registerForm.controls;
   }
 
-  
 }
 

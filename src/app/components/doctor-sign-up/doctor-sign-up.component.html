@@ -50,7 +50,6 @@
         </p>
       </div>
 
-
       <div>
         <label for="email">Email Address</label>
         <input id="email" type="email" class="form-control my-3" formControlName="email" name="email">
@@ -81,12 +80,29 @@
         </p>
       </div>
 
-      <div>
+      <!-- <div>
         <label for="docId">Card Number</label>
         <input id="docId" type="text" class="form-control my-3" formControlName="cardNumber" name="cardnumber">
         <p *ngIf="f['cardNumber'].errors?.['required'] && (f['cardNumber'].dirty || f['cardNumber'].touched)" class="text-danger">
           Card number is required.
         </p>
+      </div> -->
+
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="w-50 me-3">
+          <label for="docId">Card Number</label>
+          <input id="docId" type="text" class="form-control my-3" formControlName="cardNumber" name="cardnumber">
+          <p *ngIf="f['cardNumber'].errors?.['required'] && (f['cardNumber'].dirty || f['cardNumber'].touched)" class="text-danger">
+            Card Number is required.
+          </p>
+        </div>
+        <div class="w-50">
+          <label for="price">Price</label>
+          <input id="price" type="number" class="form-control my-3" formControlName="price" name="price">
+          <p *ngIf="f['price'].errors?.['price'] && (f['price'].dirty || f['price'].touched)" class="text-danger">
+            Price is required.
+          </p>
+        </div>
       </div>
 
       <div>
@@ -100,6 +116,9 @@
         </p>
         <p *ngIf="f['age'].errors?.['max'] && (f['age'].dirty || f['age'].touched)" class="text-danger">
           Age must be at most 90.
+        </p>
+        <p *ngIf="f['age'].errors?.['notText']" class="text-danger">
+          Age must be number Only.
         </p>
       </div>
 
@@ -119,6 +138,17 @@
         <input id="password" type="password" class="form-control my-3" formControlName="password" name="password">
         <p *ngIf="f['password'].errors?.['required'] && (f['password'].dirty || f['password'].touched)" class="text-danger">
           Password is required.
+        </p>
+      </div>
+
+      <div>
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" class="form-control my-3" formControlName="confirmPassword" name="confirmPassword">
+        <p *ngIf="f['confirmPassword'].errors?.['required'] && (f['confirmPassword'].dirty || f['confirmPassword'].touched)" class="text-danger">
+          Confirm Password is required.
+        </p>
+        <p *ngIf="f['confirmPassword'].errors?.['notMatched']" class="text-danger">
+          The password and confirmation password do not match.
         </p>
       </div>
 

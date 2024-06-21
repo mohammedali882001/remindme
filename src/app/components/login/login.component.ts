@@ -38,6 +38,8 @@ export class LoginComponent {
             console.log('Login successful:', response.data);
             // Store the token in local storage or a service
             localStorage.setItem('token', response.data.token);
+            console.log(response.data.token);
+
             // Redirect to dashboard or profile based on roles
             if (response.data.roles.includes('Doctor')) {
               this.router.navigate(['/doctorProfile']);
