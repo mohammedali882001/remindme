@@ -1,0 +1,20 @@
+<section class="questionsSection">
+  <div class="container">
+    <div class="quizBox m-4">
+      <div class="question mb-3">
+        <div class="questionHead">
+          <h2 class="fw-bolder fs-3 my-2">Question 1</h2>
+          <p class="lead my-5 fw-semibold">What did you hear in the first voice recording?</p>
+        </div>
+        <div 
+          *ngFor="let option of options; let i = index"
+          class="optionBody p-3 text-secondary mb-4 rounded-2 d-flex justify-content-between align-items-center"
+          appSelectedOptionStoryTest
+          (click)="selectOption(option)">
+          <label for="option{{i}}" class="text-secondary">{{option}}</label>
+          <input type="radio" id="option{{i}}" name="options" [value]="option" [(ngModel)]="selectedOption" (change)="selectOption(option)">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+<section class="storyTest d-flex align-items-center justify-content-center position-relative">
+  <div class="info position-absolute p-2 main-border d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <i class="fa-solid fa-info"></i>
+  </div>
+  <div class="storyContainer container main-border">
+    <h1>My Audio Player</h1>
+    <audio id="audioPlayer" controls controlsList="nodownload">
+      <source src="../../../assets/audio/WhatsApp Audio 2024-06-21 at 12.11.52_51440292.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="btnTest m-2">
+    <button type="button" class="btn bg-purpel btnUnderstand text-white"  >Go to questions</button>
+  </div>
+  </div>
+  
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center" >
+        <Span class="d-block fw-bolder text-purpel fs-3 text-uppercase ">
+            <img src="../../../assets/jpeg/warning_2797388.png" alt="warning" class="me-3" width="10%">
+            Attention! </Span>
+        <p class="lead p-3 fw-bold text-body-secondary">
+            You can play the audio only once. After listening, click the button that will appear to answer the questions.
+        </p>
+      </div>
+      <div class="modal-footer border-top-0">
+        <button type="button" class="btn bg-purpel btnUnderstand text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">I understand</button>
+      </div>
+    </div>
+  </div>
+</div>

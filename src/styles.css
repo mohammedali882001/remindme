@@ -6,9 +6,7 @@
     --dark-blue:#2e1d31;
 
 }
-h1, h2, h3, h4, h5, h6 {
-    color: var(--main-Color);
-}
+
 body {
     margin: 0;
     padding: 0;
@@ -19,4 +17,13 @@ body {
 }
 a {
     text-decoration: none;
+}
+.main-border{
+    border: 1px solid var(--main-Color); 
+}
+.bg-purpel{
+    background-color: var(--main-Color);
+}
+.text-purpel{
+    color: var(--main-Color);
 }
