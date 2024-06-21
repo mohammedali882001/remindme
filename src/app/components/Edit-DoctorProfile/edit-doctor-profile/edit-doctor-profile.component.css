@@ -1,0 +1,32 @@
+.container {
+  margin-top: 20px;
+}
+
+.form-horizontal .form-group {
+  margin-bottom: 15px;
+}
+
+.input-group-container .input-group-addon {
+  min-width: 40px;
+  text-align: center;
+}
+
+.input-group-container .form-control {
+  height: 40px;
+}
+
+.input-group-container select.form-control {
+  height: 40px;
+  padding: 6px 12px;
+}
+
+.btn-warning {
+  background-color: #f0ad4e;
+  border-color: #eea236;
+  color: white;
+}
+
+.btn-warning:hover {
+  background-color: #ec971f;
+  border-color: #d58512;
+}
