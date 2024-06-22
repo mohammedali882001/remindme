@@ -73,3 +73,12 @@ a {
 html {
   scroll-behavior: smooth;
 }
+.main-border{
+    border: 1px solid var(--main-Color); 
+}
+.bg-purpel{
+    background-color: var(--main-Color);
+}
+.text-purpel{
+    color: var(--main-Color);
+}
