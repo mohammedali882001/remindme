@@ -7,12 +7,13 @@ import { DoctorSignUpComponent } from './components/doctor-sign-up/doctor-sign-u
 import { RestPasswordComponent } from './components/rest-password/rest-password.component';
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { FormsModule } from '@angular/forms';
+import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, LandingComponent,
-    DoctorSignUpComponent,LoginComponent,RestPasswordComponent,StoryTestComponent,QuestionsComponent,FormsModule 
+    DoctorSignUpComponent,LoginComponent,RestPasswordComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent
   ],
   
   templateUrl: './app.component.html',
