@@ -4,6 +4,7 @@ import { LoginService } from '../../services/AuthenticationServices/Logins/login
 import { Router } from '@angular/router';
 //import { catchError, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/AuthenticationServices/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
+    private authService: AuthService, // Inject AuthService
     private router: Router
   ) {
     this.loginForm = this.fb.group({
@@ -38,7 +40,7 @@ export class LoginComponent {
             console.log('Login successful:', response.data);
             // Store the token in local storage or a service
             localStorage.setItem('token', response.data.token);
-            console.log(response.data.token);
+            this.authService.setLoggedInState(true); // Emit login state change
 
             // Redirect to dashboard or profile based on roles
             if (response.data.roles.includes('Doctor')) {
@@ -47,8 +49,7 @@ export class LoginComponent {
               this.router.navigate(['/patientProfile']);
             } else if (response.data.roles.includes('Admin')) {
               this.router.navigate(['/home']);
-            }
-            else {
+            } else {
               this.errorMessage = 'Unknown user role.';
             }
           } else {
