@@ -9,12 +9,12 @@ import { PatientProfileComponent } from './pages/PatientProfile/patientprofile/p
 import { HomeComponent } from './pages/Home/home.component';
 
 export const routes: Routes = [
-{ path: '', redirectTo: 'landing', pathMatch: 'full' },
-{ path: 'home', component: HomeComponent },
-{ path: 'landing', component: LandingComponent },
-{path:'login',component:LoginComponent},
-{path:'doctorProfile',component:DoctorprofileComponent},
-{path:'patientProfile',component:PatientProfileComponent},
-{path:'registerDoctor',component:DoctorSignUpComponent},
-{path:'registerRelative',component:RelativeSignUpComponent}
+  { path: '', redirectTo: 'landing', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'landing', component: LandingComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'doctorProfile', component: DoctorprofileComponent },
+  { path: 'patientProfile', component: PatientProfileComponent },
+  { path: 'registerDoctor', component: DoctorSignUpComponent },
+  { path: 'registerRelative', component: RelativeSignUpComponent },
 ];
