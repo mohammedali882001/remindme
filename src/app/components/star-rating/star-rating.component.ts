@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SharedModule } from '../../models/shared-module';
 
 @Component({
@@ -9,20 +9,23 @@ import { SharedModule } from '../../models/shared-module';
   templateUrl: './star-rating.component.html',
   styleUrl: './star-rating.component.css'
 })
-export class StarRatingComponent {
-  @Input() rating: number=0;
+export class StarRatingComponent implements OnInit {
+  @Input() rating: number = 0;
+  fullStars: number[] = [];
+  halfStars: number[] = [];
+  emptyStars: number[] = [];
 
-  get fullStars(): number[] {
-    const fullStarsCount = Math.floor(this.rating);
-    return Array(fullStarsCount).fill(0);
+  ngOnInit(): void {
+    this.calculateStars();
   }
 
-  get hasHalfStar(): boolean {
-    return this.rating - Math.floor(this.rating) >= 0.5;
-  }
+  calculateStars(): void {
+    const fullStarCount = Math.floor(this.rating);
+    const halfStarCount = this.rating % 1 >= 0.5 ? 1 : 0;
+    const emptyStarCount = 5 - fullStarCount - halfStarCount;
 
-  get emptyStars(): number[] {
-    const emptyStarsCount = 5 - Math.ceil(this.rating);
-    return Array(emptyStarsCount).fill(0);
+    this.fullStars = Array(fullStarCount).fill(0).map((_, i) => i);
+    this.halfStars = Array(halfStarCount).fill(0).map((_, i) => i);
+    this.emptyStars = Array(emptyStarCount).fill(0).map((_, i) => i);
   }
 }
