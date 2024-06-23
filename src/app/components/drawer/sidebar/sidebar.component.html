@@ -1,33 +1,59 @@
+<div class="menu">
+  <ul>
 
-<div class="sidebar col-sm-2 col-md-3 col-lg-2" [class.active]="isActive?'d-block':'d-none'" >
-  <!-- <button class="btn btn-primary toggle-sidebar-btn d-md-none" (click)="toggleSideitembar()">☰</button> -->
-   
-  <div class="content ">
-    <div class="item active">
-      <i class="fa-regular fa-calendar"></i>
-      <h6>
-        Dashboard</h6>
-    </div>
+    <li>
+      <a  routerLink="/dashbaord"  routerLinkActive="active">
 
-    <div class="item ">
-      <i class="fa-solid fa-clock"></i>
-      <h6>Visits</h6>
+        <i class="fa-regular fa-calendar"></i>
+        <p>Dashboard</p>
+      </a>
+    </li>
 
-    </div>
-    <div class="item">
-      <i class="fa-solid fa-file-medical"></i>
-      <h6>Prescriptions</h6></div>
-    <div class="item">
-      <i class="fa-solid fa-file-invoice"></i>
-      <h6>Treatment </h6></div>
-    <div class="item">
-      <i class="fa-regular fa-message"></i>
-      <h6>messages</h6></div>
+    <li>
+      <a routerLink="/visits"  routerLinkActive="active">
 
-</div>
-<button class="toggle-btn ">☰</button><br>
-</div>
+        <i class="fa-solid fa-clock"></i>
+        <p>Visits</p>
+      </a>
+    </li>
+    <li>
+      <a  routerLink="/Prescriptions"  routerLinkActive="active">
+
+        <i class="fa-solid fa-file-medical"></i>
+        <p>Prescriptions</p>
+      </a>
+    </li>
+    <li>
+      <a  routerLink="/Treatment"  routerLinkActive="active">
+
+        <i class="fa-solid fa-file-invoice"></i>
+        <p>Treatment</p>
+      </a>
+    </li>
+    <li>
+      <a  routerLink="/Message"  routerLinkActive="active">
+
+        <i class="fa-regular fa-message"></i>
+        <p>Message</p>
+      </a>
+    </li>
+    <li>
+      <a  routerLink="/Setting"  routerLinkActive="active">
+
+        <i class="fa-solid fa-gear"></i>
+        <p>Setting</p>
+      </a>
+    </li>
+
+<!--
+    <li class="Logout">
+      <a  routerLink="/landingpage"  routerLinkActive="active">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <p>Logout</p>
+      </a>
+    </li> -->
+  </ul>
 
 
-
-
+   </div>
