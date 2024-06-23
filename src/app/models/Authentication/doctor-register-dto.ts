@@ -9,5 +9,7 @@ export interface DoctorRegisterDTO {
   age: number;
   gender: string;
   password: string;
+  confirmPassword:string;
+  price:number;
 
 }
