@@ -1,4 +1,9 @@
 <div class="">
+
+
+
+
+<div *ngIf="profileData" class="container-fluid ">
   <div class="d-flex ">
     <div class="col-12 col-sm-2 col-lg-3 sideBar d-none d-lg-flex">
       <app-sidebar></app-sidebar>
@@ -19,30 +24,30 @@
           </div>
         </div>
         <div class="doctorTitel">
-          <h3>Dr.Nour Mohammed</h3>
-          <h6 class="text-muted subTitel">Cardiologist</h6>
+          <h3>Dr. {{ profileData.firstName }} {{ profileData.lastName }}</h3>
+          <h6 class="text-muted subTitel">{{ profileData.userName }}</h6>
           <p class="text-muted location">
-            <i class="fa-solid fa-location-dot"></i> Minia,Egypt.
+            <i class="fa-solid fa-location-dot"></i> {{ profileData.address }}
           </p>
           <div class="rating d-flex">
             <app-star-rating></app-star-rating>
             <strong><h3>3.9</h3></strong>
           </div>
           <div class="mobile d-flex flex-wrap flex-lg-row">
-            <span class="thirdBtn">Phone: +20 105689473</span>
-            <span class="thirdBtn">Gender: female</span>
-            <span class="thirdBtn ">Age: 28</span>
+            <span class="thirdBtn">Phone: {{ profileData.phone }}</span>
+            <span class="thirdBtn">Gender: {{ profileData.genderString }}</span>
+            <span class="thirdBtn">Age: {{ profileData.age }}</span>
           </div>
         </div>
       </div>
       <div class="description">
         <div class="doctorDesc mt-5">
           <h5>About</h5>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur sed fugiat ullam voluptatem facilis reprehenderit, necessitatibus blanditiis distinctio itaque. Commodi, sequi. Blanditiis dolore totam soluta labore sunt aliquam id possimus.
+          {{ profileData.worksIn }}
         </div>
         <div class="doctorDesc">
           <h5>Experience</h5>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur sed fugiat ullam voluptatem facilis reprehenderit, necessitatibus blanditiis distinctio itaque. Commodi, sequi. Blanditiis dolore totam soluta labore sunt aliquam id possimus.
+          {{ profileData.history }}
         </div>
       </div>
 
