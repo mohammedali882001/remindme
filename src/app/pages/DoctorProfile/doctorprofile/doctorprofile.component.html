@@ -56,47 +56,23 @@
       </div>
 
 
-      <div class="avaliablity">
-        <h5 class="avTitle">Avaliability</h5>
-
-        <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
-          <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
-            <strong>Wed Jun 16</strong>
-            <div>16.00 AM</div>
-          </div>
-          <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
-            <strong>Wed Jun 16</strong>
-            <div>16.00 AM</div>
-          </div>
-          <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
-            <strong>Wed Jun 16</strong>
-            <div>16.00 AM</div>
+      <div class="availability">
+        <h5 class="avTitle">Availability</h5>
+        <div class="doctor-availability d-flex justify-content-center flex-wrap">
+          <div *ngFor="let slot of availableSlots" class="calendar col-12 col-sm-6 col-md-3 col-lg-2">
+            <strong>{{ slot.formattedSlot.split('\n')[0] }}</strong>
+            <div>{{ slot.formattedSlot.split('\n')[1] }}</div>
+            <div>Start Time: {{ slot.startTime }}</div>
+            <div>End Time: {{ slot.endTime }}</div>
           </div>
 
-          <div class="calender col-sm-6 col-md-3 col-lg-2">
-            <strong>Wed Jun 16</strong>
-            <div>16.00 AM</div>
-          </div>
-          <div class="calender col-sm-6 col-md-3 col-lg-2">
-            <strong>Wed Jun 16</strong>
-            <div>16.00 AM</div>
-          </div>
-          <div class="calender col-sm-6 col-md-3 col-lg-2">
-            <strong>Wed Jun 16</strong>
-            <div>16.00 AM</div>
-          </div>
-          <div class="calender col-sm-6 col-md-3 col-lg-2">
-            <strong>Wed Jun 16</strong>
-            <div>16.00 AM</div>
-          </div>
-          <div class="calender col-sm-6 col-md-3 col-lg-2">
-            <strong>Wed Jun 16</strong>
-            <div>16.00 AM</div>
-          </div>
         </div>
       </div>
 
     </div>
+
+
+    </div>
   </div>
-</div>
+<!-- </div> -->
 
