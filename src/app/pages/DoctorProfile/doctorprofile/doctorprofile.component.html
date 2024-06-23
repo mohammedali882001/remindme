@@ -1,95 +1,102 @@
-<div class="container-fluid">
+<div *ngIf="profileData" class="container-fluid">
   <div class="row">
-<!-- <div class="col-lg-12 d-flex"> -->
-  <div class="col-12 col-lg-3 sideBar d-none d-lg-flex">
-    <app-sidebar></app-sidebar>
-  </div>
+    <div class="col-12 col-lg-3 sideBar d-none d-lg-flex">
+      <app-sidebar></app-sidebar>
+    </div>
     <div class="col-12 col-lg-9 mt-4 mainContent">
-<div class="title">
-<!-- icon -->
-<i class="fa-solid fa-arrow-left"></i>
- <!-- doctor profile -->
-  <h4 class="doctitle">Doctor`s Profile</h4>
-</div>
-<div class="profile">
-<div class="DocProfileDetals">
-  <!-- details -->
+      <div class="title">
+        <i class="fa-solid fa-arrow-left"></i>
+        <h4 class="doctitle">Doctor's Profile</h4>
+      </div>
+      <div class="profile">
+        <div class="DocProfileDetails">
+          <div>
+            <img [src]="profileData.picURL" alt="DoctorImage" class="DocProfilePic">
+          </div>
+          <div class="btns">
+            <button class="btn d-flex text-align-baseline">
+              <i class="fa-regular fa-comment"></i>
+              <span class="d-none d-lg-block d-md-block">Send message</span>
+            </button>
+            <button class="btn d-none d-lg-block">Make appointment</button>
+            <button class="btn d-flex text-align-baseline d-lg-none d-block">
+              <i class="fa-regular fa-calendar-check"></i>
+            </button>
+            <button class="d-none d-lg-block btn secBtn">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+        <div class="doctorTitle">
+          <h3 class="doctitle">Dr. {{ profileData.firstName }} {{ profileData.lastName }}</h3>
+          <h6 class="text-muted subTitle">{{ profileData.userName }}</h6>
+          <p class="text-muted location">
+            <i class="fa-solid fa-location-dot"></i> {{ profileData.address }}
+          </p>
+          <div class="rating d-flex">
+            <app-star-rating [rating]="profileData.averageRating"></app-star-rating>
+            <!-- <strong><h3 class="doctitle">{{ profileData.averageRating }}</h3></strong> -->
+          </div>
+          <div class="mobile d-flex flex-lg-row">
+            <span class="thirdBtn">Phone: {{ profileData.phone }}</span>
+            <span class="thirdBtn">Gender: {{ profileData.genderString }}</span>
+            <span class="thirdBtn">Age: {{ profileData.age }}</span>
+          </div>
+        </div>
+        <div class="description">
+          <div class="doctorDesc mt-5">
+            <h5>About</h5>
+            {{ profileData.worksIn }}
+          </div>
+          <div class="doctorDesc">
+            <h5>Experience</h5>
+            {{ profileData.history }}
+          </div>
+        </div>
+      </div>
 
-<div ><img src="assets/doctor5.PNG" alt="DoctorImage" class="DocProfilePic">
 
-</div>
-<!-- details-end -->
-<div class="btns">
-<button class="btn d-flex text-algin-baseline "><i class="fa-regular fa-comment"></i><span class="d-none d-lg-block d-md-block "> send message</span></button>
-<button class="btn d-none d-lg-block">make appointment</button>
-<button class="btn d-flex text-algin-baseline d-lg-none d-block"><i class="fa-regular fa-calendar-check"></i></button>
-<button class="d-none d-lg-block btn secBtn"><i class="fa-regular fa-bookmark"></i></button>
-</div>
-</div><div class="doctorTitel">
-  <h3 class="doctitle">Dr.Nour Mohammed</h3>
-  <h6 class="text-muted subTitel">Cardiologist</h6>
-  <p class="text-muted location">
-    <i class="fa-solid fa-location-dot"></i> Minia,Egypt.</p>
-<!-- rating -->
- <div class="rating d-flex ">
- <app-star-rating></app-star-rating>
-<strong ><h3 class="doctitle">3.9</h3></strong>
-</div>
- <div class="mobile  d-flex flex-lg-row">
-  <span class="thirdBtn">Phone: +20 105689473</span><span class="thirdBtn">Gender: female</span><span class="thirdBtn">Age: 28</span>
- </div>
-</div>
-<div class="description">
-  <div class="doctorDesc mt-5"><h5>About</h5>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur sed fugiat ullam voluptatem facilis reprehenderit, necessitatibus blanditiis distinctio itaque. Commodi, sequi. Blanditiis dolore totam soluta labore sunt aliquam id possimus.
-  </div>
-  <div class="doctorDesc"><h5>Experience</h5>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur sed fugiat ullam voluptatem facilis reprehenderit, necessitatibus blanditiis distinctio itaque. Commodi, sequi. Blanditiis dolore totam soluta labore sunt aliquam id possimus.
-  </div>
+      <div class="avaliablity">
+        <h5 class="avTitle">Avaliability</h5>
 
-</div>
+        <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
+          <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
+            <strong>Wed Jun 16</strong>
+            <div>16.00 AM</div>
+          </div>
+          <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
+            <strong>Wed Jun 16</strong>
+            <div>16.00 AM</div>
+          </div>
+          <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
+            <strong>Wed Jun 16</strong>
+            <div>16.00 AM</div>
+          </div>
+
+          <div class="calender col-sm-6 col-md-3 col-lg-2">
+            <strong>Wed Jun 16</strong>
+            <div>16.00 AM</div>
+          </div>
+          <div class="calender col-sm-6 col-md-3 col-lg-2">
+            <strong>Wed Jun 16</strong>
+            <div>16.00 AM</div>
+          </div>
+          <div class="calender col-sm-6 col-md-3 col-lg-2">
+            <strong>Wed Jun 16</strong>
+            <div>16.00 AM</div>
+          </div>
+          <div class="calender col-sm-6 col-md-3 col-lg-2">
+            <strong>Wed Jun 16</strong>
+            <div>16.00 AM</div>
+          </div>
+          <div class="calender col-sm-6 col-md-3 col-lg-2">
+            <strong>Wed Jun 16</strong>
+            <div>16.00 AM</div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div class="avaliablity"><h5 class="avTitle">Avaliability</h5>
-
-    <div class=" doctoravaliablity d-flex justify-content-center flex-wrap">
-
-       <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
-        <strong>Wed Jun 16</strong>
-        <div>16.00 AM</div>
-       </div>
-       <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
-        <strong>Wed Jun 16</strong>
-        <div>16.00 AM</div>
-       </div>
-       <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
-        <strong>Wed Jun 16</strong>
-        <div>16.00 AM</div>
-       </div>
-
-       <div class="calender col-sm-6 col-md-3 col-lg-2">
-        <strong>Wed Jun 16</strong>
-        <div>16.00 AM</div>
-       </div>
-       <div class="calender col-sm-6 col-md-3 col-lg-2">
-        <strong>Wed Jun 16</strong>
-        <div>16.00 AM</div>
-       </div>
-       <div class="calender col-sm-6 col-md-3 col-lg-2">
-        <strong>Wed Jun 16</strong>
-        <div>16.00 AM</div>
-       </div>
-       <div class="calender col-sm-6 col-md-3 col-lg-2">
-        <strong>Wed Jun 16</strong>
-        <div>16.00 AM</div>
-       </div>
-       <div class="calender col-sm-6 col-md-3 col-lg-2">
-        <strong>Wed Jun 16</strong>
-        <div>16.00 AM</div>
-       </div>
-    </div>
-</div>
+  </div>
 </div>
 
-
-</div>
-<!-- </div> -->
