@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { DoctorGetDTO } from '../../models/Doctor/doctor-get-dto';
 import { AvailableSlotsDTO } from '../../models/Doctor/available-slots-dto';
+import { DoctorEditDTO } from '../../models/Doctor/doctor-edit-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +28,7 @@ export class DoctorProfileService {
   // getAvailableSlots(): Observable<AvailableSlotsDTO[]> {
   //   return this.http.get<AvailableSlotsDTO[]>(this.slotsUrl);
   // }
+  updateDoctorProfile(doctor: DoctorEditDTO): Observable<any> {
+    return this.http.put<any>(this.profileUrl, doctor);
+  }
 }

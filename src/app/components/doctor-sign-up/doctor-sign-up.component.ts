@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { DoctorRegisterService } from '../../services/AuthenticationServices/DoctorAuthentication/doctor-register.service';
 import { DoctorRegisterDTO } from '../../models/Authentication/doctor-register-dto';
 import { CommonModule } from '@angular/common';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-doctor-sign-up',
@@ -50,13 +50,13 @@ export class DoctorSignUpComponent {
               // console.log("noooooooooo");
               this.registerForm.controls['userName'].setErrors({ notUnique: true });
             }
-            else{
-              Swal.fire({
-                title: "Good job!",
-                text: "Registered Successfully",
-                icon: "success"
-              });
-            }
+            // else{
+            //   Swal.fire({
+            //     title: "Good job!",
+            //     text: "Registered Successfully",
+            //     icon: "success"
+            //   });
+            // }
 
           // Optionally, you can reset the form after successful submission
 
