@@ -50,7 +50,7 @@ export class RelativeSignUpComponent {
       console.log(registerDto);
       this.relativeRegisterService.registerRelative(registerDto).subscribe({
         next: (response) => {
-          if (!response.isSuccess && response.data[0]?.code === 'DuplicateUserName') {
+          if (!response.isSuccess &&response.isContainerNode===false) {
             this.registerForm.controls['relativeUserName'].setErrors({ notUnique: true });
           } else {
             Swal.fire({
@@ -61,13 +61,18 @@ export class RelativeSignUpComponent {
             });
           }
         },
-        error: (error) => {
-          Swal.fire({
-            title: 'Error!',
-            text: 'Something went wrong, please try again later.',
-            icon: 'error',
-            confirmButtonText: 'OK'
-          });
+        error: (err) => {
+          if (err.error && err.error.data && err.error.isContainerNode===false) {
+            this.registerForm.controls['userName'].setErrors({ notUnique: true });
+          }
+          if(err.error.errors.ConfirmPassword[0]==='The password and confirmation password do not match.')
+            {
+              this.registerForm.controls['confirmPassword'].setErrors({ notMatched: true });
+            }
+          if(err.error.errors.$.age[0]==='The JSON value could not be converted to System.In… $.age | LineNumber: 0 | BytePositionInLine: 163.')
+            {
+              this.registerForm.controls['age'].setErrors({ notText: true });
+            }
         }
       });
     } else {

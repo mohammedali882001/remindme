@@ -9,6 +9,7 @@ import { SharedModule } from '../../models/shared-module';
   templateUrl: './star-rating.component.html',
   styleUrl: './star-rating.component.css'
 })
+
 export class StarRatingComponent implements OnInit {
   @Input() rating: number = 0;
   fullStars: number[] = [];

@@ -78,7 +78,7 @@
             <p *ngIf="f['relativeConfirmPassword'].errors?.['notMatched']">Passwords do not match</p>
           </div>
         </div>
-  
+
         <!-- Patient Registration Fields -->
         <div>
           <label for="patientFirstName">Patient First Name</label>
@@ -124,9 +124,8 @@
           <label for="patientLocation">Patient Location</label>
           <input id="patientLocation" formControlName="patientLocation" type="text" class="form-control my-3" />
         </div>
-  
-        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+        <button type="submit" class="btn btn-primary mt-3"[disabled]="registerForm.invalid">Submit</button>
       </form>
     </div>
   </section>
-  
