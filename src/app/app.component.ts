@@ -15,14 +15,16 @@ import { EditDoctorProfileComponent } from './components/Edit-DoctorProfile/edit
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { FormsModule } from '@angular/forms';
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
+import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
+//  import { ChartsModule } from 'ng2-charts';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
   imports: [RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
-    DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent],
-
+    DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,DoctorDashboardComponent],
 
 
 templateUrl: './app.component.html',

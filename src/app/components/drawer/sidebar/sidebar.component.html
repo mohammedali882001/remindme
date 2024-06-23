@@ -1,10 +1,12 @@
 
-<div class="sidebar" [class.active]="isActive?'d-block':'d-none'" >
-  <div class="content">
+<div class="sidebar col-sm-2 col-md-3 col-lg-2" [class.active]="isActive?'d-block':'d-none'" >
+  <!-- <button class="btn btn-primary toggle-sidebar-btn d-md-none" (click)="toggleSideitembar()">☰</button> -->
+   
+  <div class="content ">
     <div class="item active">
       <i class="fa-regular fa-calendar"></i>
       <h6>
-        Patient Panel</h6>
+        Dashboard</h6>
     </div>
 
     <div class="item ">
@@ -17,7 +19,7 @@
       <h6>Prescriptions</h6></div>
     <div class="item">
       <i class="fa-solid fa-file-invoice"></i>
-      <h6>Treatment History</h6></div>
+      <h6>Treatment </h6></div>
     <div class="item">
       <i class="fa-regular fa-message"></i>
       <h6>messages</h6></div>
