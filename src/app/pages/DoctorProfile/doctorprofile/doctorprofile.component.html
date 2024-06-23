@@ -1,90 +1,68 @@
 <div class="">
-  <div *ngIf="profileData" class="container-fluid">
-    <div class="d-flex">
-      <div class="col-12 col-sm-2 col-lg-3 sideBar d-none d-lg-flex">
-        <app-sidebar></app-sidebar>
+  <div class="d-flex">
+    <div class="col-12 col-sm-2 col-lg-3 sideBar d-none d-lg-flex">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-12 col-lg-8 mt-4 mainContent justify-content-center">
+      <div class="title">
+        <i class="fa-solid fa-arrow-left"></i> {{ profileData.address }}
+        <h4>Doctor's Profile</h4>
       </div>
-      <div class="col-12 col-lg-8 mt-4 mainContent justify-content-center">
-        <div class="title">
-          <i class="fa-solid fa-arrow-left"></i>
-          <h4>Doctor's Profile</h4>
-        </div>
-        <div class="profile">
-          <div class="DocProfileDetals">
-            <div>
-              <img
-                src="assets/doctor5.PNG"
-                alt="DoctorImage"
-                class="DocProfilePic"
-              />
-            </div>
-            <div class="btns">
-              <button class="btn d-flex text-align-baseline">
-                <i class="fa-regular fa-comment"></i
-                ><span class="d-none d-lg-block d-md-block"> send message</span>
-              </button>
-              <button class="btn d-none d-lg-block">make appointment</button>
-              <button class="btn d-flex text-align-baseline d-lg-none d-block">
-                <i class="fa-regular fa-calendar-check"></i>
-              </button>
-              <button class="d-none d-lg-block btn secBtn">
-                <i class="fa-regular fa-bookmark"></i>
-              </button>
-            </div>
-          </div>
-          <div class="doctorTitel">
-            <h3>Dr. {{ profileData.firstName }} {{ profileData.lastName }}</h3>
-            <h6 class="text-muted subTitel">{{ profileData.userName }}</h6>
-            <p class="text-muted location">
-              <i class="fa-solid fa-location-dot"></i> {{ profileData.address }}
-            </p>
-            <div class="rating d-flex">
-              <app-star-rating></app-star-rating>
-              <strong><h3>3.9</h3></strong>
-            </div>
-            <div class="mobile d-flex flex-wrap flex-lg-row">
-              <span class="thirdBtn">Phone: {{ profileData.phone }}</span>
-              <span class="thirdBtn"
-                >Gender: {{ profileData.genderString }}</span
-              >
-              <span class="thirdBtn">Age: {{ profileData.age }}</span>
-            </div>
+      <div class="profile">
+        <div class="DocProfileDetals">
+          <div><img src="assets/doctor5.PNG" alt="DoctorImage" class="DocProfilePic"></div>
+          <div class="btns">
+            <button class="btn d-flex text-align-baseline">
+              <i class="fa-regular fa-comment"></i>
+              <span class="d-none d-lg-block d-md-block"> send message</span>
+            </button>
+            <button class="btn d-none d-lg-block">make appointment</button>
+            <button class="btn d-flex text-align-baseline d-lg-none d-block">
+              <i class="fa-regular fa-calendar-check"></i>
+            </button>
+            <button class="d-none d-lg-block btn secBtn">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
           </div>
         </div>
-        <div class="description">
-          <div class="doctorDesc mt-5">
-            <h5>About</h5>
-            {{ profileData.worksIn }}
+        <div class="doctorTitel">
+          <h3>Dr. {{ profileData.firstName }} {{ profileData.lastName }}</h3>
+          <h6 class="text-muted subTitel">{{ profileData.userName }}</h6>
+          <p class="text-muted location">
+            <i class="fa-solid fa-location-dot"></i> {{ profileData.address }}
+          </p>
+          <div class="rating d-flex">
+            <app-star-rating></app-star-rating>
+            <strong><h3>{{ profileData.rating }}</h3></strong>
           </div>
-          <div class="doctorDesc">
-            <h5>Experience</h5>
-            {{ profileData.history }}
+          <div class="mobile d-flex flex-wrap flex-lg-row">
+            <span class="thirdBtn">Phone: {{ profileData.phone }}</span>
+            <span class="thirdBtn">Gender: {{ profileData.genderString }}</span>
+            <span class="thirdBtn">Age: {{ profileData.age }}</span>
           </div>
         </div>
-
       </div>
-
-
-      <div class="availability">
+      <div class="description">
+        <div class="doctorDesc mt-5">
+          <h5>About</h5>
+          {{ profileData.worksIn }}
+        </div>
+        <div class="doctorDesc">
+          <h5>Experience</h5>
+          {{ profileData.history }}
+        </div>
+      </div>
+      <div class="avaliablity">
         <h5 class="avTitle">Availability</h5>
-        <div class="doctor-availability d-flex justify-content-center flex-wrap">
+        <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
           <div *ngFor="let slot of availableSlots" class="calendar col-12 col-sm-6 col-md-3 col-lg-2">
             <strong>{{ slot.formattedSlot.split('\n')[0] }}</strong>
             <div>{{ slot.formattedSlot.split('\n')[1] }}</div>
             <div>Start Time: {{ slot.startTime }}</div>
             <div>End Time: {{ slot.endTime }}</div>
           </div>
-
-
-
-        
         </div>
       </div>
     </div>
-
-
-    </div>
   </div>
-<!-- </div> -->
-
-
+</div>
