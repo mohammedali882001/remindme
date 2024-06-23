@@ -15,16 +15,26 @@ import { EditDoctorProfileComponent } from './components/Edit-DoctorProfile/edit
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { FormsModule } from '@angular/forms';
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
+<<<<<<< HEAD
 import { AllStoriesComponent } from './components/story-test/StoriesTest/all-stories/all-stories.component';
+=======
+import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
+//  import { ChartsModule } from 'ng2-charts';
+
+>>>>>>> master
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
   imports: [RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
+<<<<<<< HEAD
     DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent
   , AllStoriesComponent],
 
+=======
+    DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,DoctorDashboardComponent],
+>>>>>>> master
 
 
 templateUrl: './app.component.html',
