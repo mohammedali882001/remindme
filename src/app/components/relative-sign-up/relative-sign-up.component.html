@@ -5,7 +5,7 @@
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mx-4 mt-2">
         <!-- Relative Registration Fields -->
         <div class="d-flex justify-content-between align-items-center">
-          <div class="w-30 me-3">
+          <div class="w-50 me-3">
             <label for="relativeFirstName">First Name</label>
             <input id="relativeFirstName" formControlName="relativeFirstName" type="text" class="form-control my-3" />
             <div *ngIf="f['relativeFirstName'].touched && f['relativeFirstName'].invalid" class="text-danger">
@@ -13,7 +13,7 @@
               <p *ngIf="f['relativeFirstName'].errors?.['minlength'] || f['relativeFirstName'].errors?.['maxlength']">Must be between 2 and 25 characters</p>
             </div>
           </div>
-          <div class="w-30">
+          <div class="w-50">
             <label for="relativeLastName">Last Name</label>
             <input id="relativeLastName" formControlName="relativeLastName" type="text" class="form-control my-3" />
             <div *ngIf="f['relativeLastName'].touched && f['relativeLastName'].invalid" class="text-danger">
