@@ -73,3 +73,9 @@ color: var(--pprimary-Color);
 .navbar-collapse.collapse.show {
   display: block;
 }
+
+.custom-active-link {
+
+  background-color:var(--pprimary-Color); /* Example background color: AliceBlue */
+  /* Add other styles as needed */
+}
