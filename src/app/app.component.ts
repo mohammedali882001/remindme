@@ -15,6 +15,8 @@ import { EditDoctorProfileComponent } from './components/Edit-DoctorProfile/edit
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { FormsModule } from '@angular/forms';
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
+import { AllStoriesComponent } from './components/story-test/StoriesTest/all-stories/all-stories.component';
+
 import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
 //  import { ChartsModule } from 'ng2-charts';
 
@@ -24,7 +26,11 @@ import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboa
   standalone: true,
 
   imports: [RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
-    DoctorSignUpComponent,RouterModule,DoctorDashboardComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,DoctorDashboardComponent],
+
+    DoctorSignUpComponent,RouterModule,DoctorDashboardComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,DoctorDashboardComponent
+   ,DoctorprofileComponent, SharedModule , EditDoctorProfileComponent,QuestionsComponent,FormsModule ,ResultsTestComponent
+  ,AllStoriesComponent]
+
 
 
 templateUrl: './app.component.html',
