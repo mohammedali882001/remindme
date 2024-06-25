@@ -1,5 +1,11 @@
-<div class="stars">
-  <i *ngFor="let star of fullStars" class="fa fa-star checked"></i>
-  <i *ngIf="hasHalfStar" class="fa fa-star-half-o checked"></i>
-  <i *ngFor="let star of emptyStars" class="fa fa-star-o"></i>
+<div *ngIf="rating > 0" class="star-rating">
+  <ng-container *ngFor="let star of fullStars">
+    <i class="fa fa-star checked"></i>
+  </ng-container>
+  <ng-container *ngFor="let star of halfStars">
+    <i class="fa fa-star-half-alt checked"></i>
+  </ng-container>
+  <ng-container *ngFor="let star of emptyStars">
+    <i class="fa fa-star-o"></i>
+  </ng-container>
 </div>
