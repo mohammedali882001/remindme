@@ -28,6 +28,8 @@ import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboa
     DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent
   , AllStoriesComponent,DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,DoctorDashboardComponent],
 
+  , AllStoriesComponent ,DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,DoctorDashboardComponent],
+
 
 
 
