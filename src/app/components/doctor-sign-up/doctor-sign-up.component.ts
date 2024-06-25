@@ -50,13 +50,6 @@ export class DoctorSignUpComponent {
               // console.log("noooooooooo");
               this.registerForm.controls['userName'].setErrors({ notUnique: true });
             }
-            // else{
-            //   Swal.fire({
-            //     title: "Good job!",
-            //     text: "Registered Successfully",
-            //     icon: "success"
-            //   });
-            // }
 
           // Optionally, you can reset the form after successful submission
 

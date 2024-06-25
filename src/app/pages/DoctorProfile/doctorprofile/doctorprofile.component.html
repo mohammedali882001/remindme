@@ -32,8 +32,8 @@
             <i class="fa-solid fa-location-dot"></i> {{ profileData.address }}
           </p>
           <div class="rating d-flex">
-            <app-star-rating></app-star-rating>
-            <strong><h3>{{ profileData.rating }}</h3></strong>
+            <app-star-rating [rating]="profileData.averageRating"></app-star-rating>
+            <strong><h3>{{ profileData.averageRating }}</h3></strong>
           </div>
           <div class="mobile d-flex flex-wrap flex-lg-row">
             <span class="thirdBtn">Phone: {{ profileData.phone }}</span>
@@ -54,14 +54,14 @@
       </div>
       <div class="avaliablity">
         <h5 class="avTitle">Availability</h5>
-        <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
-          <div *ngFor="let slot of availableSlots" class="calendar col-12 col-sm-6 col-md-3 col-lg-2">
-            <strong>{{ slot.formattedSlot.split('\n')[0] }}</strong>
-            <div>{{ slot.formattedSlot.split('\n')[1] }}</div>
-            <div>Start Time: {{ slot.startTime }}</div>
-            <div>End Time: {{ slot.endTime }}</div>
+          <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
+            <div *ngFor="let slot of availableSlots" class="calendar col-12 col-sm-6 col-md-3 col-lg-2">
+              <strong>{{ slot.formattedSlot.split('\n')[0] }}</strong>
+              <div>{{ slot.formattedSlot.split('\n')[1] }}</div>
+              <div> {{ slot.startTime }}</div>
+              <div>{{ slot.endTime }}</div>
+            </div>
           </div>
-        </div>
       </div>
     </div>
   </div>

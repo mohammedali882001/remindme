@@ -12,7 +12,7 @@ import { DoctorEditDTO } from '../../models/Doctor/doctor-edit-dto';
 export class DoctorProfileService {
 
   private profileUrl = `${environment.baseUrl}/Doctor`; // Adjust URL as needed
-  private availableSlotsUrl = `${environment.baseUrl}/Appointment/available-slots`; // Endpoint for available slots
+  private availableSlotsUrl = `${environment.baseUrl}/Appointment/available-slotsDoctor`; // Endpoint for available slots
 
   constructor(private http: HttpClient) {}
 
@@ -20,10 +20,12 @@ export class DoctorProfileService {
     return this.http.get<any>(this.profileUrl);
   }
 
-  getAvailableSlots(): Observable<AvailableSlotsDTO[]> {
-    return this.http.get<AvailableSlotsDTO[]>(this.availableSlotsUrl);
+  // getAvailableSlots(): Observable<AvailableSlotsDTO[]> {
+  //   return this.http.get<AvailableSlotsDTO[]>(this.availableSlotsUrl);
+  // }
+  getAvailableSlots(): Observable<{ isSuccess: boolean; data: AvailableSlotsDTO[] }> {
+    return this.http.get<{ isSuccess: boolean; data: AvailableSlotsDTO[] }>(this.availableSlotsUrl);
   }
-
 
   // getAvailableSlots(): Observable<AvailableSlotsDTO[]> {
   //   return this.http.get<AvailableSlotsDTO[]>(this.slotsUrl);
