@@ -7,8 +7,7 @@ import { StarRatingComponent } from '../../../components/star-rating/star-rating
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../models/shared-module';
 
-import { RouterModule } from '@angular/router';
-import { AvailableSlotsDTO } from '../../../models/Doctor/available-slots-dto';
+
 
 
 import { Router, RouterModule } from '@angular/router';
