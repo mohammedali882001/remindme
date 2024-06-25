@@ -1,4 +1,4 @@
-<section class="questionsSection">
+<!-- <section class="questionsSection">
     <div class="container">
         <div class="text-center py-5 fw-bolder text-secondary text-uppercase">
             <h1>this is test for story (name of story)</h1>
@@ -23,4 +23,32 @@
         </div>
         <button type="button" class="btn main-border btnUnderstand ">Submit</button>
     </div>
+</section> -->
+
+<!-- --------------------------------------Stop-------------------------------------- -->
+
+<section class="questionsSection" *ngIf="storyTestDetails">
+  <div class="container">
+    <div class="text-center py-5 fw-bolder text-secondary text-uppercase">
+      <h1>This is a test for story {{ storyTestDetails.storyDescription }}</h1>
+    </div>
+    <div class="quizBox m-4" *ngFor="let question of storyTestDetails.storyQuestionAndAnswers; let qIndex = index">
+      <div class="question mb-3">
+        <div class="questionHead">
+          <h2 class="fw-bolder fs-3 my-2">Question {{ qIndex + 1 }}</h2>
+          <p class="lead my-5 fw-semibold bg-purple p-4 rounded-2 text-white">{{ question.questionText }}</p>
+        </div>
+        <div class="row g-2">
+          <div *ngFor="let option of question.StoryAnswers; let i = index"
+               class="optionBody p-3 text-secondary mb-4 rounded-2 d-flex justify-content-between align-items-center col-lg-5 offset-1 m-auto"
+               (click)="selectOption(question.questionId, option)">
+            <label for="option{{ qIndex }}{{ i }}" class="text-secondary">{{ option }}</label>
+            <input type="radio" id="option{{ qIndex }}{{ i }}" name="options{{ qIndex }}" [value]="option"
+                   [(ngModel)]="selectedOptions[question.questionId]" (change)="selectOption(question.questionId, option)">
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn main-border btnUnderstand" (click)="submitAnswers()">Submit</button>
+  </div>
 </section>
