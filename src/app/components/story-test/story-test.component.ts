@@ -60,6 +60,7 @@ declare const Plyr: any;
 
 
 
+
   openModal(content: any) {
      this.modalService.open(content, { size: 'lg', centered: true });
   }
@@ -67,6 +68,8 @@ declare const Plyr: any;
   dismissModal() {
     this.modalService.dismissAll();
   }
+
+
 
   playAudioOnce() {
     if (!this.audioPlayed) {
@@ -160,6 +163,7 @@ declare const Plyr: any;
 
 
 
+
 // implements OnInit, AfterViewInit {
 
 // [x: string]: any;
@@ -199,3 +203,4 @@ declare const Plyr: any;
 //     };
 //   }
 // }
+
