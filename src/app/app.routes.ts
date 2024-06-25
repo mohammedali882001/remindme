@@ -24,5 +24,5 @@ export const routes: Routes = [
   { path: 'results-test', component: ResultsTestComponent },
   { path: 'story-test', component: StoryTestComponent },
   { path: 'AllStories', component: AllStoriesComponent },
-  { path: 'Question', component: QuestionsComponent },
+  { path: 'Question/:storyTestId', component: QuestionsComponent },
 ];
