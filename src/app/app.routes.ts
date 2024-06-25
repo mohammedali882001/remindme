@@ -12,9 +12,13 @@ import { StickyNotesComponent } from './components/sticky-notes/sticky-notes.com
 import { PatientVisitedProfileComponent } from './pages/PatientVisitedProfile/patient-visited-profile/patient-visited-profile.component';
 
 import { StoryTestComponent } from './components/story-test/story-test.component';
+
 import { AllStoriesComponent } from './components/story-test/StoriesTest/all-stories/all-stories.component';
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
+import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
+import { SliderComponent } from './components/slider/slider.component';
+import { HomeComponent } from './pages/Home/home.component';
 
 
 export const routes: Routes = [
@@ -29,8 +33,14 @@ export const routes: Routes = [
   {path:'notes',component:StickyNotesComponent},
   { path: 'VisitedPatientprofile/:id', component: PatientVisitedProfileComponent },
   { path: 'results-test', component: ResultsTestComponent },
-  { path: 'story-test', component: StoryTestComponent },
+  //{ path: 'story-test', component: StoryTestComponent },
   { path: 'AllStories', component: AllStoriesComponent },
+
+  { path: 'Question', component: QuestionsComponent },
+  { path: 'dashboard', component: DoctorDashboardComponent },
+  { path: 'slider', component: SliderComponent },
+
   { path: 'Question/:storyTestId', component: QuestionsComponent },
+
 
 ];

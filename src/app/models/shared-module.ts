@@ -9,4 +9,5 @@ import { AuthInterceptor } from './Authentication/auth-interceptor';
   ]
 })
 export class SharedModule {
+  
 }

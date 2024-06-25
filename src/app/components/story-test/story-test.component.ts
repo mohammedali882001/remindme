@@ -1,3 +1,21 @@
+
+// import { CommonModule } from '@angular/common';
+// import { AfterViewInit, Component, OnInit, ViewChild ,ElementRef} from '@angular/core';
+// import { ActivatedRoute, Router } from '@angular/router';
+// import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Correct import
+// import { StoryDTOs } from '../../models/Story/story-dtos';
+
+// declare const Plyr: any;
+
+// @Component({
+//   selector: 'app-story-test',
+//   standalone: true,
+//   imports: [CommonModule],
+//   templateUrl: './story-test.component.html',
+//   styleUrl: './story-test.component.css'
+// })
+// export class StoryTestComponent implements OnInit, AfterViewInit {
+=======
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild ,ElementRef, TemplateRef} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -143,6 +161,7 @@ declare const Plyr: any;
 
 
 // implements OnInit, AfterViewInit {
+
 // [x: string]: any;
 //   storyTest?: StoryDTOs;
 

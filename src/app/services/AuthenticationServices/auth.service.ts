@@ -41,7 +41,7 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
-   setLoggedInState(isLoggedIn: boolean): void {
+    setLoggedInState(isLoggedIn: boolean): void {
     this.loggedInUserSubject.next(isLoggedIn);
   }
 }

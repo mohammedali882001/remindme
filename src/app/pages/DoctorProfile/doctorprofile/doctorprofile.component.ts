@@ -6,10 +6,16 @@ import { SidebarComponent } from '../../../components/drawer/sidebar/sidebar.com
 import { StarRatingComponent } from '../../../components/star-rating/star-rating.component';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../models/shared-module';
+
+import { RouterModule } from '@angular/router';
+import { AvailableSlotsDTO } from '../../../models/Doctor/available-slots-dto';
+
+
 import { Router, RouterModule } from '@angular/router';
 import { PatientNameDTO } from '../../../models/Doctor/patient-name-dto';
 import { GeneralResponse } from '../../../models/Story/general-response';
 import { RelativeDTO } from '../../../models/Patient/relative-dto';
+
 
 @Component({
   selector: 'app-doctorprofile',
