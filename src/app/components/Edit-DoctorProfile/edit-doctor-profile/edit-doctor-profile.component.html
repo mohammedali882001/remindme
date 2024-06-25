@@ -1,139 +1,45 @@
-<div class="container">
-  <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()" class="form-horizontal well">
-    <fieldset>
-      <!-- Form Name -->
-      <legend>Edit Doctor Profile</legend>
+<h5 class="mainTitle">Update Profile</h5>
+<div class="parent">
+  <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" formControlName="firstName" required>
 
-      <!-- First Name -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="firstName">First Name</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input id="firstName" formControlName="firstName" placeholder="First Name" class="form-control" type="text">
-          </div>
-        </div>
-      </div>
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" formControlName="lastName" required>
 
-      <!-- Last Name -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="lastName">Last Name</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input id="lastName" formControlName="lastName" placeholder="Last Name" class="form-control" type="text">
-          </div>
-        </div>
-      </div>
+    <label for="userName">User Name</label>
+    <input type="text" id="userName" formControlName="userName" required>
 
-      <!-- Username -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="userName">Username</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input id="userName" formControlName="userName" placeholder="Username" class="form-control" type="text">
-          </div>
-        </div>
-      </div>
+    <label for="address">Address</label>
+    <input type="text" id="address" formControlName="address" required>
 
-      <!-- Phone -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="phone">Phone #</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-            <input id="phone" formControlName="phone" placeholder="(845)555-1212" class="form-control" type="text">
-          </div>
-        </div>
-      </div>
+    <label for="phone">Phone</label>
+    <input type="text" id="phone" formControlName="phone" required>
 
-      <!-- Address -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="address">Address</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-            <input id="address" formControlName="address" placeholder="Address" class="form-control" type="text">
-          </div>
-        </div>
-      </div>
+    <label for="age">Age</label>
+    <input type="number" id="age" formControlName="age" required>
 
-      <!-- Age -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="age">Age</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input id="age" formControlName="age" placeholder="Age" class="form-control" type="number">
-          </div>
-        </div>
-      </div>
+    <label for="gender">Gender</label>
+    <select id="gender" formControlName="gender" required>
+      <option value="0">Male</option>
+      <option value="1">Female</option>
+    </select>
 
-      <!-- Gender -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="gender">Gender</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <select id="gender" formControlName="gender" class="form-control">
-              <option value="0">Male</option>
-              <option value="1">Female</option>
-            </select>
-          </div>
-        </div>
-      </div>
+    <label for="picURL">Profile Picture URL</label>
+    <input type="file" id="picURL" formControlName="picURL">
 
-      <!-- Picture URL -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="picURL">Picture URL</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-            <input id="picURL" formControlName="picURL" placeholder="Picture URL" class="form-control" type="text">
-          </div>
-        </div>
-      </div>
+    <label for="worksIn">Works In</label>
+    <input type="text" id="worksIn" formControlName="worksIn">
 
-      <!-- Works In -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="worksIn">Works In</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
-            <input id="worksIn" formControlName="worksIn" placeholder="Works In" class="form-control" type="text">
-          </div>
-        </div>
-      </div>
+    <label for="history">History</label>
+    <textarea id="history" formControlName="history" minlength="50" maxlength="1000" required></textarea>
 
-      <!-- History -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="history">History</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
-            <input id="history" formControlName="history" placeholder="History" class="form-control" type="text">
-          </div>
-        </div>
-      </div>
 
-      <!-- Price -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="price">Price</label>
-        <div class="col-md-4 input-group-container">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-            <input id="price" formControlName="price" placeholder="Price" class="form-control" type="number">
-          </div>
-        </div>
-      </div>
+    <label for="price">Price</label>
+    <input type="number" id="price" formControlName="price">
 
-      <!-- Button -->
-      <div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
-          <button type="submit" class="btn btn-warning">Save <span class="glyphicon glyphicon-send"></span></button>
-        </div>
-      </div>
-    </fieldset>
+    <div class="btns">
+      <button type="submit" class="postJob">Save Changes</button>
+    </div>
   </form>
 </div>

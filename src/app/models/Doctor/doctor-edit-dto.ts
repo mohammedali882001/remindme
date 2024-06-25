@@ -1,26 +1,30 @@
 export interface DoctorEditDTO {
-  firstName: string;
-  lastName: string;
-  userName: string;
-  address: string;
-  phone: string;
-  cardNumber: number;
-  age: number;
-  worksIn: string;
-  history: string;
-  price: number;
+  FirstName: string;
+  LastName: string;
+  UserName: string;
+  Address: string;
+  Phone: string;
+  CardNumber: number;
+  Age: number;
+  Gender:number;
+  Image?:File;
+  WorksIn?: string;
+  History?: string;
+  Price?: number;
 }
 
 // Default values for DoctorEditDTO
 export const defaultDoctorEditDTO: DoctorEditDTO = {
-  firstName: '',
-  lastName: '',
-  userName: '',
-  address: '',
-  phone: '',
-  cardNumber: 0,
-  age: 0,
-  worksIn: '',
-  history: '',
-  price: 0
+  FirstName: '',
+  LastName: '',
+  UserName: '',
+  Address: '',
+  Phone: '',
+  CardNumber: 0,
+  Age: 0,
+  WorksIn: '',
+  History: '',
+  Price: 0,
+  Gender: 0,
+  Image: undefined
 };
