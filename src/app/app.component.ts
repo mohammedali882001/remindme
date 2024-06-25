@@ -9,7 +9,7 @@ import { CardComponent } from './components/Card/card/card.component';
 import { RouterModule } from '@angular/router';
 import { DoctorprofileComponent } from './pages/DoctorProfile/doctorprofile/doctorprofile.component';
 import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
-//import { DonightChartComponent } from './components/DonughtChart/donight-chart/donight-chart.component';
+import { DonightChartComponent } from './components/DonughtChart/donight-chart/donight-chart.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { DoctorSignUpComponent } from './components/doctor-sign-up/doctor-sign-up.component';
 import { RestPasswordComponent } from './components/rest-password/rest-password.component';
@@ -24,6 +24,7 @@ import { AllStoriesComponent } from './components/story-test/StoriesTest/all-sto
 import { PatientVisitedProfileComponent } from './pages/PatientVisitedProfile/patient-visited-profile/patient-visited-profile.component';
 import { PatientProfileComponent } from './pages/PatientProfile/patientprofile/patient-profile/patient-profile.component';
 import { StickyNotesComponent } from './components/sticky-notes/sticky-notes.component';
+
 // import { LoginComponent } from './components/login/login.component';
 // import { StoryTestComponent } from "./components/story-test/story-test.component";
 
@@ -41,7 +42,7 @@ import { StickyNotesComponent } from './components/sticky-notes/sticky-notes.com
         EditDoctorProfileComponent, QuestionsComponent, FormsModule, ResultsTestComponent,
         DoctorDashboardComponent, DoctorprofileComponent, SharedModule, EditDoctorProfileComponent,
         QuestionsComponent, FormsModule, ResultsTestComponent, AllStoriesComponent, PatientVisitedProfileComponent,
-        PatientProfileComponent, StickyNotesComponent ]
+        PatientProfileComponent, StickyNotesComponent, DonightChartComponent ]
 
 })
 
