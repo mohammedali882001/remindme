@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../../models/shared-module';
 import { RouterModule } from '@angular/router';
 import { AvailableSlotsDTO } from '../../../models/Doctor/available-slots-dto';
+
+
 @Component({
   selector: 'app-doctorprofile',
   standalone: true,
