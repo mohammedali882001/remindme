@@ -12,7 +12,6 @@
             alt="DoctorImage"
             class="DocProfilePic"
           />
-
         </div>
         <div class="btns">
           <button class="btn d-flex text-align-baseline">
@@ -29,16 +28,10 @@
       </div>
       <div class="doctorTitel">
         <h3>
-          <span
-            >{{ profileData.patientName }}
-            {{ profileData.patientLastName }}</span
-          >
+          <span>{{ profileData.patientName }} {{ profileData.patientLastName }}</span>
         </h3>
         <h3>
-          <span
-            >{{ profileData.relativeFirstName }}
-            {{ profileData.relativeLastName }}</span
-          >
+          <span>{{ profileData.relativeFirstName }} {{ profileData.relativeLastName }}</span>
         </h3>
         <h6 class="text-muted subTitel">
           <span>{{ profileData.relativeUserName }}</span>
@@ -49,18 +42,10 @@
         </p>
         <div class="rating d-flex"></div>
         <div class="mobile d-flex flex-wrap flex-lg-row">
-          <span class="thirdBtn">
-            Phone: <span>{{ profileData.relativePhoneNumber }}</span>
-          </span>
-          <span class="thirdBtn">
-            Gender: <span>{{ profileData.patientGenderString }}</span>
-          </span>
-          <span class="thirdBtn">
-            Gender: <span>{{ profileData.relativeGenderString }}</span>
-          </span>
-          <span class="thirdBtn">
-            Age: <span>{{ profileData.patientAge }}</span>
-          </span>
+          <span class="thirdBtn">Phone: <span>{{ profileData.relativePhoneNumber }}</span></span>
+          <span class="thirdBtn">Gender: <span>{{ profileData.patientGenderString }}</span></span>
+          <span class="thirdBtn">Gender: <span>{{ profileData.relativeGenderString }}</span></span>
+          <span class="thirdBtn">Age: <span>{{ profileData.patientAge }}</span></span>
         </div>
       </div>
     </div>
@@ -72,19 +57,26 @@
     </div>
 
     <!-- Reports section -->
-    <!-- <div class="Reports mt-4">
+    <div class="Reports mt-4">
+      <div>
       <h5 class="avTitle">Reports</h5>
+      <button class="add" (click)="addReport(patientId)">Add Report</button>
+    </div>
       <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
-        <div *ngFor="let report of profileData?.reports" class="calender col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+        <div *ngFor="let report of profileDataReport?.reports" class="calender col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
           <div class="card p-3">
             <strong (click)="viewReport(report.reportID)" style="cursor: pointer;">{{ report.dateTime | date: 'MMM dd, yyyy' }}</strong>
             <div>{{ report.title }}</div>
+            <div *ngIf="loggedInDoctorId === report.doctorID">
+              <button (click)="editReport(report.reportID)">Edit</button>
+              <button (click)="deleteReport(report.reportID)">Delete</button>
+            </div>
           </div>
         </div>
-        <div *ngIf="profileData?.reports?.length === 0" class="text-center w-100 mt-4">
+        <div *ngIf="profileDataReport?.reports?.length === 0" class="text-center w-100 mt-4">
           No reports available.
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>

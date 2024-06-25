@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild ,ElementRef, TemplateRef} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // Import NgbModal for modal functionality
+//import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // Import NgbModal for modal functionality
 import { StoryDTOs } from '../../models/Story/story-dtos';
 import { SharedModule } from '../../models/shared-module';
 declare const Plyr: any;
@@ -22,7 +22,7 @@ export class StoryTestComponent  implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private modalService: NgbModal
+    // private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -38,13 +38,22 @@ export class StoryTestComponent  implements OnInit, AfterViewInit {
     const player = new Plyr('#audioPlayer');
   }
 
-  openModal() {
-    this.modalService.open(this.attentionModal, { size: 'lg', centered: true });
+
+  openModal(content: any) {
+   // this.modalService.open(content, { size: 'lg', centered: true });
+
   }
 
   dismissModal() {
     this.modalService.dismissAll();
   }
+
+
+    // Play the audio only when the user confirms understanding in the modal
+    const audio = document.getElementById(audioId) as HTMLAudioElement;
+    audio.onended = () => {
+      //this.modalService.dismissAll(); // Dismiss the modal when audio ends
+    };
 
   playAudioOnce() {
     if (!this.audioPlayed) {
@@ -67,6 +76,7 @@ export class StoryTestComponent  implements OnInit, AfterViewInit {
     } else {
       console.error('Story ID is not defined.');
     }
+
   }
 }
 

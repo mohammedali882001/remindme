@@ -16,8 +16,10 @@ import { QuestionsComponent } from './components/story-test/questions/questions.
 import { FormsModule } from '@angular/forms';
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
 import { AllStoriesComponent } from './components/story-test/StoriesTest/all-stories/all-stories.component';
-
 import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
+import { PatientVisitedProfileComponent } from './pages/PatientVisitedProfile/patient-visited-profile/patient-visited-profile.component';
+import { PatientProfileComponent } from './pages/PatientProfile/patientprofile/patient-profile/patient-profile.component';
+import { StickyNotesComponent } from './components/sticky-notes/sticky-notes.component';
 //  import { ChartsModule } from 'ng2-charts';
 
 
@@ -26,15 +28,17 @@ import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboa
   standalone: true,
 
   imports: [RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
-    DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent,
-    RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,
-    AllStoriesComponent,DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule ,
-    EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,DoctorDashboardComponent],
+
+     DoctorSignUpComponent,RouterModule,DoctorDashboardComponent,
+    LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule ,
+     EditDoctorProfileComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,
+     DoctorDashboardComponent,DoctorprofileComponent, SharedModule , EditDoctorProfileComponent,
+     QuestionsComponent,FormsModule ,ResultsTestComponent,AllStoriesComponent,PatientVisitedProfileComponent
+     ,PatientProfileComponent,StickyNotesComponent],
 
 
 
 templateUrl: './app.component.html',
-
   styleUrl: './app.component.css'
 })
 

@@ -36,6 +36,7 @@ export class StickyNotesComponent implements OnInit {
     });
   }
 
+  
   updateNote(index: number, event: any) {
     const noteName = event.target.querySelector('h2').textContent;
     const noteDescription = event.target.querySelector('p').textContent;
