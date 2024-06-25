@@ -28,12 +28,14 @@ import { StickyNotesComponent } from './components/sticky-notes/sticky-notes.com
   standalone: true,
 
   imports: [RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
+
      DoctorSignUpComponent,RouterModule,DoctorDashboardComponent,
     LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule ,
      EditDoctorProfileComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,
      DoctorDashboardComponent,DoctorprofileComponent, SharedModule , EditDoctorProfileComponent,
      QuestionsComponent,FormsModule ,ResultsTestComponent,AllStoriesComponent,PatientVisitedProfileComponent
      ,PatientProfileComponent,StickyNotesComponent],
+
 
 
 templateUrl: './app.component.html',

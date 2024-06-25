@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
 import { HasStoryTest } from '../../../../models/Story/has-story-test';
 import { TrueAssignStoryTest } from '../../../../models/Story/true-assign-story-test';
 import { StoryDTOs } from '../../../../models/Story/story-dtos';
+import { SharedModule } from '../../../../models/shared-module';
 
 @Component({
   selector: 'app-all-stories',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule , SharedModule],
   templateUrl: './all-stories.component.html',
   styleUrl: './all-stories.component.css'
 })
