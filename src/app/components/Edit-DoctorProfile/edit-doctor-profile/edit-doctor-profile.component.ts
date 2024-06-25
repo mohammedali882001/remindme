@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './edit-doctor-profile.component.css'
 })
 export class EditDoctorProfileComponent
- implements OnInit, OnDestroy {
+implements OnInit, OnDestroy {
   editProfileForm: FormGroup;
   doctorProfileSubscription: Subscription | undefined;
 
@@ -33,9 +33,10 @@ export class EditDoctorProfileComponent
       phone: ['', Validators.required],
       age: ['', Validators.required],
       gender: ['', Validators.required],
-      picURL: [''],
+      image: [null], // Updated to handle file upload
       worksIn: [''],
       history: [''],
+      price: [null]
     });
   }
 
@@ -50,9 +51,9 @@ export class EditDoctorProfileComponent
           phone: doctor.phone,
           age: doctor.age,
           gender: this.mapGenderStringToEnum(doctor.genderString),
-          picURL: doctor.picURL,
           worksIn: doctor.worksIn,
           history: doctor.history,
+          price: 0
         });
       },
       error: (error: any) => {
