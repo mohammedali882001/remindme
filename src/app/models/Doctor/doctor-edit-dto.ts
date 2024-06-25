@@ -9,6 +9,18 @@ export interface DoctorEditDTO {
   worksIn: string;
   history: string;
   price: number;
-  gender: number; // This will hold 0 or 1
-  picURL: string;
 }
+
+// Default values for DoctorEditDTO
+export const defaultDoctorEditDTO: DoctorEditDTO = {
+  firstName: '',
+  lastName: '',
+  userName: '',
+  address: '',
+  phone: '',
+  cardNumber: 0,
+  age: 0,
+  worksIn: '',
+  history: '',
+  price: 0
+};
