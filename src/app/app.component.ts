@@ -24,7 +24,7 @@ import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboa
   standalone: true,
 
   imports: [RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
-    DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,DoctorDashboardComponent],
+    DoctorSignUpComponent,RouterModule,DoctorDashboardComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent,DoctorDashboardComponent],
 
 
 templateUrl: './app.component.html',
