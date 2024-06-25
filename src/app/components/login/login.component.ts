@@ -40,6 +40,7 @@ export class LoginComponent {
             console.log('Login successful:', response.data);
             // Store the token in local storage or a service
             localStorage.setItem('token', response.data.token);
+            
             this.authService.setLoggedInState(true); // Emit login state change
 
             // Redirect to dashboard or profile based on roles

@@ -84,3 +84,13 @@ html {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.add{
+  background-color: #9a8fcc;
+  width: 90px;
+  height: 40px;
+  color:white;
+  font-weight: bold;
+  border-radius: 20px;
+}
