@@ -13,15 +13,10 @@ import { RelativeDTO } from '../../models/Patient/relative-dto';
   providedIn: 'root'
 })
 export class DoctorProfileService {
-
   private profileUrl = `${environment.baseUrl}/Doctor`; // Adjust URL as needed
-
   private availableSlotsUrl = `${environment.baseUrl}/Appointment/available-slotsDoctor`; // Endpoint for available slots
   private maxAverageRatingUrl = `${environment.baseUrl}/Rating/maxRatings`;
 
-
-
-  
   private availableSlotsUrlrelative = `${environment.baseUrl}/Appointment/available-slotsRelative`;
   private doctorPatientsUrl = `${environment.baseUrl}/PatientDoctor/DoctorPatients`;
   constructor(private http: HttpClient) {}
@@ -44,7 +39,8 @@ export class DoctorProfileService {
 
 
   getMaxAverageRating() : Observable<any>{
-    return this.http.get<any>(this.maxAverageRatingUrl);}
+    return this.http.get<any>(this.maxAverageRatingUrl);
+  }
 
   getDoctorPatients(): Observable<{ isSuccess: boolean; data: PatientNameDTO[] }> {
     return this.http.get<{ isSuccess: boolean; data: PatientNameDTO[] }>(this.doctorPatientsUrl);
