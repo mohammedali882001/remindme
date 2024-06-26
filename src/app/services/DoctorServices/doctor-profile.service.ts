@@ -8,6 +8,7 @@ import { DoctorEditDTO } from '../../models/Doctor/doctor-edit-dto';
 import { PatientNameDTO } from '../../models/Doctor/patient-name-dto';
 import { GeneralResponse } from '../../models/Story/general-response';
 import { RelativeDTO } from '../../models/Patient/relative-dto';
+import { PatientDetailsDto } from '../../models/Doctor/patient-details-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,10 @@ export class DoctorProfileService {
   private availableSlotsUrl = `${environment.baseUrl}/Appointment/available-slotsDoctor`; // Endpoint for available slots
   private maxAverageRatingUrl = `${environment.baseUrl}/Rating/maxRatings`;
 
-
-
-  
   private availableSlotsUrlrelative = `${environment.baseUrl}/Appointment/available-slotsRelative`;
   private doctorPatientsUrl = `${environment.baseUrl}/PatientDoctor/DoctorPatients`;
+
+ 
   constructor(private http: HttpClient) {}
 
   getProfile(): Observable<any> {
@@ -53,4 +53,6 @@ export class DoctorProfileService {
     return this.http.get<GeneralResponse<RelativeDTO>>(`${environment.baseUrl}/Relative/Visited/${patientId}`);
 
   }
+
+
 }
