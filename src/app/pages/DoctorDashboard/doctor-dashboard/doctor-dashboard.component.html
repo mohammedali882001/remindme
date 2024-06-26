@@ -19,7 +19,7 @@
         <div class="col-2 col-md-2 col-lg-3 box">
           <i class="fa-regular fa-user icon"></i>
           <div class="text flex-wrap">
-            <span>30.3K</span>
+            <span>{{statistics.numberOfPatients}}</span>
             <p>Total Patient</p>
           </div>
         </div>
@@ -32,8 +32,10 @@
         </div>
       </div>
       <div class="row restContet mt-4">
+        
         <div class="col-12 col-md-4 col-lg-4 appontRequest">
-          <div class="title d-flex justify-content-between">
+          <router-outlet></router-outlet>
+          <!-- <div class="title d-flex justify-content-between">
             <p>Appointments Requests</p>
             <a class="d-flex align-items-center appontRequest-text">
               <p>view All</p>
@@ -89,8 +91,8 @@
               </div>
             </div>
             <button class="btn">Declined</button>
-          </div>
-        </div>
+          </div> -->
+        </div> 
         <div class="col-12 col-md-4 col-lg-4 donughtChart">
           <div class="title d-flex justify-content-between">
             <p>Patient Tracking</p>

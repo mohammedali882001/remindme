@@ -17,6 +17,9 @@ import { ResultsTestComponent } from './components/story-test/results-test/resul
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
 import { SliderComponent } from './components/slider/slider.component';
+
+import { PatientsRequestsComponent } from './pages/DoctorDashboard/patients-requests/patients-requests.component';
+import { AppointmentsRequestsComponent } from './pages/DoctorDashboard/appointments-requests/appointments-requests.component';
 import { GameComponent } from './Games/Hangman/game/game.component';
 import { GameBoardComponent } from './Games/MemoryCards/game-board/game-board.component';
 //import { HomeComponent } from './pages/Home/home.component';
@@ -41,7 +44,13 @@ export const routes: Routes = [
   { path: 'AllStories', component: AllStoriesComponent },
 
   { path: 'Question', component: QuestionsComponent },
-  { path: 'dashboard', component: DoctorDashboardComponent },
+  
+  //Doctor dashboard 
+  { path: 'DoctorDashboard', component: DoctorDashboardComponent, children : [
+    { path: 'PatientsRequests', component: PatientsRequestsComponent },
+    { path: 'AppointmentsRequests', component: AppointmentsRequestsComponent },
+  ] },
+
   { path: 'slider', component: SliderComponent },
 
   { path: 'Question/:storyTestId', component: QuestionsComponent },

@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment.development';
 export class SliderComponent implements OnInit {
 
   doctors: DoctorGetDTO[] = [];
-  environment : string = "http://localhost:2100";
+  environment : string = "http://localhost:2100"; 
   constructor(private _doctorProfileService: DoctorProfileService) {}
 
   ngOnInit(): void {
