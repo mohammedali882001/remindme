@@ -11,12 +11,17 @@
     <div class="col">
       <ul id="ulId" class="justify-content-between">
         <li *ngFor="let note of notes; let i = index">
-          <div class="note">
+          <div class="note position-relative">
+            <button class="delete-note" (click)="deleteNote(i)">
+              <i class="fas fa-times"></i>
+            </button>
+            <button class="download-note" (click)="downloadNoteAsPDF(note)">
+              <i class="fas fa-download"></i>
+            </button>
             <a href="#" contenteditable="true" (keyup)="updateNote(i, $event)">
               <h2>{{ note.name }}</h2>
               <p>{{ note.description }}</p>
             </a>
-            <button class="add" (click)="deleteNote(i)">Delete</button>
           </div>
         </li>
       </ul>

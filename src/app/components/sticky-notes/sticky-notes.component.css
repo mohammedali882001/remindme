@@ -95,3 +95,52 @@ ul li:nth-child(3n) a {
   top: -5px;
   background: #ccf;
 }
+
+.note {
+  position: relative;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.delete-note,
+.download-note {
+  position: absolute;
+  top: -10px; /* Adjusted to position the buttons slightly outside the note */
+  width: 25px; /* Width of the circle */
+  height: 25px; /* Height of the circle */
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 16px;
+  font-weight: bold; /* Make the icon bold */
+  line-height: 25px; /* Center the icon vertically */
+  text-align: center; /* Center the icon horizontally */
+  cursor: pointer;
+}
+
+.delete-note {
+  left: -10px; /* Adjusted to position the delete button on the top left */
+  background-color: rgb(240, 87, 87);
+}
+
+.delete-note:hover {
+  background-color: darkred;
+}
+
+.download-note {
+  right: -10px; /* Adjusted to position the download button on the top right */
+  background-color: rgb(87, 87, 240);
+}
+
+.download-note:hover {
+  background-color: darkblue;
+}
+
+.delete-note i,
+.download-note i {
+  /* Styling for FontAwesome icons */
+  color: white;
+}

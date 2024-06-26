@@ -14,9 +14,7 @@ import { PatientDetailsDto } from '../../models/Doctor/patient-details-dto';
   providedIn: 'root'
 })
 export class DoctorProfileService {
-
   private profileUrl = `${environment.baseUrl}/Doctor`; // Adjust URL as needed
-
   private availableSlotsUrl = `${environment.baseUrl}/Appointment/available-slotsDoctor`; // Endpoint for available slots
   private maxAverageRatingUrl = `${environment.baseUrl}/Rating/maxRatings`;
 
@@ -44,7 +42,8 @@ export class DoctorProfileService {
 
 
   getMaxAverageRating() : Observable<any>{
-    return this.http.get<any>(this.maxAverageRatingUrl);}
+    return this.http.get<any>(this.maxAverageRatingUrl);
+  }
 
   getDoctorPatients(): Observable<{ isSuccess: boolean; data: PatientNameDTO[] }> {
     return this.http.get<{ isSuccess: boolean; data: PatientNameDTO[] }>(this.doctorPatientsUrl);

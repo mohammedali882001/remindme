@@ -17,8 +17,11 @@ import { ResultsTestComponent } from './components/story-test/results-test/resul
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
 import { SliderComponent } from './components/slider/slider.component';
+
 import { PatientsRequestsComponent } from './pages/DoctorDashboard/patients-requests/patients-requests.component';
 import { AppointmentsRequestsComponent } from './pages/DoctorDashboard/appointments-requests/appointments-requests.component';
+import { GameComponent } from './Games/Hangman/game/game.component';
+import { GameBoardComponent } from './Games/MemoryCards/game-board/game-board.component';
 //import { HomeComponent } from './pages/Home/home.component';
 
 
@@ -31,7 +34,10 @@ export const routes: Routes = [
   { path: 'patientProfile', component: PatientProfileComponent },
   { path: 'registerDoctor', component: DoctorSignUpComponent },
   { path: 'registerRelative', component: RelativeSignUpComponent },
-  {path:'notes',component:StickyNotesComponent},
+ // {path:'notes',component:StickyNotesComponent},
+  //{path:'hangman',component:GameComponent},
+  { path: 'memorycards', component: GameBoardComponent },
+
   { path: 'VisitedPatientprofile/:id', component: PatientVisitedProfileComponent },
   { path: 'results-test', component: ResultsTestComponent },
   //{ path: 'story-test', component: StoryTestComponent },
