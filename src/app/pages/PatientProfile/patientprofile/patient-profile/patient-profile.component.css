@@ -205,3 +205,9 @@ body, html {
 .calendar div {
   margin: 5px 0;
 }
+
+.ProfilePic {
+  width: 200px; /* Adjust the size as needed */
+  height: 200px; /* Adjust the size as needed */
+  border-radius: 50%;
+}
