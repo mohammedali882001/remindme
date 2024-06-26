@@ -8,12 +8,12 @@ import { environment } from '../../../environments/environment.development';
   providedIn: 'root'
 })
 export class AuthService {
-
-  private loggedInUserSubject: BehaviorSubject<LoginResponse | null>;
-  public loggedInUser$: Observable<LoginResponse | null>;
+  private loggedInUserSubject: BehaviorSubject<boolean>; // Changed to boolean
+  public loggedInUser$: Observable<boolean>;
 
   constructor(private http: HttpClient) {
-    this.loggedInUserSubject = new BehaviorSubject<LoginResponse | null>(null);
+    const token = localStorage.getItem('token');
+    this.loggedInUserSubject = new BehaviorSubject<boolean>(!!token); // Initialize with token presence
     this.loggedInUser$ = this.loggedInUserSubject.asObservable();
   }
 
@@ -21,19 +21,27 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${environment.baseUrl}/Account/Login`, { username, password })
       .pipe(
         tap(response => {
-          // Store the logged-in user details in BehaviorSubject
-          this.loggedInUserSubject.next(response);
+          localStorage.setItem('token', response.data.token);
+          this.setLoggedInState(true); // Emit login state change
         })
       );
   }
 
   logout(): void {
-    // Clear the logged-in user details
-    this.loggedInUserSubject.next(null);
-    // Optionally, perform any other cleanup tasks (e.g., clear tokens, navigate to login page)
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.http.post(`${environment.baseUrl}/Account/logout`, {}, { headers: { 'Authorization': `Bearer ${token}` } }).subscribe(() => {
+        localStorage.removeItem('token');
+        this.setLoggedInState(false); // Emit logout state change
+      });
+    }
   }
 
-  getLoggedInUser(): LoginResponse | null {
-    return this.loggedInUserSubject.value;
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+    setLoggedInState(isLoggedIn: boolean): void {
+    this.loggedInUserSubject.next(isLoggedIn);
   }
 }

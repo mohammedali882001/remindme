@@ -1,1 +1,104 @@
-<p>patient-profile works!</p>
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-12 col-lg-8 mt-4 mainContent">
+    <div class="title">
+      <i class="fa-solid fa-arrow-left"></i> {{ profileData.patientAddress }}
+      <h4>Patient's Profile</h4>
+    </div>
+
+    <!-- Patient Profile Section -->
+    <div class="profile patientProfile">
+      <div class="profileHeader">
+        <div>
+          <img
+            src="assets/doctor5.PNG"
+            alt="PatientImage"
+            class="ProfilePic"
+          />
+        </div>
+        <div class="btns">
+          <button class="btn d-flex text-align-baseline">
+            <i class="fa-regular fa-comment"></i>
+            <span class="d-none d-lg-block d-md-block"> Send message</span>
+          </button>
+          <button *ngIf="!editMode" class="btn d-none d-lg-block" (click)="toggleEditMode()">Edit</button>
+          <button *ngIf="editMode" class="btn d-none d-lg-block" (click)="saveChanges()">Save</button>
+          <button *ngIf="editMode" class="btn d-none d-lg-block" (click)="cancelEdit()">Cancel Edit</button>
+          <button class="btn d-flex text-align-baseline d-lg-none d-block">
+            <i class="fa-regular fa-calendar-check"></i>
+          </button>
+          <button class="d-none d-lg-block btn secBtn">
+            <i class="fa-regular fa-bookmark"></i>
+          </button>
+        </div>
+      </div>
+      <div class="profileDetails">
+        <h3>
+          <span *ngIf="!editMode">{{ profileData.patientName }} {{ profileData.patientLastName }}</span>
+          <span *ngIf="editMode">
+            <input [(ngModel)]="profileData.patientName" />
+            <input [(ngModel)]="profileData.patientLastName" />
+          </span>
+        </h3>
+        <p class="text-muted location">
+          <i class="fa-solid fa-location-dot"></i>
+          <span *ngIf="!editMode">{{ profileData.patientAddress }}</span>
+          <span *ngIf="editMode"><input [(ngModel)]="profileData.patientAddress" /></span>
+        </p>
+        <div class="mobile d-flex flex-wrap flex-lg-row">
+          <span class="thirdBtn">Gender: <span *ngIf="!editMode">{{ profileData.patientGenderString }}</span>
+            <span *ngIf="editMode"><input [(ngModel)]="profileData.patientGenderString" /></span></span>
+          <span class="thirdBtn">Age: <span *ngIf="!editMode">{{ profileData.patientAge }}</span>
+            <span *ngIf="editMode"><input [(ngModel)]="profileData.patientAge" /></span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Relative Profile Section -->
+    <div class="profile relativeProfile mt-4">
+      <div class="profileDetails">
+        <h3>
+          <span *ngIf="!editMode">{{ profileData.relativeFirstName }} {{ profileData.relativeLastName }}</span>
+          <span *ngIf="editMode">
+            <input [(ngModel)]="profileData.relativeFirstName" />
+            <input [(ngModel)]="profileData.relativeLastName" />
+          </span>
+        </h3>
+        <h6 class="text-muted subTitel">
+          <span *ngIf="!editMode">{{ profileData.relativeUserName }}</span>
+          <span *ngIf="editMode"><input [(ngModel)]="profileData.relativeUserName" /></span>
+        </h6>
+        <p class="text-muted location">
+          <i class="fa-solid fa-location-dot"></i>
+          <span *ngIf="!editMode">{{ profileData.relativeAddress }}</span>
+          <span *ngIf="editMode"><input [(ngModel)]="profileData.relativeAddress" /></span>
+        </p>
+        <div class="mobile d-flex flex-wrap flex-lg-row">
+          <span class="thirdBtn">Phone: <span *ngIf="!editMode">{{ profileData.relativePhoneNumber }}</span>
+            <span *ngIf="editMode"><input [(ngModel)]="profileData.relativePhoneNumber" /></span></span>
+          <span class="thirdBtn">Gender: <span *ngIf="!editMode">{{ profileData.relativeGenderString }}</span>
+            <span *ngIf="editMode"><input [(ngModel)]="profileData.relativeGenderString" /></span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reports Section -->
+    <div class="profile reportsSection mt-4">
+      <div class="Reports mt-4">
+        <div>
+          <h5 class="avTitle">Reports</h5>
+        </div>
+        <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
+          <div *ngFor="let report of profileData?.reports" class="calender col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+            <div class="card p-3">
+              <strong (click)="viewReport(report.reportID)" style="cursor: pointer;">{{ report.dateTime | date: 'MMM dd, yyyy' }}</strong>
+              <div>{{ report.title }}</div>
+            </div>
+          </div>
+          <div *ngIf="profileData?.reports?.length === 0" class="text-center w-100 mt-4">
+            No reports available.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

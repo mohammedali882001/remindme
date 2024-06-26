@@ -23,14 +23,23 @@
           <a class="nav-link active p-lg-2" routerLink="/home" routerLinkActive="bg-info text-light">Home</a>
         </li>
         <li class="nav-item px-3">
-          <a class="nav-link p-lg-2"routerLink="/doctorProfile" routerLinkActive="bg-info text-light">Doctor</a>
+          <a class="nav-link p-lg-2" routerLink="/doctorProfile" routerLinkActive="bg-info text-light">Doctor</a>
         </li>
-        <li class="nav-item px-3">
+        <li class="nav-item px-3" *ngIf="!isLoggedIn"> <!-- Show login if not logged in -->
           <a class="nav-link p-lg-2" routerLink="/login" routerLinkActive="bg-info text-light">Login</a>
         </li>
         <li class="nav-item px-3">
           <a class="nav-link p-lg-2" routerLink="/patientProfile" routerLinkActive="bg-info text-light">Patient</a>
         </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/notes"  routerLinkActive="bg-info text-light">Sticky Notes</a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/hangman"  routerLinkActive="bg-info text-light">HangMan</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/memorycards"  routerLinkActive="bg-info text-light">MemoryCards</a>
+      </li>
         <li class="nav-item px-3">
           <a class="nav-link p-lg-2" aria-current="page" (click)="scrollToAboutUs($event)" href="#about-us">About</a>
         </li>
@@ -44,9 +53,7 @@
         <i class="fa-regular fa-calendar px-3"></i>
         <i class="fa-regular fa-bell px-3"></i>
       </div>
-
     </div>
-    <a href="#logout" class="btn rounded-pill main-btn">Log out</a>
+    <button *ngIf="isLoggedIn" (click)="logout()" class="btn rounded-pill main-btn">Log out</button> <!-- Show logout if logged in -->
   </div>
 </nav>
-

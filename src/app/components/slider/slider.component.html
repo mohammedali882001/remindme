@@ -1,0 +1,194 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+            <div class="carousel-item active row">
+                <<ng-container *ngFor = "let doctor of doctors; let i = index;">
+                    <div class="col-lg-4 col-sm-6 main-border">
+                            <div class="doctor-card"><a routerlink="/doctor-details" class="d-block"
+                                            href="/inba/dentist-details">
+                                            
+                                            <img *ngIf="doctor.picURL; else change" [src]="environment + '/' + doctor.picURL" alt="doctor-image" width="100%">
+                                            <ng-template #change>
+                                              <img src="../../../assets/" alt="doctor-image" width="100%">
+                                            </ng-template>
+                                            
+                                            
+                                        </a>
+                                    <div class="doctor-content p-1">
+                                            <h3><a routerlink="/doctor-details">Dr. {{doctor.firstName}} {{doctor.lastName}}</a></h3>
+                                            <span>{{doctor.age}} year</span>
+                                            <ul class="share-link d-flex justify-content-center align-items-center">
+                                                <li *ngFor="let star of [1, 2, 3, 4, 5]; let idx = index">
+                                                    <i [class.fa-solid]="idx < doctor.averageRating" [class.fa-regular]="idx >= doctor.averageRating" class="fa-star"></i>
+                                                </li>
+                                                    <!-- <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li> -->
+                                            </ul>
+                                    </div>
+                            </div>
+                    </div>
+                </ng-container>
+                    
+                    <!-- <div class="col-lg-4 col-sm-6 main-border">
+                            <div class="doctor-card"><a routerlink="/dentist-details" class="d-block"
+                                            href="/inba/dentist-details"><img
+                                                    src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-1.jpg"
+                                                    alt="doctor-image" width="100%"></a>
+                                    <div class="doctor-content p-1">
+                                            <h3><a routerlink="/doctor-details">Dr. Johnson Melbourne</a></h3>
+                                            <span>Prosthodontics
+                                                    Dentist</span>
+                                            <ul class="share-link d-flex justify-content-center align-items-center">
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                            </ul>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 main-border">
+                            <div class="doctor-card"><a routerlink="/dentist-details" class="d-block"
+                                            href="/inba/dentist-details"><img
+                                                    src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-1.jpg"
+                                                    alt="doctor-image" width="100%"></a>
+                                    <div class="doctor-content p-1">
+                                            <h3><a routerlink="/doctor-details">Dr. Johnson Melbourne</a></h3>
+                                            <span>Prosthodontics
+                                                    Dentist</span>
+                                            <ul class="share-link d-flex justify-content-center align-items-center">
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                            </ul>
+                                    </div>
+                            </div>
+                    </div>
+
+            </div> -->
+            <!-- <div class="carousel-item row">
+                    <div class="col-lg-4 col-sm-6 main-border">
+                            <div class="doctor-card"><a routerlink="/dentist-details" class="d-block"
+                                            href="/inba/dentist-details"><img
+                                                    src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-1.jpg"
+                                                    alt="doctor-image" width="100%"></a>
+                                    <div class="doctor-content p-1">
+                                            <h3><a routerlink="/doctor-details">Dr. Johnson Melbourne</a></h3>
+                                            <span>Prosthodontics
+                                                    Dentist</span>
+                                            <ul class="share-link d-flex justify-content-center align-items-center">
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                            </ul>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 main-border">
+                            <div class="doctor-card"><a routerlink="/dentist-details" class="d-block"
+                                            href="/inba/dentist-details"><img
+                                                    src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-1.jpg"
+                                                    alt="doctor-image" width="100%"></a>
+                                    <div class="doctor-content p-1">
+                                            <h3><a routerlink="/doctor-details">Dr. Johnson Melbourne</a></h3>
+                                            <span>Prosthodontics
+                                                    Dentist</span>
+                                            <ul class="share-link d-flex justify-content-center align-items-center">
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                            </ul>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 main-border">
+                            <div class="doctor-card"><a routerlink="/dentist-details" class="d-block"
+                                            href="/inba/dentist-details"><img
+                                                    src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-1.jpg"
+                                                    alt="doctor-image" width="100%"></a>
+                                    <div class="doctor-content p-1">
+                                            <h3><a routerlink="/doctor-details">Dr. Johnson Melbourne</a></h3>
+                                            <span>Prosthodontics
+                                                    Dentist</span>
+                                            <ul class="share-link d-flex justify-content-center align-items-center">
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                            </ul>
+                                    </div>
+                            </div>
+                    </div>
+
+            </div>
+            <div class="carousel-item row">
+                    <div class="col-lg-4 col-sm-6 main-border">
+                            <div class="doctor-card"><a routerlink="/dentist-details" class="d-block"
+                                            href="/inba/dentist-details"><img
+                                                    src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-1.jpg"
+                                                    alt="doctor-image" width="100%"></a>
+                                    <div class="doctor-content p-1">
+                                            <h3><a routerlink="/doctor-details">Dr. Johnson Melbourne</a></h3>
+                                            <span>Prosthodontics
+                                                    Dentist</span>
+                                            <ul class="share-link d-flex justify-content-center align-items-center">
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                            </ul>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 main-border">
+                            <div class="doctor-card"><a routerlink="/dentist-details" class="d-block"
+                                            href="/inba/dentist-details"><img
+                                                    src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-1.jpg"
+                                                    alt="doctor-image" width="100%"></a>
+                                    <div class="doctor-content p-1">
+                                            <h3><a routerlink="/doctor-details">Dr. Johnson Melbourne</a></h3>
+                                            <span>Prosthodontics
+                                                    Dentist</span>
+                                            <ul class="share-link d-flex justify-content-center align-items-center">
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                            </ul>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 main-border">
+                            <div class="doctor-card"><a routerlink="/dentist-details" class="d-block"
+                                            href="/inba/dentist-details"><img
+                                                    src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-1.jpg"
+                                                    alt="doctor-image" width="100%"></a>
+                                    <div class="doctor-content p-1">
+                                            <h3><a routerlink="/doctor-details">Dr. Johnson Melbourne</a></h3>
+                                            <span>Prosthodontics
+                                                    Dentist</span>
+                                            <ul class="share-link d-flex justify-content-center align-items-center">
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                                    <li><i class="fa-regular fa-star"></i></li>
+                                            </ul>
+                                    </div>
+                            </div>
+                    </div>
+
+            </div>
+    </div> -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+    </button>
+</div>

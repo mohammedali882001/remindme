@@ -13,4 +13,11 @@ export class SidebarComponent {
   toggleSideitembar() {
     this.isActive = !this.isActive;
   }
+
+  toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+      sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+    }
+  }
 }

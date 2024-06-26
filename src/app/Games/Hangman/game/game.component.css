@@ -1,0 +1,14 @@
+.container {
+  background-color: #fff;
+  padding: 48px;
+  border-radius: 20px;
+}
+.hangman {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-danger {
+  color: red;
+}
