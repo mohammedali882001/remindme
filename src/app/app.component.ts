@@ -24,6 +24,9 @@ import { AllStoriesComponent } from './components/story-test/StoriesTest/all-sto
 import { PatientVisitedProfileComponent } from './pages/PatientVisitedProfile/patient-visited-profile/patient-visited-profile.component';
 import { PatientProfileComponent } from './pages/PatientProfile/patientprofile/patient-profile/patient-profile.component';
 import { StickyNotesComponent } from './components/sticky-notes/sticky-notes.component';
+import { GameComponent } from './Games/Hangman/game/game.component';
+import { SplashComponent } from "./Games/MemoryCards/splash/splash.component";
+import { GameBoardComponent } from "./Games/MemoryCards/game-board/game-board.component";
 
 // import { LoginComponent } from './components/login/login.component';
 // import { StoryTestComponent } from "./components/story-test/story-test.component";
@@ -42,8 +45,7 @@ import { StickyNotesComponent } from './components/sticky-notes/sticky-notes.com
         EditDoctorProfileComponent, QuestionsComponent, FormsModule, ResultsTestComponent,
         DoctorDashboardComponent, DoctorprofileComponent, SharedModule, EditDoctorProfileComponent,
         QuestionsComponent, FormsModule, ResultsTestComponent, AllStoriesComponent, PatientVisitedProfileComponent,
-        PatientProfileComponent, StickyNotesComponent, DonightChartComponent ]
-
+        PatientProfileComponent, StickyNotesComponent, DonightChartComponent, GameComponent, SplashComponent, GameBoardComponent]
 })
 
 export class AppComponent {

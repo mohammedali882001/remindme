@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ToDoListDto } from '../../models/ToDoList/to-do-list-dto';
 import { ToDoListService } from '../../services/ToDoListServices/to-do-list.service';
+import { Subject, debounceTime } from 'rxjs';
+import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-sticky-notes',
@@ -12,8 +14,15 @@ import { ToDoListService } from '../../services/ToDoListServices/to-do-list.serv
 })
 export class StickyNotesComponent implements OnInit {
   notes: ToDoListDto[] = [];
+  private updateSubject: Subject<{ index: number, event: any }> = new Subject();
 
-  constructor(private toDoListService: ToDoListService) {}
+  constructor(private toDoListService: ToDoListService) {
+    this.updateSubject.pipe(
+      debounceTime(500) // Adjust the debounce time as needed
+    ).subscribe(({ index, event }) => {
+      this.performUpdate(index, event);
+    });
+  }
 
   ngOnInit() {
     this.loadNotes();
@@ -36,8 +45,11 @@ export class StickyNotesComponent implements OnInit {
     });
   }
 
-  
   updateNote(index: number, event: any) {
+    this.updateSubject.next({ index, event });
+  }
+
+  performUpdate(index: number, event: any) {
     const noteName = event.target.querySelector('h2').textContent;
     const noteDescription = event.target.querySelector('p').textContent;
     const updatedNote: ToDoListDto = { name: noteName, description: noteDescription };
@@ -57,5 +69,11 @@ export class StickyNotesComponent implements OnInit {
         this.notes.splice(index, 1);
       }
     });
+  }
+  downloadNoteAsPDF(note: ToDoListDto) {
+    const doc = new jsPDF();
+    doc.text(`Name: ${note.name}`, 10, 10);
+    doc.text(`Description: ${note.description}`, 10, 20);
+    doc.save(`${note.name}.pdf`);
   }
 }
