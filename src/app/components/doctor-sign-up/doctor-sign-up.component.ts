@@ -31,7 +31,7 @@ export class DoctorSignUpComponent {
       gender: [null, Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      price:['',Validators.required]
+      price:['',[Validators.required,Validators.min(100), Validators.max(500)]]
     });
   }
 
