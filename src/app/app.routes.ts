@@ -23,6 +23,7 @@ import { AppointmentsRequestsComponent } from './pages/DoctorDashboard/appointme
 import { GameComponent } from './Games/Hangman/game/game.component';
 import { GameBoardComponent } from './Games/MemoryCards/game-board/game-board.component';
 import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
+import { StoryTestComponent } from './components/story-test/story-test.component';
 //import { HomeComponent } from './pages/Home/home.component';
 
 
@@ -43,6 +44,8 @@ export const routes: Routes = [
   { path: 'results-test', component: ResultsTestComponent },
   //{ path: 'story-test', component: StoryTestComponent },
   { path: 'AllStories', component: AllStoriesComponent },
+  { path: 'story-test', component: StoryTestComponent },
+
 
   { path: 'Question', component: QuestionsComponent },
 
