@@ -102,6 +102,12 @@
           <p *ngIf="f['price'].errors?.['price'] && (f['price'].dirty || f['price'].touched)" class="text-danger">
             Price is required.
           </p>
+          <p *ngIf="f['price'].errors?.['min'] && (f['price'].dirty || f['price'].touched)" class="text-danger">
+            Price must be at least 100.
+          </p>
+          <p *ngIf="f['price'].errors?.['max'] && (f['price'].dirty || f['price'].touched)" class="text-danger">
+            Price must be at most 500.
+          </p>
         </div>
       </div>
 
