@@ -22,8 +22,12 @@ export class WhatsappChatComponent {
   fetchRelativePhoneNumber(): void {
     this.http.get<string>(`${environment.baseUrl}/Relative/RelativePhoneNumber`)
       .subscribe({
+
         next: phoneNumber => {
+          console.log(phoneNumber);
           this.relativePhoneNumber = phoneNumber;
+          console.log(this.relativePhoneNumber);
+
         },
         error: error => {
           console.error('Error fetching relative phone number:', error);
