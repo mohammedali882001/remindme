@@ -1,4 +1,4 @@
-import { StoryTestComponent } from './components/story-test/story-test.component';
+
 import { LoginComponent } from './components/login/login.component';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -24,8 +24,8 @@ import { SliderComponent } from "./components/slider/slider.component";
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent,
-        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent]
+    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent,FormsModule,
+        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent]
 })
 export class AppComponent {
   title = "remindme";
