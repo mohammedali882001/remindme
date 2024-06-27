@@ -12,6 +12,9 @@ export class DoctorDashboardService {
 
   private PatientsRequestsUrl = `${environment.baseUrl}/PatientDoctor/Requests`;
   private Statistics = `${environment.baseUrl}/Doctor/DoctorStatistics`;
+  private ConfirmUrl = `${environment.baseUrl}/PatientDoctor/accept?requestId=`;
+  private RejectUrl = `${environment.baseUrl}/PatientDoctor/reject?requestId=`;
+
 
   constructor(private http : HttpClient) { }
 
@@ -25,4 +28,13 @@ export class DoctorDashboardService {
     return this.http.get<{ isSuccess: boolean; data: DoctorDashBoardDto}>(this.Statistics);
   }
 
+  confirmRequest(requestId : number) : Observable<any>{
+    return this.http.post<any>(`${this.ConfirmUrl}${requestId}`, requestId);
+  }
+
+  rejectRequest(requestId : number) : Observable<any>{
+    return this.http.post<any>(`${this.RejectUrl}${requestId}`, requestId);
+  }
+
 }
+ 

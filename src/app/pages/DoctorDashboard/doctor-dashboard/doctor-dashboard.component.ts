@@ -6,7 +6,8 @@ import { PatientsRequestsComponent } from '../patients-requests/patients-request
 import { RouterOutlet } from '@angular/router';
 import { DoctorDashBoardDto } from '../../../models/doctor-dash-board-dto';
 import { DoctorDashboardService } from '../../../services/DoctorServices/doctor-dashboard.service';
-
+import { Subscription } from 'rxjs';
+import { DataSharingService } from '../../../services/data-sharing-service.service';
 
 @Component({
   selector: 'app-doctor-dashboard',
@@ -18,12 +19,27 @@ import { DoctorDashboardService } from '../../../services/DoctorServices/doctor-
 export class DoctorDashboardComponent implements OnInit {
 
   errorMessage: string = '';
-  statistics! : DoctorDashBoardDto;
+  statistics!: DoctorDashBoardDto;
+  private countSubscription: Subscription | undefined;
 
- 
-  constructor(private doctorDashboardService: DoctorDashboardService) {}
+  constructor(
+    private doctorDashboardService: DoctorDashboardService,
+    private dataSharingService: DataSharingService
+  ) {}
+
   ngOnInit(): void {
     this.getStatistics();
+    this.countSubscription = this.dataSharingService.getCount().subscribe((count: number) => {
+      if (this.statistics) {
+        this.statistics.numberOfPatients = count;
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.countSubscription) {
+      this.countSubscription.unsubscribe();
+    }
   }
 
   getStatistics(): void {
@@ -43,6 +59,4 @@ export class DoctorDashboardComponent implements OnInit {
       }
     });
   }
-
-
 }
