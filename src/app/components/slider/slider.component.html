@@ -9,17 +9,17 @@
     </div>
     <div class="carousel-inner">
             <div class="carousel-item active row">
-                <<ng-container *ngFor = "let doctor of doctors; let i = index;">
+                <ng-container *ngFor = "let doctor of doctors; let i = index;">
                     <div class="col-lg-4 col-sm-6 main-border">
                             <div class="doctor-card"><a routerlink="/doctor-details" class="d-block"
                                             href="/inba/dentist-details">
-                                            
+
                                             <img *ngIf="doctor.picURL; else change" [src]="environment + '/' + doctor.picURL" alt="doctor-image" width="100%">
                                             <ng-template #change>
                                               <img src="../../../assets/" alt="doctor-image" width="100%">
                                             </ng-template>
-                                            
-                                            
+
+
                                         </a>
                                     <div class="doctor-content p-1">
                                             <h3><a routerlink="/doctor-details">Dr. {{doctor.firstName}} {{doctor.lastName}}</a></h3>
@@ -35,7 +35,7 @@
                             </div>
                     </div>
                 </ng-container>
-                    
+
                     <!-- <div class="col-lg-4 col-sm-6 main-border">
                             <div class="doctor-card"><a routerlink="/dentist-details" class="d-block"
                                             href="/inba/dentist-details"><img

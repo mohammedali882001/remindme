@@ -16,19 +16,16 @@ import { QuestionsComponent } from './components/story-test/questions/questions.
 import { FormsModule } from '@angular/forms';
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
 import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
+import { DoctorFilterComponent } from "./components/doctor-filter/doctor-filter.component";
+import { SliderComponent } from "./components/slider/slider.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-
-  imports: [BoardComponent,RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
-    DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent],
-
-
-
-templateUrl: './app.component.html',
-
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent,
+        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent]
 })
 
 

@@ -5,13 +5,14 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PatientVisitedProfileService } from '../../../services/PatientServices/patient-visited-profile.service';
 import Swal from 'sweetalert2';
+import { WhatsappChatComponent } from "../../../components/whatsapp-chat/whatsapp-chat.component";
 
 @Component({
-  selector: 'app-patient-visited-profile',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './patient-visited-profile.component.html',
-  styleUrl: './patient-visited-profile.component.css'
+    selector: 'app-patient-visited-profile',
+    standalone: true,
+    templateUrl: './patient-visited-profile.component.html',
+    styleUrl: './patient-visited-profile.component.css',
+    imports: [CommonModule, WhatsappChatComponent]
 })
 export class PatientVisitedProfileComponent implements OnInit {
   patientId: number = 0;
