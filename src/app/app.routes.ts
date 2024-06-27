@@ -22,6 +22,7 @@ import { PatientsRequestsComponent } from './pages/DoctorDashboard/patients-requ
 import { AppointmentsRequestsComponent } from './pages/DoctorDashboard/appointments-requests/appointments-requests.component';
 import { GameComponent } from './Games/Hangman/game/game.component';
 import { GameBoardComponent } from './Games/MemoryCards/game-board/game-board.component';
+import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
 //import { HomeComponent } from './pages/Home/home.component';
 
 
@@ -34,18 +35,18 @@ export const routes: Routes = [
   { path: 'patientProfile', component: PatientProfileComponent },
   { path: 'registerDoctor', component: DoctorSignUpComponent },
   { path: 'registerRelative', component: RelativeSignUpComponent },
- // {path:'notes',component:StickyNotesComponent},
-  //{path:'hangman',component:GameComponent},
+  {path:'notes',component:StickyNotesComponent},
+  {path:'hangman',component:GameComponent},
   { path: 'memorycards', component: GameBoardComponent },
-
+  { path: 'xo', component: BoardComponent },
   { path: 'VisitedPatientprofile/:id', component: PatientVisitedProfileComponent },
   { path: 'results-test', component: ResultsTestComponent },
   //{ path: 'story-test', component: StoryTestComponent },
   { path: 'AllStories', component: AllStoriesComponent },
 
   { path: 'Question', component: QuestionsComponent },
-  
-  //Doctor dashboard 
+
+  //Doctor dashboard
   { path: 'DoctorDashboard', component: DoctorDashboardComponent, children : [
     { path: 'PatientsRequests', component: PatientsRequestsComponent },
     { path: 'AppointmentsRequests', component: AppointmentsRequestsComponent },

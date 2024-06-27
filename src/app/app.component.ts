@@ -15,12 +15,13 @@ import { EditDoctorProfileComponent } from './components/Edit-DoctorProfile/edit
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { FormsModule } from '@angular/forms';
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
+import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
-  imports: [RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
+  imports: [BoardComponent,RouterOutlet,NavBarComponent,FooterComponent ,CardComponent, LandingComponent,
     DoctorSignUpComponent,RouterModule,DoctorprofileComponent,LoginComponent,RestPasswordComponent, RouterOutlet,SharedModule , EditDoctorProfileComponent,StoryTestComponent,QuestionsComponent,FormsModule ,ResultsTestComponent],
 
 
