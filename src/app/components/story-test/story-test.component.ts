@@ -46,30 +46,29 @@ declare const Plyr: any;
 
   ngOnInit(): void {
     const navigation = this.router.getCurrentNavigation();
+    console.log('Current navigation state:', navigation);
+  
     if (navigation && navigation.extras.state) {
       this.storyTest = navigation.extras.state['storyTest'];
+      console.log('Received storyTest data:', this.storyTest);
     } else {
       console.error('No storyTest data found in router state.');
     }
   }
+  
 
   ngAfterViewInit(): void {
     this.audio = document.getElementById('audioPlayer') as HTMLAudioElement; // Initialize audio
     const player = new Plyr(this.audio); // Example usage with Plyr
   }
 
-
-
-
   openModal(content: any) {
-     this.modalService.open(content, { size: 'lg', centered: true });
+    this.modalService.open(content, { size: 'lg', centered: true });
   }
 
   dismissModal() {
     this.modalService.dismissAll();
   }
-
-
 
   playAudioOnce() {
     if (!this.audioPlayed) {
@@ -93,6 +92,14 @@ declare const Plyr: any;
     }
   }
 }
+
+
+
+
+
+
+
+
 //  implements OnInit, AfterViewInit {
 //   @ViewChild('attentionModal', { static: true }) attentionModal!: TemplateRef<any>;
 
