@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { DoctorRegisterService } from '../../services/AuthenticationServices/DoctorAuthentication/doctor-register.service';
 import { DoctorRegisterDTO } from '../../models/Authentication/doctor-register-dto';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 // import Swal from 'sweetalert2';
 
 @Component({
@@ -17,7 +18,7 @@ export class DoctorSignUpComponent {
   isFormSubmitted = false;
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private doctorRegisterService: DoctorRegisterService) {
+  constructor(private fb: FormBuilder, private doctorRegisterService: DoctorRegisterService, private router: Router) {
     this.registerForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
@@ -50,7 +51,9 @@ export class DoctorSignUpComponent {
               // console.log("noooooooooo");
               this.registerForm.controls['userName'].setErrors({ notUnique: true });
             }
-
+            else{
+            this.router.navigate(['/login']);
+            }
           // Optionally, you can reset the form after successful submission
 
         },
