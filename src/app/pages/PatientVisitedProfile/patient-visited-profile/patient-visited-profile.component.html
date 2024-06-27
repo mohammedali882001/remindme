@@ -16,10 +16,12 @@
           />
         </div>
         <div class="btns">
-          <button class="btn d-flex text-align-baseline">
+          <!-- <button class="btn d-flex text-align-baseline">
             <i class="fa-regular fa-comment"></i>
             <span class="d-none d-lg-block d-md-block"> Send message</span>
-          </button>
+          </button> -->
+          <app-whatsapp-chat [patientId]="patientId"></app-whatsapp-chat>
+
           <button class="btn d-flex text-align-baseline d-lg-none d-block">
             <i class="fa-regular fa-calendar-check"></i>
           </button>

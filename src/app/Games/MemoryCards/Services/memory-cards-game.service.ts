@@ -61,14 +61,13 @@ export class MemoryCardsGameService {
   flipCard(card: Card) {
     card.clicked = true;
     const clickedCards = this.cards.filter(c => c.clicked && !c.matched);
-
     if (clickedCards.length === 2) {
       this.stopClicking();
-
       setTimeout(() => {
         this.checkMatch(clickedCards);
       }, 1000);
     }
+
 
   }
 
@@ -88,9 +87,9 @@ export class MemoryCardsGameService {
       cards[1].matched = true;
       this.playSound('success');
     } else {
+      this.wrongTries++;
       cards[0].clicked = false;
       cards[1].clicked = false;
-      this.wrongTries++;
       this.playSound('fail');
     }
 

@@ -34,6 +34,7 @@ export class GameBoardComponent implements OnInit {
   onCardClicked(card: Card) {
     this.memoryCardsGameService.flipCard(card);
     this.wrongTries = this.memoryCardsGameService.getWrongTries(); // Update wrong tries count
+    
     if (this.memoryCardsGameService.isGameWon()) {
       this.showCongratulationsPopup();
     }
@@ -51,5 +52,5 @@ export class GameBoardComponent implements OnInit {
 
     this.cards = this.memoryCardsGameService.getCards(); // Optionally update cards if needed
   }
-  
+
 }

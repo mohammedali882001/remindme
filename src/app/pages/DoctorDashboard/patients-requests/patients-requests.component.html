@@ -1,0 +1,36 @@
+<div class="col-12 col-md-4 col-lg-4 appontRequest">
+  <div class="title d-flex justify-content-between">
+    <p>Patients Requests</p>
+    <a class="d-flex align-items-center appontRequest-text" routerLink="/all-requests">
+      <p>View All</p>
+      <i class="fa-solid fa-chevron-right"></i>
+    </a>
+  </div>
+
+  <!-- Display error message if any -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Display message if no patient requests are found -->
+  <div *ngIf="patients.length === 0 && !errorMessage">
+    No patient requests found.
+  </div>
+
+  <!-- Loop through the patients array and display each patient's details -->
+  <ng-container *ngFor="let patient of patients">
+    <div class="d-flex justify-content-between">
+      <div class="Patient gap-3">
+        <div class="pateintImage">
+          <img [src]="environment + '/' + patient.picUrl" alt="Patient Image">
+        </div>
+        <div class="pateintDetails">
+          <p>{{ patient.fullName }}</p>
+          <span>{{ patient.age }} {{ patient.gender }} {{ patient.time | date:'MMM d, h:mm a' }}</span>
+        </div>
+      </div>
+      <a type="button" class="btn btn-success" (click)="confirmRequest(patient.id)">Confirm</a>
+      <a type="button" class="btn btn-danger" (click)="rejectRequest(patient.id)">Reject</a>
+    </div>
+  </ng-container>
+</div>

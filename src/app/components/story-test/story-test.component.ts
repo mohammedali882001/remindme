@@ -15,7 +15,7 @@
 //   styleUrl: './story-test.component.css'
 // })
 // export class StoryTestComponent implements OnInit, AfterViewInit {
-=======
+
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild ,ElementRef, TemplateRef} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
