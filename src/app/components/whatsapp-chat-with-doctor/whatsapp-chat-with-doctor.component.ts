@@ -1,41 +1,38 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 
 @Component({
-  selector: 'app-whatsapp-chat',
+  selector: 'app-whatsapp-chat-with-doctor',
   standalone: true,
   imports: [],
-  templateUrl: './whatsapp-chat.component.html',
-  styleUrl: './whatsapp-chat.component.css'
+  templateUrl: './whatsapp-chat-with-doctor.component.html',
+  styleUrl: './whatsapp-chat-with-doctor.component.css'
 })
-
-export class WhatsappChatComponent implements OnInit {
-  @Input() patientId: number = 0;
-
-  relativePhoneNumber: string = '';
-
+export class WhatsappChatWithDoctorComponent {
+  @Input() doctorId:number=0;
+  doctorPhoneNumber:string='';
   countryCode: string = '+2';
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.fetchRelativePhoneNumber();
+    this.fetchDoctorPhoneNumber();
 
   }
 
-  fetchRelativePhoneNumber(): void {
-    console.log("pid", this.patientId);
+  fetchDoctorPhoneNumber(): void {
+    console.log("did", this.doctorId);
 
-    this.http.get(`${environment.baseUrl}/Relative/RelativePhoneNumber`, {
-      params: { PatientId: this.patientId.toString() },
+    this.http.get(`${environment.baseUrl}/Doctor/DoctorPhoneNumber`, {
+      params: { doctorId: this.doctorId.toString() },
       responseType: 'text' // Indicate that we expect a plain text response
     })
     .subscribe({
       next: response => {
         console.log(response);
-        this.relativePhoneNumber = response.trim();
-        console.log(this.relativePhoneNumber);
+        this.doctorPhoneNumber = response.trim();
+        console.log(this.doctorPhoneNumber);
       },
       error: error => {
         console.error('Error fetching relative phone number:', error);
@@ -46,15 +43,12 @@ export class WhatsappChatComponent implements OnInit {
 
 
 
-  openWhatsAppChat(): void {
-    const formattedPhoneNumber = this.formatPhoneNumber(this.relativePhoneNumber);
+  openWhatsAppChatWithDoctor(): void {
+    const formattedPhoneNumber = this.formatPhoneNumber(this.doctorPhoneNumber);
     const message = encodeURIComponent('Hello, I need to connect with you.');
     const whatsappUrl = `https://wa.me/${formattedPhoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
   }
-
-  
-
   formatPhoneNumber(phoneNumber: string): string {
     // Add country code if missing
     if (!phoneNumber.startsWith('+')) {

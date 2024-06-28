@@ -6,9 +6,9 @@ export interface DoctorGetDTO {
   phone: string;
   age: number;
   genderString: string;
-  picURL: string;
-  averageRating: number;
-  worksIn: string;
-  history: string;
+  picURL?: string;
+  averageRating?: number;
+  worksIn?: string;
+  history?: string;
   /////////
 }
