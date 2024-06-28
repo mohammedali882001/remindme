@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BrowsDoctorCardComponent } from './brows-doctor-card.component';
+import { VisitedSideBarComponent } from './visited-side-bar.component';
 
-describe('BrowsDoctorCardComponent', () => {
-  let component: BrowsDoctorCardComponent;
-  let fixture: ComponentFixture<BrowsDoctorCardComponent>;
+describe('VisitedSideBarComponent', () => {
+  let component: VisitedSideBarComponent;
+  let fixture: ComponentFixture<VisitedSideBarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BrowsDoctorCardComponent]
+      imports: [VisitedSideBarComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(BrowsDoctorCardComponent);
+    fixture = TestBed.createComponent(VisitedSideBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
