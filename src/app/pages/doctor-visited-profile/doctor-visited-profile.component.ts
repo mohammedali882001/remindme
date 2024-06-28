@@ -52,4 +52,6 @@ export class DoctorVisitedProfileComponent implements OnInit {
       }
     });
   }
+
+  
 }

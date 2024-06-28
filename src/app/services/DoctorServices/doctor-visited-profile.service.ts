@@ -9,8 +9,9 @@ import { environment } from '../../../environments/environment.development';
 
 export class DoctorVisitedProfileService {
   constructor(private http: HttpClient) { }
-  
+
   getDoctorById(doctorId: number): Observable<any> {
     return this.http.get<any>(`${environment.baseUrl}/Doctor/doctorId?doctorId=${doctorId}`);
   }
+ 
 }
