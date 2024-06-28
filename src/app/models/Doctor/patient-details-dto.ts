@@ -3,8 +3,9 @@ export interface PatientDetailsDto {
     fullName: string;
     status: string;
     age : number;
-    picUrl : string;
-    gender : string;
+    picUrl : string | null;
+    gender : number;
     time : string;
+    patientId : number;
 
 }
