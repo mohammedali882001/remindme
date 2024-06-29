@@ -7,9 +7,9 @@ export class FilterDoctorDTO {
   worksIn?: string;
   price: number=0;
   averageRating?: number;
-  age: number=0;
+  age?: number;
   address: string='';
   genderString: string='';
-  
+
 }
 

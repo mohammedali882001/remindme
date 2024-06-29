@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { DoctorFilterComponent } from "../../../components/doctor-filter/doctor-filter.component";
 import { DoctorCardComponent } from "../../../components/doctor-card/doctor-card.component";
-
-
-
-
+import { FilterDoctorDTO } from '../../../models/Doctor/filter-doctor-dto';
+import { DoctorService } from '../../../services/DoctorServices/doctor.service';
 @Component({
     selector: 'app-browse-doctors',
     standalone: true,
@@ -13,5 +11,38 @@ import { DoctorCardComponent } from "../../../components/doctor-card/doctor-card
     imports: [DoctorFilterComponent, DoctorCardComponent]
 })
 export class BrowseDoctorsComponent {
+//   filteredDoctors: FilterDoctorDTO[] = [];
+
+//   updateFilteredDoctors(doctors: FilterDoctorDTO[]): void {
+//     this.filteredDoctors = doctors;
+// }
+
+allDoctors: FilterDoctorDTO[] = [];
+  filteredDoctors: FilterDoctorDTO[] = [];
+
+  constructor(private doctorService: DoctorService) {}
+
+  ngOnInit(): void {
+    this.loadAllDoctors();
+  }
+
+  loadAllDoctors(): void {
+    this.doctorService.getDoctors().subscribe(
+      (response: FilterDoctorDTO[]) => {
+        this.allDoctors = response;
+        this.filteredDoctors = response; // Initially display all doctors
+      },
+      (error) => {
+        console.error('Error fetching doctors:', error);
+      }
+    );
+  }
+
+  updateFilteredDoctors(doctors: FilterDoctorDTO[]): void {
+    this.filteredDoctors = doctors;
+  }
+
 
 }
+
+

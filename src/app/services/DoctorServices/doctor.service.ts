@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
@@ -11,16 +11,6 @@ import { GeneralResponse } from '../../models/Story/general-response';
 export class DoctorService {
 
   constructor(private http: HttpClient) { }
-
-  // getDoctors(): Observable<FilterDoctorDTO[]> {
-  //   return this.http.get<{ isSuccess: boolean, data: FilterDoctorDTO[] }>(`${environment.baseUrl}/Doctor/Doctors`)
-  //     .pipe(
-  //       map(response => response.data)  // Map to the data array
-  //     );
-  // }
-  // searchDoctorsByName(name: string): Observable<GeneralResponse> {
-  //   return this.http.get<GeneralResponse>(`${environment.baseUrl}/Doctor/Doctor/${name}`);
-  // }
   getDoctors(): Observable<FilterDoctorDTO[]> {
     return this.http.get<any>(`${environment.baseUrl}/Doctor/Doctors`)
       .pipe(
@@ -58,5 +48,136 @@ export class DoctorService {
         })
       );
   }
+
+  getFilteredFemaleDoctors(filters: any): Observable<FilterDoctorDTO[]> {
+    return this.http.get<any>(`${environment.baseUrl}/Doctor/FilteredFemaleDoctor`)
+      .pipe(
+        map(response => {
+          if (Array.isArray(response)) {
+            return response as FilterDoctorDTO[]; // Directly return the array if no wrapper object
+          } else if (response.isSuccess) {
+            return response.data as FilterDoctorDTO[]; // Extract data array if wrapped
+          } else {
+            throw new Error('Unexpected API response format');
+          }
+        }),
+        catchError(error => {
+          console.error('Error fetching doctors:', error);
+          return throwError(error); // Rethrow the error
+        })
+      );
+  }
+
+  getFilteredMaleDoctors(filters: any): Observable<FilterDoctorDTO[]> {
+    return this.http.get<any>(`${environment.baseUrl}/Doctor/FilteredMaleDoctor`)
+      .pipe(
+        map(response => {
+          if (Array.isArray(response)) {
+            return response as FilterDoctorDTO[]; // Directly return the array if no wrapper object
+          } else if (response.isSuccess) {
+            return response.data as FilterDoctorDTO[]; // Extract data array if wrapped
+          } else {
+            throw new Error('Unexpected API response format');
+          }
+        }),
+        catchError(error => {
+          console.error('Error fetching doctors:', error);
+          return throwError(error); // Rethrow the error
+        })
+      );
+  }
+
+  getDoctorsByAgeGreater(age?: string): Observable<FilterDoctorDTO[]> {
+    let params = new HttpParams();
+    if (age) {
+      params = params.set('age', age);
+    }
+
+    return this.http.get<any>(`${environment.baseUrl}/Doctor/DoctorsByAgeGreaterThan${age}`)
+      .pipe(
+        map(response => {
+          if (Array.isArray(response)) {
+            return response as FilterDoctorDTO[]; // Directly return the array if no wrapper object
+          } else if (response.isSuccess) {
+            return response.data as FilterDoctorDTO[]; // Extract data array if wrapped
+          } else {
+            throw new Error('Unexpected API response format');
+          }
+        }),
+        catchError(error => {
+          console.error('Error fetching doctors by age:', error);
+          return throwError(error); // Rethrow the error
+        })
+      );
+  }
+
+  getDoctorsByAgeSmaller(age?: string): Observable<FilterDoctorDTO[]> {
+    let params = new HttpParams();
+    if (age) {
+      params = params.set('age', age);
+    }
+
+    return this.http.get<any>(`${environment.baseUrl}/Doctor/DoctorsByAgeSmallerThan${age}`)
+      .pipe(
+        map(response => {
+          if (Array.isArray(response)) {
+            return response as FilterDoctorDTO[]; // Directly return the array if no wrapper object
+          } else if (response.isSuccess) {
+            return response.data as FilterDoctorDTO[]; // Extract data array if wrapped
+          } else {
+            throw new Error('Unexpected API response format');
+          }
+        }),
+        catchError(error => {
+          console.error('Error fetching doctors by age:', error);
+          return throwError(error); // Rethrow the error
+        })
+      );
+  }
+  getDoctorsByPriceRange(endRange: string): Observable<FilterDoctorDTO[]> {
+    let params = new HttpParams();
+    params = params.set('EndRange', endRange);
+
+    return this.http.get<any>(`${environment.baseUrl}/Doctor/DoctorsByPriceRange`, { params })
+      .pipe(
+        map(response => {
+          if (response.isSuccess && Array.isArray(response.data)) {
+            return response.data as FilterDoctorDTO[]; // Extract data array if wrapped in a success response
+          } else {
+            throw new Error('Unexpected API response format'); // Throw error for unexpected response
+          }
+        }),
+        catchError(error => {
+          console.error('Error fetching doctors by price range:', error);
+          return throwError(error); // Rethrow the error
+        })
+      );
+  }
+
+  getDoctorsBySpecificAverageRate(avgRate: number): Observable<FilterDoctorDTO[]> {
+    let params = new HttpParams().set('AvgRate', avgRate.toString());
+
+    return this.http.get<any>(`${environment.baseUrl}/Doctor/FilteredDoctorBySpecificAverageRate`, { params })
+      .pipe(
+        map(response => {
+          if (response.isSuccess && Array.isArray(response.data)) {
+            console.log("res",response);
+
+            return response.data as FilterDoctorDTO[];
+          } else {
+            throw new Error('Unexpected API response format');
+          }
+        }),
+        catchError(error => {
+          console.error('Error fetching doctors by specific average rate:', error);
+          return throwError(error);
+        })
+      );
+  }
+
 }
+
+
+
+
 
