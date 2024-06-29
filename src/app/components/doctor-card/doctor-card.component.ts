@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DoctorService } from '../../services/DoctorServices/doctor.service';
 import { FilterDoctorDTO } from '../../models/Doctor/filter-doctor-dto';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { StarRatingComponent } from "../star-rating/star-rating.component";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowseSharedService } from '../../services/browse-shared.service';
 
 @Component({
     selector: 'app-doctor-card',
@@ -13,53 +14,16 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
     styleUrls: ['./doctor-card.component.css'],
     imports: [CommonModule, RouterLink, StarRatingComponent,FormsModule,ReactiveFormsModule]
 })
-// export class DoctorCardComponent implements OnInit {
-//   filteredDoctors: FilterDoctorDTO[] = [];
-//   searchText: string = '';
-
-//   constructor(private doctorService: DoctorService) {}
-
-//   ngOnInit() {
-//     this.loadDoctors();
-//   }
-
-//   loadDoctors() {
-//     this.doctorService.getDoctors().subscribe(
-//       (data: FilterDoctorDTO[]) => {
-//         this.filteredDoctors = data;
-//       },
-//       (error) => {
-//         console.error('Error fetching doctors:', error);
-//       }
-//     );
-//   }
-
-//   searchDoctors() {
-//     if (this.searchText.trim() !== '') {
-//       this.doctorService.searchDoctorsByName(this.searchText.trim()).subscribe(
-//         (response) => {
-//           if (response.isSuccess) {
-//             this.filteredDoctors = response.data;
-//           } else {
-//             console.error('Search failed:', response.data);
-//           }
-//         },
-//         (error) => {
-//           console.error('Error searching doctors:', error);
-//         }
-//       );
-//     } else {
-//       this.loadDoctors(); // Reload all doctors if search text is empty
-//     }
-//   }
-// }
-
-
 export class DoctorCardComponent implements OnInit {
   searchForm: FormGroup;
-  filteredDoctors: FilterDoctorDTO[] = [];
+  // filteredDoctors: FilterDoctorDTO[] = [];
 
-  constructor(private fb: FormBuilder, private doctorService: DoctorService) {
+  @Input() filteredDoctors: FilterDoctorDTO[] = [];
+
+  constructor(private fb: FormBuilder,
+    private doctorService: DoctorService,
+    private sharedService: BrowseSharedService
+  ) {
     this.searchForm = this.fb.group({
       searchText: ['']
     });
@@ -68,12 +32,16 @@ export class DoctorCardComponent implements OnInit {
   ngOnInit() {
     this.loadDoctors(); // Initial load of all doctors
     this.watchSearchInput(); // Watch for changes in search input
+
   }
 
   loadDoctors() {
     this.doctorService.getDoctors().subscribe(
       (response: FilterDoctorDTO[]) => {
+        console.log("from load",response);
+
         this.filteredDoctors = response; // Update filteredDoctors with fetched data
+
       },
       (error) => {
         console.error('Error fetching doctors:', error); // Log error if fetch fails
@@ -104,3 +72,4 @@ export class DoctorCardComponent implements OnInit {
     );
   }
 }
+
