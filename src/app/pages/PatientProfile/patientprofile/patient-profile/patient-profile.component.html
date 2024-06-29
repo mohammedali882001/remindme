@@ -16,10 +16,13 @@
           />
         </div>
         <div class="btns">
-          <button class="btn d-flex text-align-baseline">
+          <!-- <button class="btn d-flex text-align-baseline">
             <i class="fa-regular fa-comment"></i>
             <span class="d-none d-lg-block d-md-block"> Send message</span>
-          </button>
+          </button> -->
+          <app-whatsapp-chat-with-my-doctor [doctorId]="profileData.doctorId"></app-whatsapp-chat-with-my-doctor>
+
+          <!-- <app-whatsapp-chat-with-doctor [doctorId]="profileData.doctorId"></app-whatsapp-chat-with-doctor> -->
           <button *ngIf="!editMode" class="btn d-none d-lg-block" (click)="toggleEditMode()">Edit</button>
           <button *ngIf="editMode" class="btn d-none d-lg-block" (click)="saveChanges()">Save</button>
           <button *ngIf="editMode" class="btn d-none d-lg-block" (click)="cancelEdit()">Cancel Edit</button>

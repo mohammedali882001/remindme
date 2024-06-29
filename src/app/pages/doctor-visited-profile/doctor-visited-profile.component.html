@@ -17,6 +17,7 @@
             <i class="fa-regular fa-comment"></i>
             <span class="d-none d-lg-block d-md-block"> Send message</span>
           </button> -->
+          
           <app-whatsapp-chat-with-doctor [doctorId]="doctorId"></app-whatsapp-chat-with-doctor>
 
           <button class="btn d-flex text-align-baseline d-lg-none d-block">
@@ -71,43 +72,21 @@
 
       </div>
     </div>
-    <div class="avaliablity">
-      <h5 class="avTitle">Availability</h5>
+
+    <div class="avaliablity mt-4">
+      <h5 class="avTitle">Rating</h5>
       <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
-        <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
-          <strong>Wed Jun 16</strong>
-          <div>16.00 AM</div>
-        </div>
-        <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
-          <strong>Wed Jun 16</strong>
-          <div>16.00 AM</div>
-        </div>
-        <div class="calender col-12 col-sm-6 col-md-3 col-lg-2">
-          <strong>Wed Jun 16</strong>
-          <div>16.00 AM</div>
-        </div>
-        <div class="calender col-sm-6 col-md-3 col-lg-2">
-          <strong>Wed Jun 16</strong>
-          <div>16.00 AM</div>
-        </div>
-        <div class="calender col-sm-6 col-md-3 col-lg-2">
-          <strong>Wed Jun 16</strong>
-          <div>16.00 AM</div>
-        </div>
-        <div class="calender col-sm-6 col-md-3 col-lg-2">
-          <strong>Wed Jun 16</strong>
-          <div>16.00 AM</div>
-        </div>
-        <div class="calender col-sm-6 col-md-3 col-lg-2">
-          <strong>Wed Jun 16</strong>
-          <div>16.00 AM</div>
-        </div>
-        <div class="calender col-sm-6 col-md-3 col-lg-2">
-          <strong>Wed Jun 16</strong>
-          <div>16.00 AM</div>
+        <div *ngFor="let rating of ratings" class="rating-item col-12 col-sm-6 col-md-3 col-lg-2 mb-2">
+          <app-star-rating [averageRating]="rating.ratingValue"></app-star-rating>
+          <p>{{ rating.comment }}</p>
         </div>
       </div>
     </div>
+
+    <div class="text-center mt-3">
+      <button (click)="openRatingPopup()" class="btn thirdBtn">Add Rating</button>
+    </div>
+
   </div>
 </div>
 

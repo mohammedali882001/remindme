@@ -13,5 +13,12 @@ export class DoctorVisitedProfileService {
   getDoctorById(doctorId: number): Observable<any> {
     return this.http.get<any>(`${environment.baseUrl}/Doctor/doctorId?doctorId=${doctorId}`);
   }
- 
+  addRating(ratingData: any): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/Rating`, ratingData);
+  }
+  getRatingsForDoctor(doctorId: number): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/Rating/DoctorRatings/${doctorId}`);
+  }
+
+
 }
