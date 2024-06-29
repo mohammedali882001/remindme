@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../../models/shared-module';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
+import { WhatsappChatWithDoctorComponent } from "../../../../components/whatsapp-chat-with-doctor/whatsapp-chat-with-doctor.component";
+import { WhatsappChatWithMyDoctorComponent } from "../../../../components/whatsapp-chat-with-my-doctor/whatsapp-chat-with-my-doctor.component";
 
 @Component({
-  selector: 'app-patient-profile',
-  standalone: true,
-  imports: [CommonModule, SharedModule, FormsModule],
-  templateUrl: './patient-profile.component.html',
-  styleUrls: ['./patient-profile.component.css']
+    selector: 'app-patient-profile',
+    standalone: true,
+    templateUrl: './patient-profile.component.html',
+    styleUrls: ['./patient-profile.component.css'],
+    imports: [CommonModule, SharedModule, FormsModule, WhatsappChatWithDoctorComponent, WhatsappChatWithMyDoctorComponent]
 })
 export class PatientProfileComponent implements OnInit {
   profileData: any;
