@@ -70,6 +70,17 @@ export class StickyNotesComponent implements OnInit {
       }
     });
   }
+
+  markAsDone(note: ToDoListDto) {
+    this.toDoListService.markDone(note.id!).subscribe(response => {
+      if (response.isSuccess) {
+        note.statusName = 'Done';
+      } else {
+        console.log(response.data); // Handle the error message appropriately
+      }
+    });
+  }
+
   downloadNoteAsPDF(note: ToDoListDto) {
     const doc = new jsPDF();
     doc.text(`Name: ${note.name}`, 10, 10);
