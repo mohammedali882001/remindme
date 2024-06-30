@@ -152,6 +152,8 @@ export class DoctorVisitedProfileComponent implements OnInit {
   ratings: any[] = [];
   selectedRating: number = 0;
   stars: { value: number }[] = Array.from({ length: 5 }, (_, index) => ({ value: index + 1 }));
+  canAddRating: boolean = true;
+  viewAllRatings: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -164,6 +166,22 @@ export class DoctorVisitedProfileComponent implements OnInit {
       this.doctorId = +params['id']; // Get doctor ID from route parameters
       this.fetchDoctorProfile(this.doctorId);
       this.fetchRatings(this.doctorId);
+      this.checkAuthorizationToAddRating(this.doctorId);
+    });
+  }
+
+  checkAuthorizationToAddRating(doctorId: number): void {
+    this.doctorVisitedService.checkAuthorizationToAddRating(doctorId).subscribe({
+      next: (response) => {
+        if (response.isSuccess) {
+          this.canAddRating = true;
+        } else {
+          this.canAddRating = false;
+        }
+      },
+      error: (error) => {
+        console.error('Error checking authorization to add rating:', error);
+      }
     });
   }
 
@@ -268,6 +286,7 @@ export class DoctorVisitedProfileComponent implements OnInit {
   fetchRatings(doctorId: number): void {
     this.doctorVisitedService.getRatingsForDoctor(doctorId).subscribe({
       next: (response) => {
+        console.log(response);
         if (response.isSuccess) {
           this.ratings = response.data;
         } else {
