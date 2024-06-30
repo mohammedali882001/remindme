@@ -172,6 +172,7 @@ justify-content: space-between;
     height: 80px;
   }
 
+
   .btns button {
     padding: 10px;
     /* padding: 0.4rem; */
@@ -208,3 +209,8 @@ justify-content: space-between;
 }
 
 
+.DocProfilePicRate {
+  width: 40px;
+  height: 40px;
+
+}
