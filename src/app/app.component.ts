@@ -18,14 +18,16 @@ import { ResultsTestComponent } from './components/story-test/results-test/resul
 import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
 import { DoctorFilterComponent } from "./components/doctor-filter/doctor-filter.component";
 import { SliderComponent } from "./components/slider/slider.component";
+import { BrowsDoctorCardComponent } from './components/brows-doctor-card/brows-doctor-card.component';
+import { AppointmentTimesComponent } from './components/appointment-times/appointment-times.component';
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
-    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent,
-        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent]
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
+  imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent,
+    DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent, BrowsDoctorCardComponent, AppointmentTimesComponent]
 })
 export class AppComponent {
   title = "remindme";
