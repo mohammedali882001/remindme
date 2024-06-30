@@ -131,8 +131,10 @@ ul li:nth-child(3n) a {
 }
 
 .download-note {
-  right: -10px; /* Adjusted to position the download button on the top right */
+  /* right: -10px; */
   background-color: rgb(87, 87, 240);
+  left: 15px;
+  top: -20px;
 }
 
 .download-note:hover {
@@ -144,3 +146,33 @@ ul li:nth-child(3n) a {
   /* Styling for FontAwesome icons */
   color: white;
 }
+
+.status-indicator {
+  position: absolute;
+  top: -10px;
+  right: 40px; /* Adjust this value as needed */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.status-indicator i {
+  font-size: 20px;
+}
+
+.circle {
+  width: 25px; /* Adjusted size to match delete and download icons */
+  height: 25px; /* Adjusted size to match delete and download icons */
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+}
+
+.circle i {
+  font-size: 14px; /* Adjusted font size for the check mark icon */
+  color: black;
+}
+

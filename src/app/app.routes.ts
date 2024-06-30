@@ -23,12 +23,16 @@ import { AppointmentsRequestsComponent } from './pages/DoctorDashboard/appointme
 import { GameComponent } from './Games/Hangman/game/game.component';
 import { GameBoardComponent } from './Games/MemoryCards/game-board/game-board.component';
 import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
+import { StoryTestComponent } from './components/story-test/story-test.component';
+import { BrowseDoctorsComponent } from './pages/Home/browse-doctors/browse-doctors.component';
+import { DoctorVisitedProfileComponent } from './pages/doctor-visited-profile/doctor-visited-profile.component';
 //import { HomeComponent } from './pages/Home/home.component';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
-  // { path: 'home', component: HomeComponent },
+   { path: 'home', component: HomeComponent },
+   { path: 'browseDoctors', component: BrowseDoctorsComponent },
   { path: 'landing', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'doctorProfile', component: DoctorprofileComponent },
@@ -40,9 +44,12 @@ export const routes: Routes = [
   { path: 'memorycards', component: GameBoardComponent },
   { path: 'xo', component: BoardComponent },
   { path: 'VisitedPatientprofile/:id', component: PatientVisitedProfileComponent },
+  { path: 'VisitedDoctorprofile/:id', component: DoctorVisitedProfileComponent },
   { path: 'results-test', component: ResultsTestComponent },
   //{ path: 'story-test', component: StoryTestComponent },
   { path: 'AllStories', component: AllStoriesComponent },
+  { path: 'story-test', component: StoryTestComponent },
+
 
   { path: 'Question', component: QuestionsComponent },
 

@@ -1,69 +1,10 @@
-<<<<<<< HEAD
-<section class="storyTest d-flex align-items-center justify-content-center position-relative">
-  <div class="info position-absolute p-2 main-border d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    <i class="fa-solid fa-info" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-=======
 <!-- story-test.component.html -->
 
-<!-- <section class="storyTest d-flex align-items-center justify-content-center position-relative">
-   Warning modal trigger
-  <div class="info position-absolute p-2 main-border d-flex justify-content-center align-items-center"
-  (click)="playAudio('audioPlayer', 'attentionModal')">
-    <i class="fa-solid fa-info"></i>
->>>>>>> 8a2cfcba8d4bfac951db99e2505e2350f2cf1319
-  </div>
-
-   Audio player container
-  <div class="storyContainer container main-border">
-    <h1>My Audio Player</h1>
-    <audio id="audioPlayer" controls controlsList="nodownload">
-      <source src="../../../assets/audio/WhatsApp Audio 2024-06-21 at 12.11.52_51440292.mp3" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-</section> -->
-
-<<<<<<< HEAD
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-=======
-<!-- Modal for warning -->
-<!-- <div class="modal fade" id="attentionModal" tabindex="-1" aria-labelledby="attentionModalLabel" aria-hidden="true">
->>>>>>> 8a2cfcba8d4bfac951db99e2505e2350f2cf1319
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header border-bottom-0">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <span class="d-block fw-bolder text-purple fs-3 text-uppercase">
-          <img src="../../../assets/jpeg/warning_2797388.png" alt="warning" class="me-3" width="10%">
-          Attention!
-        </span>
-        <p class="lead p-3 fw-bold text-secondary">
-          You can play the audio only once. After listening, click the button that will appear to answer the questions.
-        </p>
-      </div>
-      <div class="modal-footer border-top-0">
-<<<<<<< HEAD
-        <button type="button" class="btn bg-purpel btnUnderstand text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">I understand</button>
-=======
-        <button type="button" class="btn bg-purple btnUnderstand text-white" data-bs-dismiss="modal">
-          I understand
-        </button>
->>>>>>> 8a2cfcba8d4bfac951db99e2505e2350f2cf1319
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-
-<!--------Stop----------->
 <section class="storyTest d-flex align-items-center justify-content-center position-relative">
   <!-- Audio player container -->
   <div class="storyContainer container main-border">
+    <i class="fa-solid fa-info" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+
     <h1>{{ storyTest?.storyId }}</h1>
     <img [src]="storyTest?.storyImageUrl" alt="Story Image" *ngIf="storyTest?.storyImageUrl" class="img-fluid mb-3">
     <p>{{ storyTest?.storyDescription }}</p>
@@ -73,19 +14,20 @@
       Your browser does not support the audio element.
     </audio>
   </div>
-    <!-- Button to show the modal and play the audio -->
-    <div class="btnTest m-2">
-      <button type="button " class="btn bg-purple btnUnderstand text-white  border border-dark" (click)="openModal(attentionModal)">
-        Play Audio
-      </button>
-    </div>
-<!-- Button to navigate to questions -->
-<div class="btnTest mx-2 mb-1">
-  <button type="button" class="btn btn-danger bg-purple btnUnderstand text-white"  (click)="goToQuestions(storyTest?.storyId)">
-    Go to Questions
-  </button>
-</div>
 
+  <!-- Button to show the modal and play the audio -->
+  <div class="btnTest m-2">
+    <button type="button" class="btn bg-purple btnUnderstand text-white border border-dark" (click)="openModal(attentionModal)">
+      Play Audio
+    </button>
+  </div>
+
+  <!-- Button to navigate to questions -->
+  <div class="btnTest mx-2 mb-1">
+    <button type="button" class="btn btn-danger bg-purple btnUnderstand text-white" (click)="goToQuestions(storyTest?.storyId)">
+      Go to Questions
+    </button>
+  </div>
 </section>
 
 <!-- Modal for warning -->
@@ -95,11 +37,9 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="dismissModal()"></button>
   </div>
   <div class="modal-body">
-    <p>You can play the audio only once. After listening, click the button that will Navigates You to answer the questions.</p>
+    <p>You can play the audio only once. After listening, click the button that will navigate you to answer the questions.</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="playAudioOnce()">I understand</button>
   </div>
 </ng-template>
-
-

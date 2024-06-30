@@ -45,36 +45,55 @@ implements OnInit {
   }
 
   takeTest(storytestId: number): void {
-    this.storyService.hasStoryTest(storytestId).subscribe(
-      (response: GeneralResponse<HasStoryTest>) => {
+    console.log('takeTest called with storytestId:', storytestId);
+  
+    this.storyService.hasStoryTest(storytestId).subscribe({
+      next: (response: GeneralResponse<HasStoryTest>) => {
+        console.log('hasStoryTest response:', response);
+  
         if (response.isSuccess) {
-          this.storyService.assignPatientStoryTest(response.data.HasStory, storytestId).subscribe(
-            (assignResponse: GeneralResponse<TrueAssignStoryTest | StoryDTOs>) => {
+          console.log('Story test exists:', response.data);
+
+          console.log('Story test exists:', response.data.HasStory);
+  
+          // Make sure response.data.HasStory is correctly set before proceeding
+          const hasStory = response.data.HasStory ?? false; // Default to false if undefined
+          this.storyService.assignPatientStoryTest(hasStory, storytestId).subscribe({
+            next: (assignResponse: GeneralResponse<TrueAssignStoryTest | StoryDTOs>) => {
+              console.log('assignPatientStoryTest response:', assignResponse);
+  
               if (assignResponse.isSuccess) {
-                if (response.data.HasStory) {
+                if (hasStory) {
                   const score = (assignResponse.data as TrueAssignStoryTest).score;
+                  console.log('Navigating to results-test with score:', score);
                   this.router.navigate(['/results-test'], { state: { score } });
                 } else {
                   const storyTest = assignResponse.data as StoryDTOs;
+                  console.log('Navigating to story-test with data:', storyTest);
                   this.router.navigate(['/story-test'], { state: { storyTest } });
                 }
               } else {
                 this.errorMessage = 'Failed to assign story test.';
+                console.error(this.errorMessage);
               }
             },
-            (error) => {
+            error: (error) => {
               this.errorMessage = 'An error occurred while assigning the story test.';
-              console.error('Error:', error);
+              console.error('Error during assignPatientStoryTest:', error);
             }
-          );
+          });
         } else {
           this.errorMessage = 'Failed to check story test.';
+          console.error(this.errorMessage);
         }
       },
-      (error) => {
+      error: (error) => {
         this.errorMessage = 'An error occurred while checking the story test.';
-        console.error('Error:', error);
+        console.error('Error during hasStoryTest:', error);
       }
-    );
+    });
   }
+  
+  
+  
 }
