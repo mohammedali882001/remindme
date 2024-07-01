@@ -16,7 +16,6 @@ import { AllStoriesComponent } from './components/story-test/StoriesTest/all-sto
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
-import { SliderComponent } from './components/slider/slider.component';
 
 import { PatientsRequestsComponent } from './pages/DoctorDashboard/patients-requests/patients-requests.component';
 import { AppointmentsRequestsComponent } from './pages/DoctorDashboard/appointments-requests/appointments-requests.component';
@@ -49,18 +48,12 @@ export const routes: Routes = [
   //{ path: 'story-test', component: StoryTestComponent },
   { path: 'AllStories', component: AllStoriesComponent },
   { path: 'story-test', component: StoryTestComponent },
-
-
   { path: 'Question', component: QuestionsComponent },
-
   //Doctor dashboard
   { path: 'DoctorDashboard', component: DoctorDashboardComponent, children : [
     { path: 'PatientsRequests', component: PatientsRequestsComponent },
     { path: 'AppointmentsRequests', component: AppointmentsRequestsComponent },
   ] },
-
-  { path: 'slider', component: SliderComponent },
-
   { path: 'Question/:storyTestId', component: QuestionsComponent },
 
 
