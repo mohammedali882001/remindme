@@ -1,4 +1,4 @@
-import { StoryTestComponent } from './components/story-test/story-test.component';
+
 import { LoginComponent } from './components/login/login.component';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -19,6 +19,8 @@ import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component'
 import { DoctorFilterComponent } from "./components/doctor-filter/doctor-filter.component";
 
 import { AllStoriesComponent } from './components/story-test/StoriesTest/all-stories/all-stories.component';
+import { StoryTestComponent } from './components/story-test/story-test.component';
+import { AppointmentTimesComponent } from './components/appointment-times/appointment-times.component';
 
 @Component({
     selector: 'app-root',
@@ -26,7 +28,9 @@ import { AllStoriesComponent } from './components/story-test/StoriesTest/all-sto
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
     imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent,
-        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent]
+
+        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent, AllStoriesComponent,AppointmentTimesComponent]
+
 })
 export class AppComponent {
   title = "remindme";
