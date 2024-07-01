@@ -26,13 +26,14 @@ import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component'
 import { StoryTestComponent } from './components/story-test/story-test.component';
 import { BrowseDoctorsComponent } from './pages/Home/browse-doctors/browse-doctors.component';
 import { DoctorVisitedProfileComponent } from './pages/doctor-visited-profile/doctor-visited-profile.component';
+import { AdminDashboardComponent } from './pages/AdminDashboard/admin-dashboard/admin-dashboard.component';
 //import { HomeComponent } from './pages/Home/home.component';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
-   { path: 'home', component: HomeComponent },
-   { path: 'browseDoctors', component: BrowseDoctorsComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'browseDoctors', component: BrowseDoctorsComponent },
   { path: 'landing', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'doctorProfile', component: DoctorprofileComponent },
@@ -53,11 +54,14 @@ export const routes: Routes = [
 
   { path: 'Question', component: QuestionsComponent },
 
+
   //Doctor dashboard
   { path: 'DoctorDashboard', component: DoctorDashboardComponent, children : [
     { path: 'PatientsRequests', component: PatientsRequestsComponent },
     { path: 'AppointmentsRequests', component: AppointmentsRequestsComponent },
   ] },
+
+  {path : 'Admindashboard' , component : AdminDashboardComponent},
 
   { path: 'slider', component: SliderComponent },
 

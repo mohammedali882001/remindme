@@ -8,6 +8,7 @@ import { DoctorDashBoardDto } from '../../../models/doctor-dash-board-dto';
 import { DoctorDashboardService } from '../../../services/DoctorServices/doctor-dashboard.service';
 import { Subscription } from 'rxjs';
 import { DataSharingService } from '../../../services/data-sharing-service.service';
+import { AppointmentsService } from '../../../services/AppointmentsServices/appointments.service';
 
 @Component({
   selector: 'app-doctor-dashboard',
@@ -19,35 +20,55 @@ import { DataSharingService } from '../../../services/data-sharing-service.servi
 export class DoctorDashboardComponent implements OnInit {
 
   errorMessage: string = '';
-  statistics!: DoctorDashBoardDto;
-  private countSubscription: Subscription | undefined;
+  //statistics!: DoctorDashBoardDto;
+   numberOfPatients : number = 0;
+   numberOfAcceptedAppointments : number = 0;
+   numberOfPendingAppointments : number = 0; 
+  private PatientscountSubscription: Subscription | undefined;
+  private AcceptedAppointmentscountSubscription: Subscription | undefined;
 
   constructor(
     private doctorDashboardService: DoctorDashboardService,
-    private dataSharingService: DataSharingService
+    private dataSharingService: DataSharingService, 
+    private AppointmentsService : AppointmentsService
   ) {}
 
   ngOnInit(): void {
     this.getStatistics();
-    this.countSubscription = this.dataSharingService.getCount().subscribe((count: number) => {
-      if (this.statistics) {
-        this.statistics.numberOfPatients = count;
-      }
+    this.getAcceptedAppointmentsAccount();
+    this.PatientscountSubscription = this.dataSharingService.getCount().subscribe((count: number) => {
+     
+        this.numberOfPatients = count;
     });
+
+    this.AcceptedAppointmentscountSubscription = this.dataSharingService.getAcceptedAppointmentsCount().subscribe((count: number) => {
+      
+        this.numberOfAcceptedAppointments = count;
+      
+    });
+
   }
 
-  ngOnDestroy(): void {
-    if (this.countSubscription) {
-      this.countSubscription.unsubscribe();
-    }
+
+  getAcceptedAppointmentsAccount(){
+    this.AppointmentsService.GetAcceptAppointmentsCount().subscribe({
+      next : (response : { isSuccess: boolean; data: number }) => {
+        this.numberOfAcceptedAppointments = response.data;
+        console.log(response);
+        console.log(response.data);
+      },
+      error : (error : any) => {
+        console.error(error);
+      }
+    })
   }
 
   getStatistics(): void {
     this.doctorDashboardService.getStatistics().subscribe({
-      next: (response: { isSuccess: boolean; data: DoctorDashBoardDto }) => {
+      next: (response: { isSuccess: boolean; data: number }) => {
         if (response.isSuccess) {
-          this.statistics = response.data;
-          console.log("Statistics", this.statistics);
+          this.numberOfPatients = response.data;
+          console.log("Statistics", this.numberOfPatients);
         } else {
           console.error('Error: Unsuccessful response', response);
           this.errorMessage = 'Error fetching statistics. Please try again later.';
@@ -58,5 +79,13 @@ export class DoctorDashboardComponent implements OnInit {
         this.errorMessage = 'Error fetching statistics. Please try again later.';
       }
     });
+  }
+
+
+
+  ngOnDestroy(): void {
+    if (this.PatientscountSubscription) {
+      this.PatientscountSubscription.unsubscribe();
+    }
   }
 }

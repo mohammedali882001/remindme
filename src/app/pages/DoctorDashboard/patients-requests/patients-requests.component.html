@@ -34,10 +34,11 @@
         </div>
       </div>
       <div class="my-3">
+      <a type="button" class="btn btn-primary p-2 mx-3" (click)="patientDetails(patient.patientId)">Details</a>
       <a type="button" class="btn btn-success p-2 mx-3" (click)="confirmRequest(patient.id)">Confirm</a>
       <a type="button" class="btn btn-danger p-2 mx-1" (click)="rejectRequest(patient.id)">Reject</a>
     </div>
     </div>
   </ng-container>
 </div>
-</div>
+</div>  

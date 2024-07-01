@@ -19,6 +19,7 @@ import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component'
 import { DoctorFilterComponent } from "./components/doctor-filter/doctor-filter.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { AllStoriesComponent } from './components/story-test/StoriesTest/all-stories/all-stories.component';
+import { AdminDashboardComponent } from "./pages/AdminDashboard/admin-dashboard/admin-dashboard.component";
 
 @Component({
     selector: 'app-root',
@@ -26,7 +27,7 @@ import { AllStoriesComponent } from './components/story-test/StoriesTest/all-sto
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
     imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent,
-        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent, AllStoriesComponent]
+        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent, AllStoriesComponent, AdminDashboardComponent]
 })
 export class AppComponent {
   title = "remindme";
