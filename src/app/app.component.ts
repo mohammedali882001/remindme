@@ -19,8 +19,12 @@ import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component'
 import { DoctorFilterComponent } from "./components/doctor-filter/doctor-filter.component";
 
 import { AllStoriesComponent } from './components/story-test/StoriesTest/all-stories/all-stories.component';
+
+import { AdminDashboardComponent } from "./pages/AdminDashboard/admin-dashboard/admin-dashboard.component";
+
 import { StoryTestComponent } from './components/story-test/story-test.component';
 import { AppointmentTimesComponent } from './components/appointment-times/appointment-times.component';
+
 
 @Component({
     selector: 'app-root',
@@ -29,7 +33,7 @@ import { AppointmentTimesComponent } from './components/appointment-times/appoin
     styleUrl: './app.component.css',
     imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent,
 
-        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent,AppointmentTimesComponent]
+        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent, AllStoriesComponent, AdminDashboardComponent]
 
 })
 export class AppComponent {

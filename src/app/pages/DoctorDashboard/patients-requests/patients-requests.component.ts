@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { PatientDetailsDto } from '../../../models/Doctor/patient-details-dto';
 import { DoctorProfileService } from '../../../services/DoctorServices/doctor-profile.service';
 import { CommonModule } from '@angular/common';
@@ -19,13 +19,14 @@ export class PatientsRequestsComponent implements OnInit {
   filterPatients: PatientDetailsDto[] = [];
   errorMessage: string = '';
   environment: string = "http://localhost:2100";
-  @Output() confirmOrRejectEvent: EventEmitter<number>;
+  //@Output() confirmOrRejectEvent: EventEmitter<number>;
 
   constructor(
     private doctorDashboardService: DoctorDashboardService,
-    private dataSharingService: DataSharingService
+    private dataSharingService: DataSharingService,
+    private router : Router
   ) {
-    this.confirmOrRejectEvent = new EventEmitter<number>();
+    //this.confirmOrRejectEvent = new EventEmitter<number>();
   }
 
   ngOnInit(): void {
@@ -59,7 +60,7 @@ export class PatientsRequestsComponent implements OnInit {
           this.filterPatients = this.filterPatients.filter(patient => patient.id !== requestId);
           this.dataSharingService.incrementCount(); // Update count in DataSharingService
           // Optionally, emit an event if needed
-          this.confirmOrRejectEvent.emit(1);
+         // this.confirmOrRejectEvent.emit(1);
         } else {
           console.error('Error: Request acceptance failed', response);
           // Handle error scenarios here
@@ -78,9 +79,9 @@ export class PatientsRequestsComponent implements OnInit {
         if (response.isSuccess) {
           console.log('Request rejected successfully');
           this.filterPatients = this.filterPatients.filter(patient => patient.id !== requestId);
-          this.dataSharingService.decrementCount(); // Update count in DataSharingService
+          //this.dataSharingService.decrementCount(); // Update count in DataSharingService
           // Optionally, emit an event if needed
-          this.confirmOrRejectEvent.emit(1);
+         // this.confirmOrRejectEvent.emit(1);
         } else {
           console.error('Error: Request reject failed', response);
           // Handle error scenarios here
@@ -92,4 +93,13 @@ export class PatientsRequestsComponent implements OnInit {
       }
     });
   }
+
+  patientDetails(patientId : number) : void{
+    console.log(patientId);
+    this.router.navigateByUrl(`VisitedPatientprofile/:${patientId}`);
+  }
+
+
+
+
 }
