@@ -25,6 +25,7 @@ import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component'
 import { StoryTestComponent } from './components/story-test/story-test.component';
 import { BrowseDoctorsComponent } from './pages/Home/browse-doctors/browse-doctors.component';
 import { DoctorVisitedProfileComponent } from './pages/doctor-visited-profile/doctor-visited-profile.component';
+import { HomeComponent } from './pages/Home/home.component';
 //import { HomeComponent } from './pages/Home/home.component';
 
 
