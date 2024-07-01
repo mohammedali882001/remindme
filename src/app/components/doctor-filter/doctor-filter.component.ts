@@ -134,7 +134,6 @@ export class DoctorFilterComponent implements OnInit {
     this.fetchAllDoctors();
   }
 
-
   rateDoctor(ratingValue: number): void {
     if (ratingValue === this.selectedRating) {
       this.selectedRating = 0; // Deselect the star if clicked again

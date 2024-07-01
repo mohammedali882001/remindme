@@ -1,68 +1,73 @@
-body{
-  font-family: "Roboto", sans-serif;;
+.whatsapp-chat {
+  text-align: center;
+  margin-top: 20px;
 }
 
-.title{
+
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d3d1de; /* Ensure the background color is applied to the full page */
+  padding: 20px; /* Add padding to the edges */
+}
+
+.title {
   display: flex;
   align-items: baseline;
   margin: 0;
-  /* height: auto; */
   gap: 0 5px;
   justify-content: left;
 }
 
-.container-fluid{
-  background-color: #d3d1de;
-  /* height: 100%; */
+.container-fluid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-
-.mainContent{
-/* width: 64.5rem; */
-padding: 5px;
-z-index: 999;
+.mainContent {
+  padding: 5px;
+  z-index: 999;
+  max-width: 64.5rem; /* Set a max-width to prevent it from stretching too much */
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px; /* Add padding to the edges */
 }
 
-
-.mainContent .profile{
+.mainContent .profile {
   margin-top: 5px;
   background-color: #ffff;
-  /* border: 1px solid #a7a4b6; */
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
-  /* width: 100%; */
-  /* height: 42rem; */
   height: auto;
-
 }
 
-
-
-.mainContent .profile .DocProfilePic{
+.mainContent .profile .DocProfilePic {
   width: 8rem;
   height: 8rem;
   border: 3px solid #c2c0c9;
   border-radius: 50%;
+  object-fit: cover; /* Ensure the image fits within the circular frame */
 }
 
-.DocProfileDetals{
+.DocProfileDetals {
   display: flex;
   justify-content: space-between;
 }
 
-
-.btns{
+.btns {
   display: flex;
   justify-content: right;
-
   align-items: center;
   gap: 0 10px;
 }
 
-
-.btn{
-  /* width: 10rem; */
+.btn {
   height: 2.5rem;
   text-align: center;
   background-color: var(--dark-blue);
@@ -71,95 +76,87 @@ z-index: 999;
   align-items: baseline;
 }
 
-.secBtn{
-  /* width: 4rem; */
+.secBtn {
   height: 2.5rem;
-  background-color:#c5c4cd;
+  background-color: #c5c4cd;
   color: var(--dark-blue);
 }
 
-
-.doctorTitel{
+.doctorTitel {
   margin-top: 15px;
-  }
+}
 
-  .subTitel{
-    color: #333;
-    font-size: 1.3rem;
-  }
-  .location{
-    color: #333;
-  }
+.subTitel {
+  color: #333;
+  font-size: 1.3rem;
+}
 
-.thirdBtn{
+.location {
+  color: #333;
+}
+
+.thirdBtn {
   background-color: #a7a4b6;
   color: var(--dark-blue);
   padding: 10px 1rem;
   margin: 0.7rem;
   border-radius: 1rem;
-
 }
+
 .thirdBtn:hover,
-.thirdBtn:focus{
+.thirdBtn:focus {
   border: 1px solid var(--dark-blue);
-  background-color:#ffff;
+  background-color: #ffff;
   transition: 0.3s ease-in-out;
 }
 
-.avTitle{
+.avTitle {
   font-size: 1.2rem;
   padding-left: 25px;
 }
 
-.doctorDesc{
+.doctorDesc {
   margin-top: 15px;
   padding: 15px;
-
 }
 
-.avaliablity,.doctorDesc{
+.avaliablity, .doctorDesc {
   margin-top: 15px;
   margin-bottom: 15px;
   background-color: #ffff;
   border: 1px solid #a7a4b6;
   border-radius: 15px;
-  padding:15px  40px;
+  padding: 15px 40px;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
-  /* width: 100%; */
   height: auto;
-
-  /* height: 57.563rem; */
 }
 
-
-.rating{
+.rating {
   gap: 10px;
 }
 
-.doctoravaliablity{
-display: flex;
-justify-content: space-between;
+.doctoravaliablity {
+  display: flex;
+  justify-content: space-between;
   margin-top: 15px;
   margin-bottom: 15px;
   background-color: #ffff;
- align-items: center;
+  align-items: center;
   width: 100%;
   height: auto;
   gap: 10px;
 }
 
-
-.calender{
+.calender {
   font-size: 1rem;
   margin-top: 20px;
   width: 100px;
   height: 100px;
-  text-align:center;
+  text-align: center;
   align-content: center;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   padding: 5px;
-
 }
 
 @media (max-width: 991.98px) {
@@ -172,45 +169,51 @@ justify-content: space-between;
     height: 80px;
   }
 
-
   .btns button {
     padding: 10px;
-    /* padding: 0.4rem; */
     font-size: 0.875rem;
-    /* width: fit-content; */
     text-align: center;
     align-items: center;
     justify-content: center;
     margin: 0;
-
   }
 }
 
-@media(max-width:1368px){
-  .sideBar{
+@media (max-width: 1368px) {
+  .sideBar {
     display: none;
     visibility: none;
   }
 }
 
-
 @media screen and (min-width: 1024px) {
-
-/* .sideBar{
-  width: 150px;
-  overflow: hidden;
-} */
-
-.mainContent{
-  margin-left: 25px;
+  .mainContent {
+    margin-left: 25px;
+  }
 }
 
 
+.calendar {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  margin: 10px;
+  padding: 15px;
+  text-align: center;
 }
 
+.calendar strong {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
 
-.DocProfilePicRate {
-  width: 40px;
-  height: 40px;
+.calendar div {
+  margin: 5px 0;
+}
 
+.ProfilePic {
+  width: 200px; /* Adjust the size as needed */
+  height: 200px; /* Adjust the size as needed */
+  border-radius: 50%;
 }

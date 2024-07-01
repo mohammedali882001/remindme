@@ -3,12 +3,13 @@ import { DoctorFilterComponent } from "../../../components/doctor-filter/doctor-
 import { DoctorCardComponent } from "../../../components/doctor-card/doctor-card.component";
 import { FilterDoctorDTO } from '../../../models/Doctor/filter-doctor-dto';
 import { DoctorService } from '../../../services/DoctorServices/doctor.service';
+import { DoctorSliderComponent } from "../../../components/slider/slider.component";
 @Component({
     selector: 'app-browse-doctors',
     standalone: true,
     templateUrl: './browse-doctors.component.html',
     styleUrl: './browse-doctors.component.css',
-    imports: [DoctorFilterComponent, DoctorCardComponent]
+    imports: [DoctorFilterComponent, DoctorCardComponent, DoctorSliderComponent]
 })
 export class BrowseDoctorsComponent {
 //   filteredDoctors: FilterDoctorDTO[] = [];
