@@ -2,9 +2,10 @@
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
   </div>
+
   <div class="row">
-    <div *ngFor="let story of stories" class="card">
-      <img [src]="story.storyImageUrl" class="card-img-top" alt="...">
+    <div *ngFor="let story of stories" class="card"> 
+      <img *ngIf="story.storyImageUrl" [src]="picURl + '/' + story.storyImageUrl" class="card-img-top" alt="Story Image">
       <div class="card-body">
         <h5 class="card-title">{{ story.storyDescription }}</h5>
         <p class="card-text">Degree: {{ story.storyDegree }}</p>
@@ -13,6 +14,3 @@
     </div>
   </div>
 </div>
-
-
-
