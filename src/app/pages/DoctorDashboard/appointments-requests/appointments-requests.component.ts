@@ -4,6 +4,7 @@ import { AppointmentDto } from '../../../models/Appointment/appointment-dto';
 import { AppointmentsService } from '../../../services/AppointmentsServices/appointments.service';
 import { CommonModule } from '@angular/common';
 import { DataSharingService } from '../../../services/data-sharing-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-appointments-requests',
@@ -44,35 +45,86 @@ export class AppointmentsRequestsComponent implements OnInit {
   }
   
 
-  confirmRequest(appointmentId : number){
-    this.appointmentsService.AcceptAppointmentRequest(appointmentId).subscribe({
-      next : (response : { isSuccess: boolean; data: string }) => {
-        console.log(response.data);
-        console.log(response);
-        this.filterAppointments = this.filterAppointments.filter(appointment => appointment.id !== appointmentId);
-        this.dataSharingService.incrementAcceptedAppointmentsCount();
-      },
-      error (error : any){
-        console.error(error);
+  confirmRequest(appointmentId: number): void {  
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to confirm this appointment request?',
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#66BB6A",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, confirm it!",
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.appointmentsService.AcceptAppointmentRequest(appointmentId).subscribe({
+          next: (response: { isSuccess: boolean; data: string }) => {
+            if (response.isSuccess) {
+              console.log(response.data);
+              console.log(response);
+              this.filterAppointments = this.filterAppointments.filter(appointment => appointment.id !== appointmentId);
+              this.dataSharingService.incrementAcceptedAppointmentsCount();
+              
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: 'Appointment Request Confirmed',
+                text: 'You have successfully confirmed the appointment request.',
+                showConfirmButton: true,
+                //timer: 1500
+              });
+            } else {
+              console.error('Error: Appointment request acceptance failed', response);
+            }
+          },
+          error: (error: any) => {
+            console.error('Error confirming appointment request:', error);
+          }
+        });
       }
-    })
+    });
   }
-
   
-  rejectRequest(appointmentId : number){
-
-    this.appointmentsService.RejectAppointmentRequest(appointmentId).subscribe({
-      next : (response : { isSuccess: boolean; data: string }) => {
-        console.log(response.data);
-        console.log(response);
-        this.filterAppointments = this.filterAppointments.filter(appointment => appointment.id !== appointmentId);
-      },
-      error (error : any){
-        console.error(error);
+  
+  rejectRequest(appointmentId: number): void {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to decline this appointment request?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, decline it!",
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.appointmentsService.RejectAppointmentRequest(appointmentId).subscribe({
+          next: (response: { isSuccess: boolean; data: string }) => {
+            if (response.isSuccess) {
+              console.log(response.data);
+              console.log(response);
+              this.filterAppointments = this.filterAppointments.filter(appointment => appointment.id !== appointmentId);
+  
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: 'Appointment Request Declined',
+                text: 'You have successfully declined the appointment request.',
+                showConfirmButton: true,
+                //timer: 1500
+              });
+            } else {
+              console.error('Error: Appointment request rejection failed', response);
+            }
+          },
+          error: (error: any) => {
+            console.error('Error rejecting appointment request:', error);
+          }
+        });
       }
-    })
+    });
   }
-
+  
 
   
   patientDetails(patientId : number) : void{

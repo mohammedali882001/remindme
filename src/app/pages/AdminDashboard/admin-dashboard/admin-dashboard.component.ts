@@ -7,6 +7,7 @@ import { AdminDashboardService } from '../../../services/AdminServices/admin-das
 import { responsiveFontSizes } from '@mui/material';
 import { Chart } from 'chart.js';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -83,52 +84,80 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   confirmRequest(doctorId: number): void {
-    this.adminDashboardService.confirmRequest(doctorId).subscribe({
-      next: (response: any) => {
-        if (response.isSuccess) {
-          console.log('Request accepted successfully');
-          this.filterDoctors = this.filterDoctors.filter(doctor => doctor.id !== doctorId);
-          this.refreshCounts();
-          //this.dataSharingService.incrementCount(); // Update count in DataSharingService
-          // Optionally, emit an event if needed
-         // this.confirmOrRejectEvent.emit(1);
-        } else {
-          console.error('Error: Request acceptance failed', response);
-          // Handle error scenarios here
-        }
-      },
-      error: (error: any) => {
-        console.error('Error confirming request:', error);
-        // Handle error scenarios here
-      },
-      // complete:()=>{
-      //   this.getDoctorsCount();
-      // }
-    });
-  }
-
-  rejectRequest(doctorId: number): void {
-    this.adminDashboardService.rejectRequest(doctorId).subscribe({
-      next: (response: any) => {
-        if (response.isSuccess) {
-          console.log('Request rejected successfully');
-          this.filterDoctors = this.filterDoctors.filter(patient => patient.id !== doctorId);
-          //this.dataSharingService.decrementCount(); // Update count in DataSharingService
-          // Optionally, emit an event if needed
-         // this.confirmOrRejectEvent.emit(1);
-        } else {
-          console.error('Error: Request reject failed', response);
-          // Handle error scenarios here
-        }
-      },
-      error: (error: any) => {
-        console.error('Error rejecting request:', error);
-        // Handle error scenarios here
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to confirm this doctor request?',
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#66BB6A",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, confirm it!",
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.adminDashboardService.confirmRequest(doctorId).subscribe({
+          next: (response: any) => {
+            if (response.isSuccess) {
+              console.log('Request accepted successfully');
+              this.filterDoctors = this.filterDoctors.filter(doctor => doctor.id !== doctorId);
+              this.refreshCounts();
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: 'Doctor Request Confirmed',
+                text: 'You have successfully confirmed the doctor\'s request.',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            } else {
+              console.error('Error: Request acceptance failed', response);
+            }
+          },
+          error: (error: any) => {
+            console.error('Error confirming request:', error);
+          }
+        });
       }
     });
   }
-
-
+  
+  rejectRequest(doctorId: number): void {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to decline this doctor request?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, decline it!",
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.adminDashboardService.rejectRequest(doctorId).subscribe({
+          next: (response: any) => {
+            if (response.isSuccess) {
+              console.log('Request rejected successfully');
+              this.filterDoctors = this.filterDoctors.filter(doctor => doctor.id !== doctorId);
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: 'Doctor Request Declined',
+                text: 'You have successfully declined the doctor\'s request.',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            } else {
+              console.error('Error: Request reject failed', response);
+            }
+          },
+          error: (error: any) => {
+            console.error('Error rejecting request:', error);
+          }
+        });
+      }
+    });
+  }
+  
 
   refreshCounts(): void {
     this.getDoctorsCount();
