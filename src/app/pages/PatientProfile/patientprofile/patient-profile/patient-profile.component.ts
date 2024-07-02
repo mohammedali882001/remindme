@@ -4,27 +4,51 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../../models/shared-module';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
+import { WhatsappChatWithDoctorComponent } from "../../../../components/whatsapp-chat-with-doctor/whatsapp-chat-with-doctor.component";
+import { WhatsappChatWithMyDoctorComponent } from "../../../../components/whatsapp-chat-with-my-doctor/whatsapp-chat-with-my-doctor.component";
+import { RouterLink } from '@angular/router';
+import { AppointmentOfPatient } from '../../../../models/Patient/appointment-of-patient';
+//import { WhatsappChatWithMyDoctorComponent } from "../../../../components/whatsapp-chat-with-my-doctor/whatsapp-chat-with-my-doctor.component";
 
 @Component({
-  selector: 'app-patient-profile',
-  standalone: true,
-  imports: [CommonModule, SharedModule, FormsModule],
-  templateUrl: './patient-profile.component.html',
-  styleUrls: ['./patient-profile.component.css']
+    selector: 'app-patient-profile',
+    standalone: true,
+    templateUrl: './patient-profile.component.html',
+    styleUrls: ['./patient-profile.component.css'],
+    imports: [CommonModule, SharedModule, FormsModule, WhatsappChatWithDoctorComponent, WhatsappChatWithMyDoctorComponent,RouterLink]
 })
 export class PatientProfileComponent implements OnInit {
   profileData: any;
   editedProfileData: any;
   errorMessage: string = '';
   editMode: boolean = false;
+  appointments: AppointmentOfPatient[] = [];
 
   constructor(private patientService: PatientService) {}
 
 
   ngOnInit(): void {
     this.fetchProfileAndReports();
+    this.fetchUpcomingAppointment();
   }
 
+  fetchUpcomingAppointment(): void {
+    this.patientService.getAppointmentsOfPatient().subscribe({
+        next: (response) => {
+          console.log(response);
+
+            this.appointments = response.data;
+        },
+        error: (error) => {
+            console.error('Error fetching upcoming appointment:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Failed to fetch upcoming appointment. Please try again later.'
+            });
+        }
+    });
+}
 
   fetchProfileAndReports(): void {
     this.patientService.getProfile().subscribe({

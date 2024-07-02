@@ -49,6 +49,7 @@ export class WhatsappChatWithDoctorComponent {
     const whatsappUrl = `https://wa.me/${formattedPhoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
   }
+  
   formatPhoneNumber(phoneNumber: string): string {
     // Add country code if missing
     if (!phoneNumber.startsWith('+')) {

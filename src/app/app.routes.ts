@@ -7,7 +7,7 @@ import { DoctorSignUpComponent } from './components/doctor-sign-up/doctor-sign-u
 import { PatientProfileComponent } from './pages/PatientProfile/patientprofile/patient-profile/patient-profile.component';
 
 
-import { HomeComponent } from './pages/Home/home.component';
+// import { HomeComponent } from './pages/Home/home.component';
 import { StickyNotesComponent } from './components/sticky-notes/sticky-notes.component';
 import { PatientVisitedProfileComponent } from './pages/PatientVisitedProfile/patient-visited-profile/patient-visited-profile.component';
 
@@ -16,7 +16,6 @@ import { AllStoriesComponent } from './components/story-test/StoriesTest/all-sto
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
-import { SliderComponent } from './components/slider/slider.component';
 
 import { PatientsRequestsComponent } from './pages/DoctorDashboard/patients-requests/patients-requests.component';
 import { AppointmentsRequestsComponent } from './pages/DoctorDashboard/appointments-requests/appointments-requests.component';
@@ -26,8 +25,11 @@ import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component'
 import { StoryTestComponent } from './components/story-test/story-test.component';
 import { BrowseDoctorsComponent } from './pages/Home/browse-doctors/browse-doctors.component';
 import { DoctorVisitedProfileComponent } from './pages/doctor-visited-profile/doctor-visited-profile.component';
+
 import { AdminDashboardComponent } from './pages/AdminDashboard/admin-dashboard/admin-dashboard.component';
-//import { HomeComponent } from './pages/Home/home.component';
+
+import { HomeComponent } from './pages/Home/home.component';
+
 
 
 export const routes: Routes = [
@@ -50,8 +52,6 @@ export const routes: Routes = [
   //{ path: 'story-test', component: StoryTestComponent },
   { path: 'AllStories', component: AllStoriesComponent },
   { path: 'story-test', component: StoryTestComponent },
-
-
   { path: 'Question', component: QuestionsComponent },
 
 
@@ -61,9 +61,12 @@ export const routes: Routes = [
     { path: 'AppointmentsRequests', component: AppointmentsRequestsComponent },
   ] },
 
+
   {path : 'Admindashboard' , component : AdminDashboardComponent},
 
   { path: 'slider', component: SliderComponent },
+
+
 
   { path: 'Question/:storyTestId', component: QuestionsComponent },
 

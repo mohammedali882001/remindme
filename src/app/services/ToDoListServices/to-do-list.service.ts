@@ -29,11 +29,15 @@ export class ToDoListService {
     });
   }
 
-  
+
 
   delete(id: number): Observable<any> {
     return this.http.delete<any>(`${environment.baseUrl}/ToDoList`, {
       params: { id: id.toString() }
     });
+  }
+
+  markDone(id: number): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/ToDoList/MarkDone/${id}`, {});
   }
 }

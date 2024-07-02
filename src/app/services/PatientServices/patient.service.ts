@@ -31,6 +31,10 @@ export class PatientService {
     return this.http.put<any>(this.profileUrl, relative);
   }
 
+  getAppointmentsOfPatient(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/Appointment/AfterAppointmentsOfTodayOfPatient`);
+  }
+
 }
 
 

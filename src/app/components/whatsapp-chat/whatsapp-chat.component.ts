@@ -12,21 +12,16 @@ import { environment } from '../../../environments/environment.development';
 
 export class WhatsappChatComponent implements OnInit {
   @Input() patientId: number = 0;
-
   relativePhoneNumber: string = '';
-
   countryCode: string = '+2';
 
   constructor(private http: HttpClient) {}
-
   ngOnInit(): void {
     this.fetchRelativePhoneNumber();
-
   }
 
   fetchRelativePhoneNumber(): void {
     console.log("pid", this.patientId);
-
     this.http.get(`${environment.baseUrl}/Relative/RelativePhoneNumber`, {
       params: { PatientId: this.patientId.toString() },
       responseType: 'text' // Indicate that we expect a plain text response
@@ -53,7 +48,7 @@ export class WhatsappChatComponent implements OnInit {
     window.open(whatsappUrl, '_blank');
   }
 
-  
+
 
   formatPhoneNumber(phoneNumber: string): string {
     // Add country code if missing
