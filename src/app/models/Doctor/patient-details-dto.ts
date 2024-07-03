@@ -4,7 +4,7 @@ export interface PatientDetailsDto {
     status: string;
     age : number;
     picUrl : string | null;
-    gender : number;
+    gender : string;
     time : string;
     patientId : number;
 
