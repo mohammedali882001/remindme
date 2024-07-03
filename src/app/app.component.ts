@@ -25,15 +25,12 @@ import { AdminDashboardComponent } from "./pages/AdminDashboard/admin-dashboard/
 import { StoryTestComponent } from './components/story-test/story-test.component';
 import { AppointmentTimesComponent } from './components/appointment-times/appointment-times.component';
 
-
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent,
-
-        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent, AllStoriesComponent, AdminDashboardComponent]
+    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent, DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent, AdminDashboardComponent]
 
 })
 export class AppComponent {

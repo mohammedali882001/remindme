@@ -16,8 +16,11 @@ declare const Plyr: any;
 })
  export class StoryTestComponent implements OnInit, AfterViewInit {
   storyTest?: StoryDTOs;
-  audio!: HTMLAudioElement;
+  audio: HTMLAudioElement = new Audio();
   Pic_Sound_URl: string = "http://localhost:2100";
+  audioPlayed: boolean = false;
+
+  @ViewChild('attentionModal') attentionModal!: TemplateRef<any>;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,7 +47,7 @@ declare const Plyr: any;
 
   ngAfterViewInit(): void {
     if (this.storyTest?.storySoundPath) {
-      this.audio = new Audio(this.Pic_Sound_URl + '/' + this.storyTest.storySoundPath);
+      this.audio.src = this.Pic_Sound_URl + '/' + this.storyTest.storySoundPath;
       const player = new Plyr(this.audio);
     } else {
       console.error('Audio URL not found in the story test data.');
@@ -60,13 +63,16 @@ declare const Plyr: any;
   }
 
   playAudioOnce() {
-    if (this.audio) {
-      this.audio.play();
-      this.audio.onended = () => {
-        this.dismissModal();
-      };
-    } else {
-      console.error('Audio element not found');
+    if (!this.audioPlayed) {
+      if (this.audio.src) {
+        this.audio.play();
+        this.audioPlayed = true;
+        this.audio.onended = () => {
+          this.dismissModal();
+        };
+      } else {
+        console.error('Audio source not found.');
+      }
     }
   }
 
@@ -78,6 +84,80 @@ declare const Plyr: any;
     }
   }
 }
+ 
+ 
+//  implements OnInit, AfterViewInit {
+//   storyTest?: StoryDTOs;
+//   audio!: HTMLAudioElement;
+//   Pic_Sound_URl: string = "http://localhost:2100";
+//   audioPlayed: boolean = false;
+
+//   @ViewChild('attentionModal') attentionModal!: TemplateRef<any>;
+
+//   constructor(
+//     private route: ActivatedRoute,
+//     private router: Router,
+//     private modalService: NgbModal,
+//     private storyService: StoryServicesService
+//   ) { }
+
+//   ngOnInit(): void {
+//     this.storyService.getStoryTestSubject().subscribe(
+//       (storyTest: StoryDTOs | undefined) => {
+//         if (storyTest) {
+//           this.storyTest = storyTest;
+//           console.log('Received storyDTO data:', this.storyTest);
+//         } else {
+//           console.error('No storyDTO data found.');
+//         }
+//       },
+//       (error) => {
+//         console.error('Error occurred while fetching storyDTO:', error);
+//       }
+//     );
+//   }
+
+//   ngAfterViewInit(): void {
+//     if (this.storyTest?.storySoundPath) {
+//       this.audio = new Audio(this.Pic_Sound_URl + '/' + this.storyTest.storySoundPath);
+//       const player = new Plyr(this.audio);
+//     } else {
+//       console.error('Audio URL not found in the story test data.');
+//     }
+
+//     // Open modal after view initializes
+//     this.openModal(this.attentionModal);
+//   }
+
+//   openModal(content: any) {
+//     this.modalService.open(content, { size: 'lg', centered: true });
+//   }
+
+//   dismissModal() {
+//     this.modalService.dismissAll();
+//   }
+
+//   playAudioOnce() {
+//     if (this.audio && !this.audioPlayed) {
+//       this.audio.play();
+//       this.audioPlayed = true;
+//       this.audio.onended = () => {
+//         this.dismissModal();
+//       };
+//     } else {
+//       console.error('Audio element not found or audio has already been played.');
+//     }
+//   }
+
+//   goToQuestions(storyId?: number) {
+//     if (storyId) {
+//       this.router.navigate(['/Question']);
+//     } else {
+//       console.error('Story ID is not defined.');
+//     }
+//   }
+  
+// }
  
 //  implements OnInit, AfterViewInit {
 //   @ViewChild('attentionModal', { static: true }) attentionModal!: TemplateRef<any>;

@@ -34,8 +34,12 @@ export class StoryServicesService {
   }
  
    // Method to get the current value of the story test
-   getStoryTestSubject(): Observable<StoryDTOs | undefined> {
-    return this.storyTestSubject.asObservable();
+  //  getStoryTestSubject(): Observable<StoryDTOs | undefined> {
+  //   return this.storyTestSubject.asObservable();
+  // }
+  
+  getStoryTestSubject(): Observable<StoryDTOs | undefined> {
+    return this.storyTest$; // Since storyTest$ is already an Observable, return it directly
   }
 
 
@@ -66,8 +70,12 @@ export class StoryServicesService {
     return this.http.delete<GeneralResponse<StoryTestResponse>>(`${this.apiUrl}/DeleteStoryTest/${storyTestId}`);
   }
 
+  // submitStoryTest(storyTestId: number, patientStoryAnswers: PatientStoryAnswersDTO[]): Observable<GeneralResponse<SubmitStoryTestResponse>> {
+  //   return this.http.post<GeneralResponse<SubmitStoryTestResponse>>(`${this.apiUrl}/submitStoryTest`, { storyTestId, patientStoryAnswers });
+  // }
   submitStoryTest(storyTestId: number, patientStoryAnswers: PatientStoryAnswersDTO[]): Observable<GeneralResponse<SubmitStoryTestResponse>> {
-    return this.http.post<GeneralResponse<SubmitStoryTestResponse>>(`${this.apiUrl}/submitStoryTest`, { storyTestId, patientStoryAnswers });
+    const params = new HttpParams().set('storytestId', storyTestId.toString());
+    return this.http.post<GeneralResponse<SubmitStoryTestResponse>>(`${this.apiUrl}/submitStoryTest`, patientStoryAnswers, { params });
   }
   hasStoryTest(storyTestId: number): Observable<GeneralResponse<boolean>> {
     return this.http.post<GeneralResponse<boolean>>(

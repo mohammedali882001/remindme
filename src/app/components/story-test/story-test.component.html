@@ -44,13 +44,9 @@
   </div>
 </ng-template> -->
 
-
-
 <section class="storyTest d-flex align-items-center justify-content-center position-relative">
-  <!-- Audio player container -->
+  <!-- Story details container -->
   <div class="storyContainer container main-border">
-    <i class="fa-solid fa-info" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-
     <h1>{{ storyTest?.storyId }}</h1>
     <img *ngIf="storyTest?.storyImageUrl" [src]="Pic_Sound_URl + storyTest?.storyImageUrl" class="img-fluid mb-3" alt="Story Image">
     <p>{{ storyTest?.storyDescription }}</p>
@@ -83,10 +79,9 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="dismissModal()"></button>
   </div>
   <div class="modal-body">
-    <p>You can play the audio only once. After listening, click the button that will navigate you to answer the questions.</p>
+    <p>You can play the audio only once. After listening, click the button to navigate to answer the questions.</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="playAudioOnce()">I understand</button>
   </div>
 </ng-template>
-

@@ -23,12 +23,12 @@ import { GameComponent } from './Games/Hangman/game/game.component';
 import { GameBoardComponent } from './Games/MemoryCards/game-board/game-board.component';
 import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
 import { StoryTestComponent } from './components/story-test/story-test.component';
-import { BrowseDoctorsComponent } from './pages/Home/browse-doctors/browse-doctors.component';
+import { BrowseDoctorsComponent } from './pages/home/browse-doctors/browse-doctors.component';
 import { DoctorVisitedProfileComponent } from './pages/doctor-visited-profile/doctor-visited-profile.component';
 
 import { AdminDashboardComponent } from './pages/AdminDashboard/admin-dashboard/admin-dashboard.component';
 
-import { HomeComponent } from './pages/Home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 
@@ -64,11 +64,11 @@ export const routes: Routes = [
 
   {path : 'Admindashboard' , component : AdminDashboardComponent},
 
-  { path: 'slider', component: SliderComponent },
+  // { path: 'slider', component: SliderComponent },
 
 
 
-  { path: 'Question/:storyTestId', component: QuestionsComponent },
+  // { path: 'Question/:storyTestId', component: QuestionsComponent },
 
 
 ];
