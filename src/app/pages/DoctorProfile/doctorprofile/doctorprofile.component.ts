@@ -6,15 +6,11 @@ import { SidebarComponent } from '../../../components/drawer/sidebar/sidebar.com
 import { StarRatingComponent } from '../../../components/star-rating/star-rating.component';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../models/shared-module';
-
-
-
-
 import { Router, RouterModule } from '@angular/router';
 import { PatientNameDTO } from '../../../models/Doctor/patient-name-dto';
 import { GeneralResponse } from '../../../models/Story/general-response';
 import { RelativeDTO } from '../../../models/Patient/relative-dto';
-
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-doctorprofile',
@@ -31,55 +27,61 @@ export class DoctorprofileComponent implements OnInit {
   patients: PatientNameDTO[] = [];
   selectedPatientId: number | null = null;
   relativeProfile: RelativeDTO | null = null;
+  selectedImage: File | null = null;
 
-  constructor(private doctorProfileService: DoctorProfileService,private router: Router) {}
+  constructor(private doctorProfileService: DoctorProfileService, private router: Router) {}
 
   ngOnInit(): void {
-    this.doctorProfileService.getProfile().subscribe({
-      next: (data) => {
-        console.log(data);
-        this.profileData = data.data;
-        console.log("proooofile", this.profileData);
-      },
-      error: (error) => {
-        console.error('Error fetching profile data:', error);
-        if (error.status === 401) {
-          this.errorMessage = 'Unauthorized access. Please login.';
-        } else {
-          this.errorMessage = 'Error fetching profile data. Please try again later.';
-        }
-      }
-    });
-
+    this.fetchProfileData();
     this.fetchAvailableSlots();
     this.fetchDoctorPatients();
   }
 
+  fetchProfileData(): void {
+    this.doctorProfileService.getProfile().subscribe({
+      next: (data) => {
+        this.profileData = data.data;
+      },
+      error: (error) => {
+        this.handleProfileError(error);
+      }
+    });
+  }
+
+  handleProfileError(error: any): void {
+    console.error('Error fetching profile data:', error);
+    this.errorMessage = error.status === 401 ? 'Unauthorized access. Please login.' : 'Error fetching profile data. Please try again later.';
+  }
+
+  getImageUrl(): string {
+    return environment.ImgbaseUrl + this.profileData.picURL;
+  }
+
   fetchAvailableSlots(): void {
     this.doctorProfileService.getAvailableSlots().subscribe({
-      next: (response: { isSuccess: boolean; data: AvailableSlotsDTO[] }) => {
+      next: (response) => {
         if (response.isSuccess) {
           this.availableSlots = response.data;
-          console.log("Available Slots", this.availableSlots);
         } else {
           console.error('Error: Unsuccessful response', response);
         }
       },
-      error: (error: any) => {
+      error: (error) => {
         console.error('Error fetching available slots:', error);
       }
     });
   }
+
   fetchDoctorPatients(): void {
     this.doctorProfileService.getDoctorPatients().subscribe({
-      next: (response: { isSuccess: boolean; data: PatientNameDTO[] }) => {
+      next: (response) => {
         if (response.isSuccess) {
           this.patients = response.data;
         } else {
           console.error('Error: Unsuccessful response', response);
         }
       },
-      error: (error: any) => {
+      error: (error) => {
         console.error('Error fetching patients:', error);
       }
     });
@@ -90,9 +92,32 @@ export class DoctorprofileComponent implements OnInit {
   }
 
   saveChanges(): void {
+    if (this.selectedImage) {
+      this.uploadImageAndSaveProfile();
+    } else {
+      this.saveProfileData();
+    }
+  }
+
+  uploadImageAndSaveProfile(): void {
+    this.doctorProfileService.updateDoctorPhoto(this.selectedImage!).subscribe({
+      next: (response) => {
+        if (response.isSuccess) {
+          this.profileData.picURL = response.data;
+          this.saveProfileData();
+        } else {
+          console.error('Error updating photo:', response.data);
+        }
+      },
+      error: (error) => {
+        console.error('Error updating photo:', error);
+      }
+    });
+  }
+
+  saveProfileData(): void {
     this.doctorProfileService.updateDoctorProfile(this.profileData).subscribe({
       next: (response) => {
-        console.log('Profile updated successfully:', response);
         this.toggleEditMode();
       },
       error: (error) => {
@@ -103,14 +128,11 @@ export class DoctorprofileComponent implements OnInit {
 
   cancelEdit(): void {
     this.toggleEditMode();
-    this.doctorProfileService.getProfile().subscribe({
-      next: (data) => {
-        this.profileData = data.data;
-      },
-      error: (error) => {
-        console.error('Error fetching profile data:', error);
-      }
-    });
+    this.fetchProfileData();
+  }
+
+  selectImage(event: any): void {
+    this.selectedImage = event.target.files[0];
   }
 
   safeSplit(slot: AvailableSlotsDTO, index: number): string {
@@ -121,25 +143,20 @@ export class DoctorprofileComponent implements OnInit {
     if (patientId !== null) {
       this.selectedPatientId = patientId;
       this.doctorProfileService.getRelativeProfile(patientId).subscribe({
-        next: (response: GeneralResponse<RelativeDTO>) => {
+        next: (response) => {
           if (response.isSuccess) {
             this.relativeProfile = response.data;
-            // Assuming you have a route named 'patient-profile' defined in your router configuration
             this.router.navigate(['/VisitedPatientprofile', patientId]); // Navigate to patient profile using selected patient ID
           } else {
             console.error('Error: Unsuccessful response', response);
-            // Handle error if necessary
           }
         },
-        error: (error: any) => {
+        error: (error) => {
           console.error('Error fetching relative profile:', error);
-          // Handle error if necessary
         }
       });
     } else {
       console.warn('selectedPatientId is null.');
-      // Handle the case where selectedPatientId is null if needed
     }
   }
-
 }

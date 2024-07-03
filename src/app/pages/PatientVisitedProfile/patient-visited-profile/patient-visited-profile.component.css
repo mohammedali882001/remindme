@@ -211,3 +211,13 @@ body, html {
   height: 200px; /* Adjust the size as needed */
   border-radius: 50%;
 }
+
+
+.badge-danger {
+  background-color: red;
+  color: white;
+  padding: 2px;
+  border-radius: 3px;
+  font-size: 12px;
+  width: 15px;
+}

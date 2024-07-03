@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DoctorService } from '../../services/DoctorServices/doctor.service';
 import { StarRatingComponent } from "../star-rating/star-rating.component";
+import { environment } from '../../../environments/environment.development';
 
 declare var bootstrap: any;
 
@@ -29,6 +30,10 @@ export class DoctorSliderComponent implements OnInit, AfterViewInit {
         this.refreshCarousel();
       }
     });
+  }
+
+  getImageUrl(): string {
+    return environment.ImgbaseUrl;
   }
 
   ngAfterViewInit(): void {

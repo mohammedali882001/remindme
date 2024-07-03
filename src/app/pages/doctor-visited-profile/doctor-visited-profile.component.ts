@@ -154,7 +154,7 @@ export class DoctorVisitedProfileComponent implements OnInit {
   stars: { value: number }[] = Array.from({ length: 5 }, (_, index) => ({ value: index + 1 }));
   canAddRating: boolean = true;
   viewAllRatings: boolean = false;
-
+dimg="http://localhost:2100/images/a290b2e1-295b-4940-8fb9-f3759d65eb11_Capture2.PNG"
   constructor(
     private route: ActivatedRoute,
     private doctorVisitedService: DoctorVisitedProfileService,
@@ -168,6 +168,9 @@ export class DoctorVisitedProfileComponent implements OnInit {
       this.fetchRatings(this.doctorId);
       this.checkAuthorizationToAddRating(this.doctorId);
     });
+  }
+  getImageUrl(): string {
+    return environment.ImgbaseUrl;
   }
 
   checkAuthorizationToAddRating(doctorId: number): void {
@@ -189,6 +192,8 @@ export class DoctorVisitedProfileComponent implements OnInit {
     this.doctorVisitedService.getDoctorById(doctorId).subscribe({
       next: (response) => {
         if (response.isSuccess) {
+          console.log("res",response.data);
+
           this.profileData = response.data;
         } else {
           console.error('Error: Unsuccessful response', response);

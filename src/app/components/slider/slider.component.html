@@ -5,7 +5,8 @@
         <div *ngFor="let doctor of chunk" class="col-lg-3 col-sm-6 main-border p-0 rounded-3 overflow-hidden mx-3">
           <div class="doctor-card">
             <a [routerLink]="['/VisitedDoctorprofile', doctor.id]" class="d-block">
-              <img [src]="doctor.picURL" alt="doctor-image" width="100%" />
+              <!-- <img [src]="doctor.picURL" alt="doctor-image" width="100%" /> -->
+              <img [src]="getImageUrl() + doctor.picURL" alt="DoctorImage" class="DocProfilePic">
             </a>
             <div class="doctor-content p-1">
               <h3>

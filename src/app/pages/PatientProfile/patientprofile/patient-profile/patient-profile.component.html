@@ -9,11 +9,8 @@
     <div class="profile patientProfile">
       <div class="profileHeader">
         <div>
-          <img
-            src="assets/doctor5.PNG"
-            alt="PatientImage"
-            class="ProfilePic"
-          />
+          <img [src]="getImageUrl() + profileData.patientPicURL" alt="DoctorImage" class="DocProfilePic">
+          <input *ngIf="editMode" type="file" (change)="onFileSelected($event)" />
         </div>
         <div class="btns">
           <app-whatsapp-chat-with-my-doctor [doctorId]="profileData.doctorId"></app-whatsapp-chat-with-my-doctor>
@@ -23,7 +20,6 @@
           <button class="btn d-flex text-align-baseline d-lg-none d-block">
             <i class="fa-regular fa-calendar-check"></i>
           </button>
-
           <button class="d-none d-lg-block btn secBtn ">
             <a routerLink="/notes" >
             <i class="fa-regular fa-note-sticky"></i>
