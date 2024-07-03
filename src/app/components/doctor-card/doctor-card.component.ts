@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { StarRatingComponent } from "../star-rating/star-rating.component";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowseSharedService } from '../../services/browse-shared.service';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
     selector: 'app-doctor-card',
@@ -34,7 +35,9 @@ export class DoctorCardComponent implements OnInit {
     this.watchSearchInput(); // Watch for changes in search input
 
   }
-
+  getImageUrl(): string {
+    return environment.ImgbaseUrl;
+  }
   loadDoctors() {
     this.doctorService.getDoctors().subscribe(
       (response: FilterDoctorDTO[]) => {

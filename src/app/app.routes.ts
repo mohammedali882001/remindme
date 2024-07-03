@@ -26,9 +26,13 @@ import { StoryTestComponent } from './components/story-test/story-test.component
 import { BrowseDoctorsComponent } from './pages/home/browse-doctors/browse-doctors.component';
 import { DoctorVisitedProfileComponent } from './pages/doctor-visited-profile/doctor-visited-profile.component';
 
+import { AppointmentTimesComponent } from './components/appointment-times/appointment-times.component';
+
+
 import { AdminDashboardComponent } from './pages/AdminDashboard/admin-dashboard/admin-dashboard.component';
 
 import { HomeComponent } from './pages/home/home.component';
+
 
 
 
@@ -49,6 +53,7 @@ export const routes: Routes = [
   { path: 'VisitedPatientprofile/:id', component: PatientVisitedProfileComponent },
   { path: 'VisitedDoctorprofile/:id', component: DoctorVisitedProfileComponent },
   { path: 'results-test', component: ResultsTestComponent },
+  {path:'appointmentTimes',component:AppointmentTimesComponent},
   //{ path: 'story-test', component: StoryTestComponent },
   { path: 'AllStories', component: AllStoriesComponent },
   { path: 'story-test', component: StoryTestComponent },

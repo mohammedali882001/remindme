@@ -8,24 +8,23 @@ import { WhatsappChatWithDoctorComponent } from "../../../../components/whatsapp
 import { WhatsappChatWithMyDoctorComponent } from "../../../../components/whatsapp-chat-with-my-doctor/whatsapp-chat-with-my-doctor.component";
 import { RouterLink } from '@angular/router';
 import { AppointmentOfPatient } from '../../../../models/Patient/appointment-of-patient';
-//import { WhatsappChatWithMyDoctorComponent } from "../../../../components/whatsapp-chat-with-my-doctor/whatsapp-chat-with-my-doctor.component";
+import { environment } from '../../../../../environments/environment.development';
 
 @Component({
-    selector: 'app-patient-profile',
-    standalone: true,
-    templateUrl: './patient-profile.component.html',
-    styleUrls: ['./patient-profile.component.css'],
-    imports: [CommonModule, SharedModule, FormsModule, WhatsappChatWithDoctorComponent, WhatsappChatWithMyDoctorComponent,RouterLink]
+  selector: 'app-patient-profile',
+  standalone: true,
+  templateUrl: './patient-profile.component.html',
+  styleUrls: ['./patient-profile.component.css'],
+  imports: [CommonModule, SharedModule, FormsModule, WhatsappChatWithDoctorComponent, WhatsappChatWithMyDoctorComponent, RouterLink]
 })
 export class PatientProfileComponent implements OnInit {
   profileData: any;
-  editedProfileData: any;
   errorMessage: string = '';
   editMode: boolean = false;
   appointments: AppointmentOfPatient[] = [];
+  selectedFile: File | null = null;
 
   constructor(private patientService: PatientService) {}
-
 
   ngOnInit(): void {
     this.fetchProfileAndReports();
@@ -34,28 +33,30 @@ export class PatientProfileComponent implements OnInit {
 
   fetchUpcomingAppointment(): void {
     this.patientService.getAppointmentsOfPatient().subscribe({
-        next: (response) => {
-          console.log(response);
-
-            this.appointments = response.data;
-        },
-        error: (error) => {
-            console.error('Error fetching upcoming appointment:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error!',
-                text: 'Failed to fetch upcoming appointment. Please try again later.'
-            });
-        }
+      next: (response) => {
+        console.log(response);
+        this.appointments = response.data;
+      },
+      error: (error) => {
+        console.error('Error fetching upcoming appointment:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Failed to fetch upcoming appointment. Please try again later.'
+        });
+      }
     });
-}
+  }
+
+  getImageUrl(): string {
+    return environment.ImgbaseUrl;
+  }
 
   fetchProfileAndReports(): void {
     this.patientService.getProfile().subscribe({
       next: (data) => {
         this.profileData = data.data;
-        console.log("data from patient", this.profileData);
-        // Fetch all reports
+        console.log("Data from patient", this.profileData);
         this.patientService.getAllReports().subscribe({
           next: (reports) => {
             this.profileData.reports = reports.data;
@@ -86,6 +87,31 @@ export class PatientProfileComponent implements OnInit {
   }
 
   saveChanges(): void {
+    if (this.selectedFile) {
+      const formData = new FormData();
+      formData.append('Image', this.selectedFile);
+
+      this.patientService.updatePhoto(formData).subscribe({
+        next: (response) => {
+          console.log('Photo updated successfully:', response);
+          this.profileData.patientPicURL = response.data;
+          this.updateProfileData();
+        },
+        error: (error) => {
+          console.error('Error updating photo:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Failed to update photo. Please try again later.'
+          });
+        }
+      });
+    } else {
+      this.updateProfileData();
+    }
+  }
+
+  updateProfileData(): void {
     this.patientService.updatePatientProfile(this.profileData).subscribe({
       next: (response) => {
         console.log('Profile updated successfully:', response);
@@ -99,16 +125,8 @@ export class PatientProfileComponent implements OnInit {
 
   cancelEdit(): void {
     this.toggleEditMode();
-    this.patientService.getProfile().subscribe({
-      next: (data) => {
-        this.profileData = data.data;
-      },
-      error: (error) => {
-        console.error('Error fetching profile data:', error);
-      }
-    });
+    this.fetchProfileAndReports(); // Reload profile data on cancel
   }
-
 
   viewReport(reportId: number): void {
     this.patientService.viewReport(reportId).subscribe({
@@ -133,5 +151,9 @@ export class PatientProfileComponent implements OnInit {
         });
       }
     });
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
   }
 }
