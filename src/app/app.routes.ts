@@ -7,7 +7,7 @@ import { DoctorSignUpComponent } from './components/doctor-sign-up/doctor-sign-u
 import { PatientProfileComponent } from './pages/PatientProfile/patientprofile/patient-profile/patient-profile.component';
 
 
-// import { HomeComponent } from './pages/Home/home.component';
+
 import { StickyNotesComponent } from './components/sticky-notes/sticky-notes.component';
 import { PatientVisitedProfileComponent } from './pages/PatientVisitedProfile/patient-visited-profile/patient-visited-profile.component';
 
@@ -24,9 +24,11 @@ import { GameComponent } from './Games/Hangman/game/game.component';
 import { GameBoardComponent } from './Games/MemoryCards/game-board/game-board.component';
 import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
 import { StoryTestComponent } from './components/story-test/story-test.component';
-import { BrowseDoctorsComponent } from './pages/Home/browse-doctors/browse-doctors.component';
+
 import { DoctorVisitedProfileComponent } from './pages/doctor-visited-profile/doctor-visited-profile.component';
-//import { HomeComponent } from './pages/Home/home.component';
+import { BrowseDoctorsComponent } from './pages/home/browse-doctors/browse-doctors.component';
+import { HomeComponent } from './pages/home/home.component';
+
 
 
 export const routes: Routes = [
