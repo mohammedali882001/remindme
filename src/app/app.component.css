@@ -1,11 +1,6 @@
 .Download:hover {
-  display: block;
-  width: 100%;
   background-color: var(--bg-Color);
-  border: none;
-  padding: 10px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .Download {
