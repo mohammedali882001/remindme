@@ -9,6 +9,7 @@ import { HasStoryTest } from '../../../../models/Story/has-story-test';
 import { TrueAssignStoryTest } from '../../../../models/Story/true-assign-story-test';
 import { StoryDTOs } from '../../../../models/Story/story-dtos';
 import { SharedModule } from '../../../../models/shared-module';
+// import { environment } from '../../../../../environments/environment.development';
 
 @Component({
   selector: 'app-all-stories',
@@ -17,12 +18,15 @@ import { SharedModule } from '../../../../models/shared-module';
   templateUrl: './all-stories.component.html',
   styleUrl: './all-stories.component.css'
 })
-export class AllStoriesComponent
-implements OnInit {
+export class AllStoriesComponent  implements OnInit {
   stories: StoryInfoDto[] = [];
   errorMessage: string = '';
+  picURl:string= "http://localhost:2100" ;
 
-  constructor(private storyService: StoryServicesService, private router: Router) { }
+  constructor(
+    private storyService: StoryServicesService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getAllStories();
@@ -43,57 +47,79 @@ implements OnInit {
       }
     );
   }
-
-  takeTest(storytestId: number): void {
-    console.log('takeTest called with storytestId:', storytestId);
-  
-    this.storyService.hasStoryTest(storytestId).subscribe({
-      next: (response: GeneralResponse<HasStoryTest>) => {
-        console.log('hasStoryTest response:', response);
-  
+  takeTest(storyTestId: number): void {
+    this.storyService.hasStoryTest(storyTestId).subscribe(
+      (response: GeneralResponse<boolean>) => {
         if (response.isSuccess) {
-          console.log('Story test exists:', response.data);
+          if (response.data) {
+            // User has already taken the test, navigate to ResultsTestComponent
+            console.log('User has already taken the test.');
+            this.assignStoryTest(true,storyTestId);
 
-          console.log('Story test exists:', response.data.HasStory);
-  
-          // Make sure response.data.HasStory is correctly set before proceeding
-          const hasStory = response.data.HasStory ?? false; // Default to false if undefined
-          this.storyService.assignPatientStoryTest(hasStory, storytestId).subscribe({
-            next: (assignResponse: GeneralResponse<TrueAssignStoryTest | StoryDTOs>) => {
-              console.log('assignPatientStoryTest response:', assignResponse);
-  
-              if (assignResponse.isSuccess) {
-                if (hasStory) {
-                  const score = (assignResponse.data as TrueAssignStoryTest).score;
-                  console.log('Navigating to results-test with score:', score);
-                  this.router.navigate(['/results-test'], { state: { score } });
-                } else {
-                  const storyTest = assignResponse.data as StoryDTOs;
-                  console.log('Navigating to story-test with data:', storyTest);
-                  this.router.navigate(['/story-test'], { state: { storyTest } });
-                }
-              } else {
-                this.errorMessage = 'Failed to assign story test.';
-                console.error(this.errorMessage);
-              }
-            },
-            error: (error) => {
-              this.errorMessage = 'An error occurred while assigning the story test.';
-              console.error('Error during assignPatientStoryTest:', error);
-            }
-          });
+            // this.router.navigate(['/results-test'], { queryParams: { score: response.data } });
+          } else {
+            // User needs to take the test, proceed to assign test
+            console.log('Proceeding to take the test...');
+            this.assignStoryTest(false,storyTestId);
+          }
         } else {
-          this.errorMessage = 'Failed to check story test.';
-          console.error(this.errorMessage);
+          console.error('Failed to check test status:', response.data);
         }
       },
-      error: (error) => {
-        this.errorMessage = 'An error occurred while checking the story test.';
-        console.error('Error during hasStoryTest:', error);
+      (error) => {
+        console.error('Error occurred while checking test status:', error);
       }
-    });
+    );
   }
   
+  assignStoryTest(hasStory: boolean, storyTestId: number): void {
+    this.storyService.assignPatientStoryTest(hasStory, storyTestId).subscribe(
+      (response: GeneralResponse<number | StoryDTOs>) => {
+        if (response.isSuccess) {
+          if (typeof response.data === 'number') {
+            // Handle score case
+            console.log('Assigned test score:', response.data);
+            this.router.navigate(['/results-test'], { queryParams: { score: response.data } });
+          } else {
+            // Handle StoryDTOs case
+            const storyDTO = response.data;
+            this.storyService.setStoryTest(storyDTO); // Store StoryDTOs in the service
+            console.log('Assigned test DTO:', response.data,storyDTO);
+
+            this.storyService.setStoryTest(response.data); // Set the data in the service
+            this.router.navigate(['/story-test']);
+          }
+        } else {
+          console.error('Failed to assign test:', response.data);
+        }
+      },
+      (error) => {
+        console.error('Error occurred while assigning test:', error);
+      }
+    );
+  }
   
-  
+
+// assignStoryTest(hasStory: boolean, storyTestId: number): void {
+//   this.storyService.assignPatientStoryTest(hasStory, storyTestId).subscribe(
+//     (response: GeneralResponse<number | StoryDTOs>) => {
+//       if (response.isSuccess) {
+//         if (typeof response.data === 'number') {
+//           // Case: Score received, navigate to ResultsTestComponent
+//           console.log('Assigned test score:', response.data);
+//           this.router.navigate(['/results-test'], { queryParams: { score: response.data } });
+//         } else {
+//           // Case: StoryDTOs received, navigate to StoryTestComponent
+//           console.log('Assigned test DTO:', response.data);
+//           this.router.navigate(['/story-test'], { state: { storyDTO: response.data } });
+//         }
+//       } else {
+//         console.error('Failed to assign test:', response.data);
+//       }
+//     },
+//     (error) => {
+//       console.error('Error occurred while assigning test:', error);
+//     }
+//   );
+// }
 }

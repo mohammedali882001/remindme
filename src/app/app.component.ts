@@ -11,14 +11,17 @@ import { LandingComponent } from './components/landing/landing.component';
 import { DoctorSignUpComponent } from './components/doctor-sign-up/doctor-sign-up.component';
 import { RestPasswordComponent } from './components/rest-password/rest-password.component';
 import { SharedModule } from './models/shared-module';
-import { EditDoctorProfileComponent } from './components/Edit-DoctorProfile/edit-doctor-profile/edit-doctor-profile.component';
+//import { EditDoctorProfileComponent } from './components/Edit-DoctorProfile/edit-doctor-profile/edit-doctor-profile.component';
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { FormsModule } from '@angular/forms';
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
 import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
 import { DoctorFilterComponent } from "./components/doctor-filter/doctor-filter.component";
-import { SliderComponent } from "./components/slider/slider.component";
+
 import { AllStoriesComponent } from './components/story-test/StoriesTest/all-stories/all-stories.component';
+
+import { AdminDashboardComponent } from "./pages/AdminDashboard/admin-dashboard/admin-dashboard.component";
+
 import { StoryTestComponent } from './components/story-test/story-test.component';
 import { AppointmentTimesComponent } from './components/appointment-times/appointment-times.component';
 
@@ -27,8 +30,10 @@ import { AppointmentTimesComponent } from './components/appointment-times/appoin
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent,
-        DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, SliderComponent, AllStoriesComponent,AppointmentTimesComponent]
+
+    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent, DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, EditDoctorProfileComponent, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent, AdminDashboardComponent]
+
+
 })
 export class AppComponent {
   title = "remindme";

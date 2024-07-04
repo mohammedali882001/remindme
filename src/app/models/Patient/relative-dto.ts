@@ -10,6 +10,6 @@ export class RelativeDTO {
   patientAddress: string = '';
   relativeGenderString:string='';
   patientGenderString:string=''
-  picUrl:string='';
+  patientPicURL:string='';
   //image: File | null = null; // Assuming you are handling file uploads, use File type instead of IFormFile
 }

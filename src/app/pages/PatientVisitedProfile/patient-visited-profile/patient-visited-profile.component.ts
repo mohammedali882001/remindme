@@ -6,13 +6,15 @@ import { CommonModule } from '@angular/common';
 import { PatientVisitedProfileService } from '../../../services/PatientServices/patient-visited-profile.service';
 import Swal from 'sweetalert2';
 import { WhatsappChatComponent } from "../../../components/whatsapp-chat/whatsapp-chat.component";
+import { jsPDF } from 'jspdf';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
-    selector: 'app-patient-visited-profile',
-    standalone: true,
-    templateUrl: './patient-visited-profile.component.html',
-    styleUrl: './patient-visited-profile.component.css',
-    imports: [CommonModule, WhatsappChatComponent]
+  selector: 'app-patient-visited-profile',
+  standalone: true,
+  templateUrl: './patient-visited-profile.component.html',
+  styleUrl: './patient-visited-profile.component.css',
+  imports: [CommonModule, WhatsappChatComponent]
 })
 export class PatientVisitedProfileComponent implements OnInit {
   patientId: number = 0;
@@ -33,6 +35,10 @@ export class PatientVisitedProfileComponent implements OnInit {
       this.fetchProfileAndReports(this.patientId);
       this.fetchLoggedInDoctorId();
     });
+  }
+
+  getImageUrl(): string {
+    return environment.ImgbaseUrl;
   }
 
   fetchRelativeProfile(patientId: number): void {
@@ -124,15 +130,18 @@ export class PatientVisitedProfileComponent implements OnInit {
         Swal.fire({
           title: report.title,
           html: `
-            <p>Description: ${report.description}</p>
-            <p>Patient Name: ${report.patientName}</p>
-            <p>Doctor Name: ${report.doctorName}</p>
-            <p>Date: ${report.dateTime}</p>
-            <div id="edit-delete-buttons">
-              ${this.loggedInDoctorId === report.doctorID ? `
-                <button id="edit-button" class="swal2-confirm swal2-styled">Edit</button>
-                <button id="delete-button" class="swal2-cancel swal2-styled">Delete</button>
-              ` : ''}
+            <div id="download-icon-container" style="position: relative;">
+              <i id="download-button" class="fas fa-download swal2-confirm swal2-styled" style="cursor: pointer; position: absolute; top: 15px; left: 10px;"></i>
+              <p>Description: ${report.description}</p>
+              <p>Patient Name: ${report.patientName}</p>
+              <p>Doctor Name: ${report.doctorName}</p>
+              <p>Date: ${report.dateTime}</p>
+              <div id="edit-delete-buttons">
+                ${this.loggedInDoctorId === report.doctorID ? `
+                  <button id="edit-button" class="swal2-confirm swal2-styled">Edit</button>
+                  <button id="delete-button" class="swal2-cancel swal2-styled">Delete</button>
+                ` : ''}
+              </div>
             </div>
           `,
           didRender: () => {
@@ -148,6 +157,10 @@ export class PatientVisitedProfileComponent implements OnInit {
                 deleteButton.addEventListener('click', () => this.deleteReport(reportId));
               }
             }
+            const downloadButton = document.getElementById('download-button');
+            if (downloadButton) {
+              downloadButton.addEventListener('click', () => this.downloadReportAsPDF(report));
+            }
           }
         });
       },
@@ -161,6 +174,7 @@ export class PatientVisitedProfileComponent implements OnInit {
       }
     });
   }
+
 
   editReport(reportId: number): void {
     Swal.fire({
@@ -231,5 +245,17 @@ export class PatientVisitedProfileComponent implements OnInit {
         });
       }
     });
+  }
+
+  downloadReportAsPDF(report: any): void {
+    const doc = new jsPDF();
+
+    doc.text(`Title: ${report.title}`, 10, 10);
+    doc.text(`Description: ${report.description}`, 10, 20);
+    doc.text(`Patient Name: ${report.patientName}`, 10, 30);
+    doc.text(`Doctor Name: ${report.doctorName}`, 10, 40);
+    doc.text(`Date: ${report.dateTime}`, 10, 50);
+
+    doc.save(`${report.title}.pdf`);
   }
 }

@@ -16,7 +16,6 @@ import { AllStoriesComponent } from './components/story-test/StoriesTest/all-sto
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { DoctorDashboardComponent } from './pages/DoctorDashboard/doctor-dashboard/doctor-dashboard.component';
-import { SliderComponent } from './components/slider/slider.component';
 
 import { PatientsRequestsComponent } from './pages/DoctorDashboard/patients-requests/patients-requests.component';
 import { AppointmentsRequestsComponent } from './pages/DoctorDashboard/appointments-requests/appointments-requests.component';
@@ -24,17 +23,23 @@ import { GameComponent } from './Games/Hangman/game/game.component';
 import { GameBoardComponent } from './Games/MemoryCards/game-board/game-board.component';
 import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
 import { StoryTestComponent } from './components/story-test/story-test.component';
-
-import { DoctorVisitedProfileComponent } from './pages/doctor-visited-profile/doctor-visited-profile.component';
 import { BrowseDoctorsComponent } from './pages/home/browse-doctors/browse-doctors.component';
+import { DoctorVisitedProfileComponent } from './pages/doctor-visited-profile/doctor-visited-profile.component';
+
+import { AppointmentTimesComponent } from './components/appointment-times/appointment-times.component';
+
+
+import { AdminDashboardComponent } from './pages/AdminDashboard/admin-dashboard/admin-dashboard.component';
+
 import { HomeComponent } from './pages/home/home.component';
+
 
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
-   { path: 'home', component: HomeComponent },
-   { path: 'browseDoctors', component: BrowseDoctorsComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'browseDoctors', component: BrowseDoctorsComponent },
   { path: 'landing', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'doctorProfile', component: DoctorprofileComponent },
@@ -48,12 +53,12 @@ export const routes: Routes = [
   { path: 'VisitedPatientprofile/:id', component: PatientVisitedProfileComponent },
   { path: 'VisitedDoctorprofile/:id', component: DoctorVisitedProfileComponent },
   { path: 'results-test', component: ResultsTestComponent },
+  {path:'appointmentTimes',component:AppointmentTimesComponent},
   //{ path: 'story-test', component: StoryTestComponent },
   { path: 'AllStories', component: AllStoriesComponent },
   { path: 'story-test', component: StoryTestComponent },
-
-
   { path: 'Question', component: QuestionsComponent },
+
 
   //Doctor dashboard
   { path: 'DoctorDashboard', component: DoctorDashboardComponent, children : [
@@ -61,9 +66,14 @@ export const routes: Routes = [
     { path: 'AppointmentsRequests', component: AppointmentsRequestsComponent },
   ] },
 
-  { path: 'slider', component: SliderComponent },
 
-  { path: 'Question/:storyTestId', component: QuestionsComponent },
+  {path : 'Admindashboard' , component : AdminDashboardComponent},
+
+  // { path: 'slider', component: SliderComponent },
+
+
+
+  // { path: 'Question/:storyTestId', component: QuestionsComponent },
 
 
 ];

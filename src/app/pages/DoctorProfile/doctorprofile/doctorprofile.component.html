@@ -9,12 +9,18 @@
     </div>
     <div class="profile">
       <div class="DocProfileDetals">
-        <div><img [src]="profileData.picURL" alt="DoctorImage" class="DocProfilePic"></div>
+        <div>
+         <!-- This will print the picUrl -->
+          <!-- <img [src]="dimg" alt="DoctorImage" class="DocProfilePic"> -->
+          <img [src]="getImageUrl()" alt="DoctorImage" class="DocProfilePic">
+          <input *ngIf="editMode" type="file" (change)="selectImage($event)" />
+        </div>
+
         <div class="btns">
-          <button class="btn d-flex text-align-baseline">
+          <!-- <button class="btn d-flex text-align-baseline">
             <i class="fa-regular fa-comment"></i>
             <span class="d-none d-lg-block d-md-block"> Send message</span>
-          </button>
+          </button> -->
           <button *ngIf="!editMode" class="btn d-none d-lg-block" (click)="toggleEditMode()">Edit</button>
           <button *ngIf="editMode" class="btn d-none d-lg-block" (click)="saveChanges()">Save</button>
           <button *ngIf="editMode" class="btn d-none d-lg-block" (click)="cancelEdit()">Cancel Edit</button>
@@ -94,3 +100,4 @@
     </div>
   </div>
 </div>
+

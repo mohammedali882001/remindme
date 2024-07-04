@@ -10,7 +10,7 @@ export class PatientVisitedProfileService {
 
   constructor(private http: HttpClient) {}
   getAllReports(PatientId:number): Observable<any> {
-    return this.http.get<any>(`${environment.baseUrl}/Report/ReportsOfPatientByDoctor/${PatientId}`);
+    return this.http.get<any>(`${environment.baseUrl}/Report/FilteredReportsByDate/${PatientId}`);
   }
   viewReport(reportId: number): Observable<any> {
     return this.http.get<any>(`${environment.baseUrl}/Report/Details/${reportId}`);

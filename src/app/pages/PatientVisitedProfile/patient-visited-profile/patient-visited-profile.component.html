@@ -9,11 +9,7 @@
     <div class="profile patientProfile">
       <div class="profileHeader">
         <div>
-          <img
-            src="assets/doctor5.PNG"
-            alt="PatientImage"
-            class="ProfilePic"
-          />
+          <img [src]="getImageUrl() + profileData.patientPicURL" alt="DoctorImage" class="DocProfilePic">
         </div>
         <!-- [src]="doctor.picURL" -->
         <div class="btns">
@@ -66,29 +62,38 @@
       </div>
     </div>
 
-    <!-- Reports Section -->
-    <div class="profile relativeProfile mt-4">
-    <div class="Reports mt-4">
-      <div>
-        <h5 class="avTitle">Reports</h5>
-        <button class="add" (click)="addReport(patientId)">Add Report</button>
-      </div>
-      <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
-        <div *ngFor="let report of profileDataReport?.reports" class="calender col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-          <div class="card p-3">
-            <strong (click)="viewReport(report.reportID)" style="cursor: pointer;">{{ report.dateTime | date: 'MMM dd, yyyy' }}</strong>
-            <div>{{ report.title }}</div>
-            <div *ngIf="loggedInDoctorId === report.doctorID">
-              <button (click)="editReport(report.reportID)">Edit</button>
-              <button (click)="deleteReport(report.reportID)">Delete</button>
-            </div>
+<!-- Reports Section -->
+<div class="profile relativeProfile mt-4">
+  <div class="Reports mt-4">
+    <div>
+      <h5 class="avTitle">Reports</h5>
+      <button class="add" (click)="addReport(patientId)">Add Report</button>
+    </div>
+    <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
+      <div *ngFor="let report of profileDataReport?.reports" class="calender col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+        <div class="card p-3">
+          <strong (click)="viewReport(report.reportID)" style="cursor: pointer;">
+            {{ report.dateTime | date: 'MMM dd, yyyy' }}
+          </strong>
+          <div>{{ report.title }}</div>
+          <div *ngIf="report.reportStatus === 'Important'" class="badge badge-danger">
+            <i class="fas fa-exclamation-circle"></i> <!-- FontAwesome icon for important -->
+          </div>
+          <div *ngIf="loggedInDoctorId === report.doctorID">
+            <button (click)="editReport(report.reportID)">Edit</button>
+            <button (click)="deleteReport(report.reportID)">Delete</button>
           </div>
         </div>
-        <div *ngIf="profileDataReport?.reports?.length === 0" class="text-center w-100 mt-4">
-          No reports available.
-        </div>
+      </div>
+      <div *ngIf="profileDataReport?.reports?.length === 0" class="text-center w-100 mt-4">
+        No reports available.
       </div>
     </div>
-    </div>
+  </div>
+</div>
+
+
+
+
   </div>
 </div>

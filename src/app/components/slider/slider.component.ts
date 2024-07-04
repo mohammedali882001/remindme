@@ -1,41 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DoctorProfileService } from '../../services/DoctorServices/doctor-profile.service';
-import { DoctorGetDTO } from '../../models/Doctor/doctor-get-dto';
 import { CommonModule } from '@angular/common';
+import { DoctorService } from '../../services/DoctorServices/doctor.service';
+import { StarRatingComponent } from "../star-rating/star-rating.component";
 import { environment } from '../../../environments/environment.development';
 
-@Component({
-  selector: 'app-slider',
-  standalone: true,
-  imports: [RouterLink, CommonModule],
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.css']
-})
-export class SliderComponent implements OnInit {
+declare var bootstrap: any;
 
-  doctors: DoctorGetDTO[] = [];
-  environment : string = "http://localhost:2100"; 
-  constructor(private _doctorProfileService: DoctorProfileService) {}
+@Component({
+    selector: 'app-slider',
+    standalone: true,
+    templateUrl: './slider.component.html',
+    styleUrls: ['./slider.component.css'],
+    imports: [RouterLink, CommonModule, StarRatingComponent]
+})
+export class DoctorSliderComponent implements OnInit, AfterViewInit {
+  topRatedDoctors: any[] = [];
+  chunkedDoctors: any[][] = [];
+
+  @ViewChild('carousel', { static: true }) carouselElement!: ElementRef;
+
+  constructor(private doctorService: DoctorService) {}
 
   ngOnInit(): void {
-    this.getMaxAverage();
-  }
-
-  getMaxAverage(): void {
-    this._doctorProfileService.getMaxAverageRating().subscribe({
-      next: (response) => {
-        if (response.isSuccess) {
-          console.log(response.data);
-          this.doctors = response.data;
-
-        } else {
-          console.error(response.data);
-        }
-      },
-      error: (err) => {
-        console.error(err);
+    this.doctorService.getTopRatedDoctors().subscribe(response => {
+      if (response.isSuccess) {
+        this.topRatedDoctors = response.data;
+        this.chunkDoctors();
+        this.refreshCarousel();
       }
     });
+  }
+
+  getImageUrl(): string {
+    return environment.ImgbaseUrl;
+  }
+
+  ngAfterViewInit(): void {
+    this.refreshCarousel();
+  }
+
+  chunkDoctors(): void {
+    this.chunkedDoctors = [];
+    for (let i = 0; i < this.topRatedDoctors.length; i += 3) {
+      this.chunkedDoctors.push(this.topRatedDoctors.slice(i, i + 3));
+    }
+  }
+
+  refreshCarousel(): void {
+    const carousel = new bootstrap.Carousel(this.carouselElement.nativeElement, {
+      interval: 5000,
+      ride: 'carousel'
+    });
+    carousel.cycle();
+  }
+
+  getStarsArray(rating: number): number[] {
+    const validRating = Math.max(0, Math.min(5, Math.floor(rating))); // Ensure rating is between 0 and 5
+    return Array(validRating).fill(0).map((_, index) => index);
   }
 }

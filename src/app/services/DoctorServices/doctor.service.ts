@@ -175,6 +175,10 @@ export class DoctorService {
       );
   }
 
+  getTopRatedDoctors(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/Doctor/TopRated`);
+  }
+
 }
 
 
