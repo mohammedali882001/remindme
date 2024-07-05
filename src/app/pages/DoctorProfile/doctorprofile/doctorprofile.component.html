@@ -87,17 +87,33 @@
         <textarea *ngIf="editMode" [(ngModel)]="profileData.history"></textarea>
       </div>
     </div>
-    <div class="avaliablity">
-      <h5 class="avTitle">Availability</h5>
-      <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
-        <div *ngFor="let slot of availableSlots" class="calendar col-12 col-sm-6 col-md-3 col-lg-2">
-          <strong>{{ safeSplit(slot, 0) }}</strong>
-          <div>{{ safeSplit(slot, 1) }}</div>
-          <div>{{ slot?.startTime }}</div>
-          <div>{{ slot?.endTime }}</div>
-        </div>
+
+    <div class="availability doctorDesc ">
+      <h5 class="">Work Appointment:</h5>
+      <div *ngIf="!editMode">
+        <p *ngIf="workAppointment">Duration: {{ workAppointment.durationByMinutes }} minutes</p>
+        <p *ngIf="workAppointment">Start of Day: {{ workAppointment.startOfDay }}</p>
+        <p *ngIf="workAppointment">End of Day: {{ workAppointment.endOfDay }}</p>
+        <p *ngIf="!workAppointment">No work appointment available.</p>
+      </div>
+      <div *ngIf="editMode">
+        <label>
+          Duration (minutes):
+          <input type="number" [(ngModel)]="editedWorkAppointment.durationByMinutes" />
+        </label>
+        <label>
+          Start of Day:
+          <input type="time" [(ngModel)]="editedWorkAppointment.startOfDay" />
+        </label>
+        <label>
+          End of Day:
+          <input type="time" [(ngModel)]="editedWorkAppointment.endOfDay" />
+        </label>
       </div>
     </div>
+
+
+
   </div>
 </div>
 

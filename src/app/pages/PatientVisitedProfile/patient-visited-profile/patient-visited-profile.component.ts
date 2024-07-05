@@ -164,23 +164,31 @@ export class PatientVisitedProfileComponent implements OnInit {
           html: `
             <input id="edit-title" class="swal2-input" value="${report.title}" placeholder="Title">
             <textarea id="edit-description" class="swal2-textarea" placeholder="Description">${report.description}</textarea>
+            <label>
+              <input id="edit-important" type="checkbox" ${report.ranking === 1 ? 'checked' : ''}> Mark as Important
+            </label>
           `,
           preConfirm: () => {
             const title = (document.getElementById('edit-title') as HTMLInputElement).value;
             const description = (document.getElementById('edit-description') as HTMLTextAreaElement).value;
-            return { title, description };
+            const isImportant = (document.getElementById('edit-important') as HTMLInputElement).checked;
+            const ranking = isImportant ? 1 : 0;
+            return { title, description, ranking };
           }
         }).then(result => {
           if (result.isConfirmed) {
             const updateReportDTO = {
               title: result.value.title,
-              description: result.value.description
+              description: result.value.description,
+              ranking: result.value.ranking
             };
             this.patientVisitedProfileService.updateReport(reportId, updateReportDTO).subscribe({
               next: (response) => {
                 if (response.isSuccess) {
                   Swal.fire('Updated!', 'Report has been updated.', 'success');
                   this.fetchProfileAndReports(this.patientId); // Refresh the reports
+                } else {
+                  Swal.fire('Error!', 'Failed to update report.', 'error');
                 }
               },
               error: (error) => {
@@ -205,6 +213,10 @@ export class PatientVisitedProfileComponent implements OnInit {
       }
     });
   }
+
+
+
+
 
 
 

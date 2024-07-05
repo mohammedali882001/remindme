@@ -6,7 +6,7 @@
           <div class="doctor-card">
             <a [routerLink]="['/VisitedDoctorprofile', doctor.id]" class="d-block">
               <!-- <img [src]="doctor.picURL" alt="doctor-image" width="100%" /> -->
-              <img [src]="getImageUrl() + doctor.picURL" alt="DoctorImage" class="DocProfilePic">
+              <img [src]="getImageUrl() + doctor.picURL" alt="DoctorImage" class="card-img-top docImg">
             </a>
             <div class="doctor-content p-1">
               <h3>

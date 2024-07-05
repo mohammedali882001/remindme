@@ -26,6 +26,12 @@ export class PatientVisitedProfileService {
     });
   }
 
+  getDoctorOfPatient(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/PatientDoctor/DoctorOfPatient`);
+  }
+
+
+
 
   getLoggedInDoctorId(): Observable<any> {
     return this.http.get<any>(`${environment.baseUrl}/Doctor/GetDoctor`);
