@@ -1,9 +1,9 @@
-import { PatientStoryTest } from "./patient-story-test";
+import { PatientTest } from "./patient-test";
 
-export interface SubmitStoryTestResponse {
-  // isSuccess: boolean;
-  // data: PatientStoryTest;
-  id: number;
+export interface SubmitTestResponse {
+    // isSuccess: boolean;
+    // data: PatientTest;
+    id: number;
   patientId: number;
   patient: {
     id: number;
@@ -15,27 +15,23 @@ export interface SubmitStoryTestResponse {
     appointments: any[];
     gender: number;
   };
-  storyTestId: number;
-  storyTest: {
+  testId: number;
+  test: {
     id: number;
-    imageUrl: string;
-    description: string;
-    soundPath: string;
-    storyQuestionAndAnswers: {
+    title: string;
+    testAnswerQuestions: {
       id: number;
       question: string;
       correctAnswer: string;
-      storyTestId: number;
+      testId: number;
       answers: string[];
-      isCorrected: boolean;
       isDeleted: boolean;
     }[];
-    patientStoryTests: any[];
     isDeleted: boolean;
+    patientTests: any[];
     degree: number;
   };
   isDeleted: boolean;
+  dateTaken: string;
   score: number;
 }
-
-
