@@ -8,19 +8,15 @@
       <h4>Doctor's Profile</h4>
     </div>
     <div class="profile">
-      <div class="DocProfileDetals">
+    <div class="DocProfileDetals">
         <div>
-         <!-- This will print the picUrl -->
-          <!-- <img [src]="dimg" alt="DoctorImage" class="DocProfilePic"> -->
+       
           <img [src]="getImageUrl()" alt="DoctorImage" class="DocProfilePic">
           <input *ngIf="editMode" type="file" (change)="selectImage($event)" />
         </div>
 
         <div class="btns">
-          <!-- <button class="btn d-flex text-align-baseline">
-            <i class="fa-regular fa-comment"></i>
-            <span class="d-none d-lg-block d-md-block"> Send message</span>
-          </button> -->
+    
           <button *ngIf="!editMode" class="btn d-none d-lg-block" (click)="toggleEditMode()">Edit</button>
           <button *ngIf="editMode" class="btn d-none d-lg-block" (click)="saveChanges()">Save</button>
           <button *ngIf="editMode" class="btn d-none d-lg-block" (click)="cancelEdit()">Cancel Edit</button>
@@ -31,8 +27,8 @@
             <i class="fa-regular fa-bookmark"></i>
           </button>
         </div>
-      </div>
-      <div class="doctorTitel">
+      </div> 
+    <div class="doctorTitel">
         <h3>
           <span *ngIf="!editMode">Dr. {{ profileData.firstName }} {{ profileData.lastName }}</span>
           <span *ngIf="editMode">
@@ -51,7 +47,7 @@
         </p>
         <div class="rating d-flex">
           <app-star-rating [averageRating]="profileData.averageRating"></app-star-rating>
-          <!-- <strong><h3>{{ profileData.averageRating }}</h3></strong> -->
+        
         </div>
         <div class="mobile d-flex flex-wrap flex-lg-row">
           <span class="thirdBtn">
@@ -73,8 +69,9 @@
             <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.fullName }}</option>
           </select>
         </div>
-      </div>
-    </div>
+      </div> 
+     </div> 
+
     <div class="description">
       <div class="doctorDesc mt-5">
         <h5>About</h5>
