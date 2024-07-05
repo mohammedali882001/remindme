@@ -23,19 +23,18 @@ export class QuestionTestComponent implements OnInit {
   selectedOptions: { [index: number]: string } = {};
   score?: number;
 
-  constructor(private testService: TestServiceService, private router: Router) {}
+  constructor(
+    private testService: TestServiceService,
+    // private resultService: ResultService, // Inject ResultService
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.testService.getTestSubject().subscribe(
       (test: TestDTO | undefined) => {
         if (test) {
           this.TestDetails = test;
-          console.log("In Question component", test.testAnswerQuestions);
-          console.log("In Question component", this.TestDetails.testAnswerQuestions);
-
           this.TestQuestionAndAnswersOBJ = test.testAnswerQuestions;
-          console.log('Question and Answers:', this.TestQuestionAndAnswersOBJ);
-          console.log('Test Details:', this.TestDetails);
         } else {
           console.error('No story test data found.');
         }
@@ -48,11 +47,9 @@ export class QuestionTestComponent implements OnInit {
 
   selectOption(index: number, option: string): void {
     this.selectedOptions[index] = option;
-    console.log(`Selected option for question index ${index}: ${option}`);
   }
 
   submitAnswers(): void {
-    console.log('Submitting answers...');
     if (this.TestDetails && this.TestQuestionAndAnswersOBJ) {
       const answers: PatientAnswerDTO[] = this.TestQuestionAndAnswersOBJ.map((question, index) => ({
         QuestionId: question.id,
@@ -62,19 +59,11 @@ export class QuestionTestComponent implements OnInit {
       const testId = this.TestDetails.testId;
 
       this.testService.submitTest(testId, answers).subscribe(response => {
-        console.log('Submit response:', response);
-
         if (response.isSuccess) {
-          console.log('Response data:', response.data);
-
-          if (response.data && response.data.score !== undefined) {
-            this.score = response.data.score;
-            console.log('Assigned test score:', this.score);
-
-            this.router.navigate(['/results-test'], { queryParams: { score: this.score } });
-          } else {
-            console.error('Score not found in response data');
-          }
+          // Save the result in ResultService
+          this.testService.setResult(response.data);
+          console.log("score",response.data);
+          this.router.navigate(['/ResultsTest']);
         } else {
           console.error('Failed to submit story test - isSuccess is false');
         }
@@ -83,15 +72,89 @@ export class QuestionTestComponent implements OnInit {
       });
     }
   }
-
-  navigateToResults(score: number): void {
-    console.log('Navigating to results with score:', score);
-    setTimeout(() => {
-      this.router.navigate(['/results-test'], { queryParams: { score } });
-      console.log('Navigation executed');
-    }, 1000); // Example delay of 1000 milliseconds (1 second), adjust as needed
-  }
 }
+
+
+// implements OnInit {
+//   TestDetails: TestDTO | undefined;
+//   TestQuestionAndAnswersOBJ?: TestAnswerQuestionDTO[];
+//   selectedOptions: { [index: number]: string } = {};
+//   score?: number;
+
+//   constructor(private testService: TestServiceService, private router: Router) {}
+
+//   ngOnInit(): void {
+//     this.testService.getTestSubject().subscribe(
+//       (test: TestDTO | undefined) => {
+//         if (test) {
+//           this.TestDetails = test;
+//           console.log("In Question component", test.testAnswerQuestions);
+//           console.log("In Question component", this.TestDetails.testAnswerQuestions);
+
+//           this.TestQuestionAndAnswersOBJ = test.testAnswerQuestions;
+//           console.log('Question and Answers:', this.TestQuestionAndAnswersOBJ);
+//           console.log('Test Details:', this.TestDetails);
+//         } else {
+//           console.error('No story test data found.');
+//         }
+//       },
+//       (error) => {
+//         console.error('Error fetching story test data:', error);
+//       }
+//     );
+//   }
+
+//   selectOption(index: number, option: string): void {
+//     this.selectedOptions[index] = option;
+//     console.log(`Selected option for question index ${index}: ${option}`);
+//   }
+
+//   submitAnswers(): void {
+//     console.log('Submitting answers...');
+//     if (this.TestDetails && this.TestQuestionAndAnswersOBJ) {
+//       const answers: PatientAnswerDTO[] = this.TestQuestionAndAnswersOBJ.map((question, index) => ({
+//         QuestionId: question.id,
+//         Answer: this.selectedOptions[index] || ''
+//       }));
+
+//       const testId = this.TestDetails.testId;
+
+//       this.testService.submitTestscore(testId, answers).subscribe(response => {
+//         console.log('Submit response:', response);
+
+//         if (response.isSuccess) {
+//           console.log('Response data:', response.data);
+
+//           if (response.data && response.data.score !== undefined) {
+//             this.score = response.data.score;
+//             console.log('Assigned test score:', this.score);
+
+//             this.router.navigate(['/results-test'], { queryParams: { score: this.score } });
+//           } else {
+//             console.error('Score not found in response data');
+//           }
+//         } else {
+//           console.error('Failed to submit story test - isSuccess is false');
+//         }
+//       }, error => {
+//         console.error('Error submitting story test:', error);
+//       });
+//     }
+//   }
+
+//   navigateToResults(score: number): void {
+//     console.log('Navigating to results with score:', score);
+//     setTimeout(() => {
+//       this.router.navigate(['/results-test'], { queryParams: { score } });
+//       console.log('Navigation executed');
+//     }, 1000); // Example delay of 1000 milliseconds (1 second), adjust as needed
+//   }
+// }
+
+
+/////////////////////////////////////
+
+
 // implements OnInit {
 //   TestDetails: TestDTO | undefined;
 //   TestQuestionAndAnswersOBJ?: TestAnswerQuestionDTO[] ;

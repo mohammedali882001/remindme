@@ -52,12 +52,20 @@ declare const Plyr: any;
   }
 
   openModal(content: any) {
-    this.modalService.open(content, { size: 'lg', centered: true });
+    if (this.modalService && content) {
+      this.modalService.open(content, { size: 'lg', centered: true });
+    } else {
+      console.error('Modal service or content not initialized.');
+    }
   }
 
   dismissModal() {
-    this.modalService.dismissAll();
-    this.stopAudio();
+    if (this.modalService) {
+      this.modalService.dismissAll();
+      this.stopAudio();
+    } else {
+      console.error('Modal service not initialized.');
+    }
   }
 
   playAudioOnce() {
@@ -87,6 +95,79 @@ declare const Plyr: any;
     }
   }
 }
+ 
+ // implements AfterViewInit {
+//   storyTest?: StoryDTOs;
+//   audio!: HTMLAudioElement;
+//   Pic_Sound_URl: string = "http://localhost:2100";
+//   audioPlayed: boolean = false;
+
+//   @ViewChild('attentionModal') attentionModal!: TemplateRef<any>;
+
+//   constructor(
+//     private route: ActivatedRoute,
+//     private router: Router,
+//     private modalService: NgbModal,
+//     private storyService: StoryServicesService
+//   ) {}
+
+//   ngAfterViewInit(): void {
+//     this.storyService.getStoryTestSubject().subscribe(
+//       (storyTest: StoryDTOs | undefined) => {
+//         if (storyTest) {
+//           this.storyTest = storyTest;
+//           if (this.storyTest?.storySoundPath) {
+//             this.audio = new Audio(this.Pic_Sound_URl + '/' + this.storyTest.storySoundPath);
+//             const player = new Plyr(this.audio);
+//           } else {
+//             console.error('Audio URL not found in the story test data.');
+//           }
+//         } else {
+//           console.error('No storyDTO data found.');
+//         }
+//       },
+//       (error) => {
+//         console.error('Error occurred while fetching storyDTO:', error);
+//       }
+//     );
+//   }
+
+//   openModal(content: any) {
+//     this.modalService.open(content, { size: 'lg', centered: true });
+//   }
+
+//   dismissModal() {
+//     this.modalService.dismissAll();
+//     this.stopAudio();
+//   }
+
+//   playAudioOnce() {
+//     if (this.audio && !this.audioPlayed) {
+//       this.audio.play();
+//       this.audioPlayed = true;
+//       this.audio.onended = () => {
+//         this.dismissModal();
+//       };
+//     } else {
+//       console.error('Audio element not found or audio has already been played.');
+//     }
+//   }
+
+//   stopAudio() {
+//     if (this.audio) {
+//       this.audio.pause();
+//       this.audio.currentTime = 0;
+//     }
+//   }
+
+//   goToQuestions(storyId?: number) {
+//     if (storyId) {
+//       this.router.navigate(['/Question']);
+//     } else {
+//       console.error('Story ID is not defined.');
+//     }
+//   }
+// }
  
 //  implements OnInit, AfterViewInit {
 //   storyTest?: StoryDTOs;

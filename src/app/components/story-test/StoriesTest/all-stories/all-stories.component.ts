@@ -18,7 +18,7 @@ import { SharedModule } from '../../../../models/shared-module';
   templateUrl: './all-stories.component.html',
   styleUrl: './all-stories.component.css'
 })
-export class AllStoriesComponent  implements AfterViewInit {
+export class AllStoriesComponent  implements OnInit , AfterViewInit {
   stories: StoryInfoDto[] = [];
   errorMessage: string = '';
   picURl:string= "http://localhost:2100" ;
@@ -27,6 +27,9 @@ export class AllStoriesComponent  implements AfterViewInit {
     private storyService: StoryServicesService,
     private router: Router
   ) { }
+  ngOnInit(): void {
+    this.getAllStories();
+  }
   ngAfterViewInit(): void {
     this.getAllStories();
   }
