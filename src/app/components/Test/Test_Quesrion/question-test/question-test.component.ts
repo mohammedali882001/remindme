@@ -55,22 +55,28 @@ export class QuestionTestComponent implements OnInit {
     console.log('Submitting answers...');
     if (this.TestDetails && this.TestQuestionAndAnswersOBJ) {
       const answers: PatientAnswerDTO[] = this.TestQuestionAndAnswersOBJ.map((question, index) => ({
-        QuestionId: question.id, // Ensure this matches the property name in your DTO
+        QuestionId: question.id,
         Answer: this.selectedOptions[index] || ''
       }));
 
-      const testId = this.TestDetails.testId; // Ensure correct casing
+      const testId = this.TestDetails.testId;
 
       this.testService.submitTest(testId, answers).subscribe(response => {
         console.log('Submit response:', response);
-        if (response.isSuccess) {
-          this.score = response.data.data.Score;
-          console.log('Assigned test score:', response.data.data.Score);
-          console.log('Assigned test score:', this.score);
 
-          this.router.navigate(['/results-test'], { queryParams: { score: response.data.data.Score } });
+        if (response.isSuccess) {
+          console.log('Response data:', response.data);
+
+          if (response.data && response.data.score !== undefined) {
+            this.score = response.data.score;
+            console.log('Assigned test score:', this.score);
+
+            this.router.navigate(['/results-test'], { queryParams: { score: this.score } });
+          } else {
+            console.error('Score not found in response data');
+          }
         } else {
-          console.error('Failed to submit story test');
+          console.error('Failed to submit story test - isSuccess is false');
         }
       }, error => {
         console.error('Error submitting story test:', error);
@@ -86,9 +92,6 @@ export class QuestionTestComponent implements OnInit {
     }, 1000); // Example delay of 1000 milliseconds (1 second), adjust as needed
   }
 }
-
-
-
 // implements OnInit {
 //   TestDetails: TestDTO | undefined;
 //   TestQuestionAndAnswersOBJ?: TestAnswerQuestionDTO[] ;
