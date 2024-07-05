@@ -1,35 +1,49 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-  margin: 0;
-}
-.storyTest{
-    background: center no-repeat url("../../../assets/jpeg/2148470220.jpg");
-    background-size: cover;
-}
+/* story-test.component.css */
+
+/* Container styling */
 .storyContainer {
   text-align: center;
   padding: 20px;
   background-color: #ffffff;
- 
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.storyTest{
-    height: 100vh;
+
+/* Fullscreen height for the section */
+.storyTest {
+  background: center no-repeat url("../../../assets/jpeg/2148470220.jpg");
+  background-size: cover;
+  height: 100vh;
 }
-.info{
-    top: 3%;
-    right: 3%;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    color: var(--dark-blue);
+
+/* Image styling */
+.storyContainer img {
+  width: 100%; /* Full width */
+  max-width: 600px; /* Max width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 15px; /* Rounded corners */
+  object-fit: cover; /* Cover the container */
 }
-.btnUnderstand:hover{
-    border: 1px solid var(--main-Color); 
-    color: var(--main-Color) !important;
+
+/* Audio player styling */
+.storyContainer audio {
+  width: 100%; /* Full width */
+  max-width: 600px; /* Max width */
+  margin-top: 20px; /* Space above the player */
+}
+
+/* Info button styling */
+.info {
+  top: 3%;
+  right: 3%;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  color: var(--dark-blue);
+}
+
+/* Button styling */
+.btnUnderstand:hover {
+  border: 1px solid var(--main-Color); 
+  color: var(--main-Color) !important;
 }

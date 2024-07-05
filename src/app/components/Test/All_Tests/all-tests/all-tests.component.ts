@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { TestInfoDto } from '../../../../models/Test/test-info-dto';
 import { TestServiceService } from '../../../../services/TestService/test-service.service';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { SharedModule } from '../../../../models/shared-module';
   templateUrl: './all-tests.component.html',
   styleUrl: './all-tests.component.css'
 })
-export class AllTestsComponent  implements OnInit {
+export class AllTestsComponent  implements AfterViewInit {
   tests: TestInfoDto[] = [];
   errorMessage: string = '';
 
@@ -23,10 +23,13 @@ export class AllTestsComponent  implements OnInit {
     private testService: TestServiceService,
     private router: Router
   ) { }
-
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.getAllTests();
   }
+
+  // ngOnInit(): void {
+  //   this.getAllTests();
+  // }
 
   getAllTests(): void {
     this.testService.getAllTests().subscribe(

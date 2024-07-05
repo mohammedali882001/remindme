@@ -1,22 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild ,ElementRef, TemplateRef} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // Import NgbModal for modal functionality
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap'; // Import NgbModal for modal functionality
 import { StoryDTOs } from '../../models/Story/story-dtos';
 import { SharedModule } from '../../models/shared-module';
 import { StoryServicesService } from '../../services/StoryService/story-services.service';
+// import { PlyrComponent } from 'ngx-plyr';
 declare const Plyr: any;
 
 @Component({
   selector: 'app-story-test',
   standalone: true,
-  imports: [CommonModule , SharedModule],
+  imports: [CommonModule , SharedModule ],
   templateUrl: './story-test.component.html',
   styleUrl: './story-test.component.css'
 })
- export class StoryTestComponent implements OnInit, AfterViewInit {
+ export class StoryTestComponent  implements AfterViewInit {
   storyTest?: StoryDTOs;
-  audio: HTMLAudioElement = new Audio();
+  audio!: HTMLAudioElement;
   Pic_Sound_URl: string = "http://localhost:2100";
   audioPlayed: boolean = false;
 
@@ -27,14 +28,19 @@ declare const Plyr: any;
     private router: Router,
     private modalService: NgbModal,
     private storyService: StoryServicesService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.storyService.getStoryTestSubject().subscribe(
       (storyTest: StoryDTOs | undefined) => {
         if (storyTest) {
           this.storyTest = storyTest;
-          console.log('Received storyDTO data:', this.storyTest);
+          if (this.storyTest?.storySoundPath) {
+            this.audio = new Audio(this.Pic_Sound_URl + '/' + this.storyTest.storySoundPath);
+            const player = new Plyr(this.audio);
+          } else {
+            console.error('Audio URL not found in the story test data.');
+          }
         } else {
           console.error('No storyDTO data found.');
         }
@@ -45,46 +51,42 @@ declare const Plyr: any;
     );
   }
 
-  ngAfterViewInit(): void {
-    if (this.storyTest?.storySoundPath) {
-      this.audio.src = this.Pic_Sound_URl + '/' + this.storyTest.storySoundPath;
-      const player = new Plyr(this.audio);
-    } else {
-      console.error('Audio URL not found in the story test data.');
-    }
-  }
-
   openModal(content: any) {
     this.modalService.open(content, { size: 'lg', centered: true });
   }
 
   dismissModal() {
     this.modalService.dismissAll();
+    this.stopAudio();
   }
 
   playAudioOnce() {
-    if (!this.audioPlayed) {
-      if (this.audio.src) {
-        this.audio.play();
-        this.audioPlayed = true;
-        this.audio.onended = () => {
-          this.dismissModal();
-        };
-      } else {
-        console.error('Audio source not found.');
-      }
+    if (this.audio && !this.audioPlayed) {
+      this.audio.play();
+      this.audioPlayed = true;
+      this.audio.onended = () => {
+        this.dismissModal();
+      };
+    } else {
+      console.error('Audio element not found or audio has already been played.');
+    }
+  }
+
+  stopAudio() {
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
     }
   }
 
   goToQuestions(storyId?: number) {
     if (storyId) {
-      this.router.navigate(['/Question'], { state: { storyId } });
+      this.router.navigate(['/Question']);
     } else {
       console.error('Story ID is not defined.');
     }
   }
 }
- 
  
 //  implements OnInit, AfterViewInit {
 //   storyTest?: StoryDTOs;
