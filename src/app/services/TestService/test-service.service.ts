@@ -10,6 +10,7 @@ import { PatientAnswerDTO } from '../../models/Test/patient-answer-dto';
 import { PatientTest } from '../../models/Test/patient-test';
 import { TestReviewDTO } from '../../models/Test/test-review-dto';
 import { SubmitTestResponse } from '../../models/Test/submit-test-response';
+import { ResultOfTestDTO } from '../../models/Test/result-of-test-dto';
 
 
 
@@ -21,6 +22,30 @@ export class TestServiceService {
  
   private apiUrl = `${environment.baseUrl}/Test`; // Adjust URL as needed
 
+
+  // private resultSource = new BehaviorSubject<ResultOfTestDTO | null>(null);
+  // currentResult = this.resultSource.asObservable();
+
+  // setResult(result: ResultOfTestDTO) {
+  //   console.log('Setting result:', result); // Added log
+  //   this.resultSource.next(result);
+
+  // }
+    // BehaviorSubject to hold the current result
+    private resultSource = new BehaviorSubject<ResultOfTestDTO | null>(null);
+    currentResult = this.resultSource.asObservable();
+  
+  
+    // Method to update the current result
+    setResult(result: ResultOfTestDTO) {
+      console.log('Setting result:', result);
+      this.resultSource.next(result);
+    }
+  
+    // Method to get the current result as an observable
+    getResult(): Observable<ResultOfTestDTO | null> {
+      return this.currentResult;
+    }
    // Initializing BehaviorSubject with an initial value of undefined
    private TestSubject = new BehaviorSubject<TestDTO | undefined>(undefined);
 
@@ -29,6 +54,7 @@ export class TestServiceService {
  
    // Method to update the current value of the story test
    setSubjectTest(Test: TestDTO) {
+    console.log('Setting Test:', Test); // Added log
     this.TestSubject.next(Test);
   }
  
@@ -74,9 +100,9 @@ export class TestServiceService {
   //   return this.http.post<GeneralResponse<PatientTest>>(`${this.apiUrl}/submitTest?testId=${testId}`, patientAnswers);
   // }
 
-  submitTest(testId: number, patientAnswers: PatientAnswerDTO[]): Observable<GeneralResponse<SubmitTestResponse>> {
+  submitTestscore(testId: number, patientAnswers: PatientAnswerDTO[]): Observable<GeneralResponse<SubmitTestResponse>> {
     const params = new HttpParams().set('testId', testId.toString()); // Ensure correct parameter name
-    return this.http.post<GeneralResponse<SubmitTestResponse>>(`${this.apiUrl}/submitTest`, patientAnswers, { params });
+    return this.http.post<GeneralResponse<SubmitTestResponse>>(`${this.apiUrl}/SubmitTest_Score`, patientAnswers, { params });
   }
   
 
@@ -94,5 +120,12 @@ export class TestServiceService {
     console.log(`Assigning test with ID ${TestId}, hasTest: ${hasTest}`);
     const params = { hasTest: hasTest.toString(), TestId: TestId.toString() };
     return this.http.post<GeneralResponse<TestDTO | number>>(`${this.apiUrl}/AssignPatientTest`, null, { params });
+  }
+
+
+  //Submit 
+  submitTest(testId: number, patientAnswers: PatientAnswerDTO[]): Observable<GeneralResponse<ResultOfTestDTO>> {
+    const params = new HttpParams().set('testId', testId.toString());
+    return this.http.post<GeneralResponse<ResultOfTestDTO>>(`${this.apiUrl}/submitTest`, patientAnswers, { params });
   }
 }

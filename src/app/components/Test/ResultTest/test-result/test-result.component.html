@@ -1,0 +1,17 @@
+<div *ngIf="result">
+    <h2>Test Results</h2>
+    <p>Patient Name: {{ result.patientName }}</p>
+    <p>Test Title: {{ result.testTitle }}</p>
+    <p>Your Score: {{ result.patientScore }}</p>
+    <p>Test Score: {{ result.testScore }}</p>
+    <p>Date Taken: {{ result.dateTaken | date:'medium' }}</p>
+  
+    <div *ngFor="let answer of formattedResults">
+      <div [ngStyle]="{'border': answer.isCorrect ? '2px solid green' : '2px solid red', 'padding': '10px', 'margin-bottom': '10px'}">
+        <p><strong>Question:</strong> {{ answer.question }}</p>
+        <p><strong>Your Answer:</strong> {{ answer.patientAnswer }}</p>
+        <p><strong>Correct Answer:</strong> {{ answer.correctAnswer }}</p>
+      </div>
+    </div>
+  </div>
+  

@@ -27,13 +27,13 @@ import { AppointmentTimesComponent } from './components/appointment-times/appoin
 import { ReportsComponent } from "./components/reports/reports.component";
 import { AllTestsComponent } from './components/Test/All_Tests/all-tests/all-tests.component';
 import { QuestionTestComponent } from './components/Test/Test_Quesrion/question-test/question-test.component';
-
+import { TestResultComponent } from './components/Test/ResultTest/test-result/test-result.component';
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent, DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent, AdminDashboardComponent, ReportsComponent ,AllTestsComponent ,QuestionTestComponent]
+    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent, DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent, AdminDashboardComponent, ReportsComponent ,AllTestsComponent ,QuestionTestComponent , TestResultComponent]
 })
 export class AppComponent {
   title = "remindme";
