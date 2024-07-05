@@ -1,0 +1,15 @@
+<div class="container">
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <div class="row">
+      <div *ngFor="let test of tests" class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ test.title }}</h5>
+          <p class="card-text">Degree: {{ test.testDegree }}</p>
+          <button class="btn btn-primary" (click)="takeTest(test.testId)">Take Test</button>
+        </div>
+      </div>
+    </div>
+</div>
