@@ -28,6 +28,8 @@ export class DoctorprofileComponent implements OnInit {
   selectedPatientId: number | null = null;
   relativeProfile: RelativeDTO | null = null;
   selectedImage: File | null = null;
+  workAppointment: any = null;
+  editedWorkAppointment: any = { durationByMinutes: '', startOfDay: '', endOfDay: '' };
 
   constructor(private doctorProfileService: DoctorProfileService, private router: Router) {}
 
@@ -35,6 +37,7 @@ export class DoctorprofileComponent implements OnInit {
     this.fetchProfileData();
     this.fetchAvailableSlots();
     this.fetchDoctorPatients();
+    this.fetchWorkAppointment();
   }
 
   fetchProfileData(): void {
@@ -47,6 +50,25 @@ export class DoctorprofileComponent implements OnInit {
       }
     });
   }
+
+  fetchWorkAppointment(): void {
+    this.doctorProfileService.getWorkAppointmentOfLoggedInDoctor().subscribe({
+      next: (response) => {
+        if (response.isSuccess) {
+          this.workAppointment = response.data;
+          console.log(this.workAppointment );
+          // Ensure editedWorkAppointment is initialized with the fetched data
+          this.editedWorkAppointment = { ...this.workAppointment };
+        } else {
+          console.error('Error: Unsuccessful response', response);
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching work appointment:', error);
+      }
+    });
+  }
+
 
   handleProfileError(error: any): void {
     console.error('Error fetching profile data:', error);
@@ -97,7 +119,25 @@ export class DoctorprofileComponent implements OnInit {
     } else {
       this.saveProfileData();
     }
+    this.saveWorkAppointment();
   }
+
+saveWorkAppointment(): void {
+  this.doctorProfileService.updateWorkAppointment(this.editedWorkAppointment).subscribe({
+    next: (response) => {
+      if (response.isSuccess) {
+        this.workAppointment = { ...this.editedWorkAppointment };
+        console.log("save",response); // Log success message or response here
+      } else {
+        console.error('Error updating work appointment:', response.data);
+      }
+    },
+    error: (error) => {
+      console.error('Error updating work appointment:', error);
+    }
+  });
+}
+
 
   uploadImageAndSaveProfile(): void {
     this.doctorProfileService.updateDoctorPhoto(this.selectedImage!).subscribe({
@@ -160,3 +200,4 @@ export class DoctorprofileComponent implements OnInit {
     }
   }
 }
+

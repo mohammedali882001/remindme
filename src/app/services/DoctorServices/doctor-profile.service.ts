@@ -57,6 +57,13 @@ export class DoctorProfileService {
     formData.append('Image', image);
     return this.http.put<GeneralResponse>(this.updatePhotoUrl, formData);
   }
+  getWorkAppointmentOfLoggedInDoctor(): Observable<GeneralResponse> {
+    return this.http.get<GeneralResponse>(`${environment.baseUrl}/Doctor/WorkAppointmentOfLoggedInDoctor`);
+  }
+  updateWorkAppointment(workAppointment: any): Observable<GeneralResponse> {
+    return this.http.put<GeneralResponse>(`${environment.baseUrl}/Doctor/StartEndDuratin`, workAppointment);
+  }
+
 
 }
 

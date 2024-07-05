@@ -1,4 +1,4 @@
-.day-column {  
+.day-column {
   border: 1px solid #ccc;
   border-radius: 10px;
 }
@@ -20,7 +20,7 @@
   background-color: rgb(243, 222, 245);
 }
 
-button {
+.book {
   display: block;
   width: 100%;
   background-color: var(--bg-Color);
@@ -35,3 +35,17 @@ button:hover {
   background-color: var(--main-Color);
   color: white;
 }
+
+.reserve{
+  text-align: center;
+}
+
+/* arrow Left */
+.back-button {
+  top: 20px;
+  left: 20px;
+  background-color: var(--bg-Color);
+  color: rgb(19, 1, 21);
+
+}
+

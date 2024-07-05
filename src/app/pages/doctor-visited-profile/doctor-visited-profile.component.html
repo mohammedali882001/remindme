@@ -2,7 +2,7 @@
 
 <div class="d-flex">
   <div class="col-12 col-sm-2 col-lg-3 sideBar d-none d-lg-flex">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [isAuthorizedToReserve]="isAuthorizedToReserve"></app-sidebar>
   </div>
   <div class="col-12 col-lg-8 mt-4 mainContent justify-content-center">
     <div class="title">
@@ -11,7 +11,7 @@
     </div>
     <div class="profile">
       <div class="DocProfileDetals">
-        <div><img [src]="profileData.picURL" alt="DoctorImage" class="DocProfilePic"></div>
+        <div><img [src]="getImageUrl()+profileData.picURL" alt="DoctorImage" class="DocProfilePic"></div>
         <div class="btns">
           <!-- <button class="btn d-flex text-align-baseline">
             <i class="fa-regular fa-comment"></i>
@@ -59,6 +59,14 @@
           </span>
         </div>
       </div>
+<hr>
+      <div class="work-appointment" *ngIf="workAppointment">
+        <h5>Work Appointment Details</h5>
+        <p>{{ workAppointment.durationByMinutes }} Minutes</p>
+        <p>{{ workAppointment.startOfDay }}</p>
+        <p>{{ workAppointment.endOfDay }}</p>
+      </div>
+
     </div>
     <div class="description">
       <div class="doctorDesc mt-5">
@@ -79,12 +87,13 @@
         Add Rating
       </button>
       <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
-        <div> <img [src]="dimg" alt="DoctorImage" class="DocProfilePic">Patient</div>
+        <!-- <div> <img [src]="getImageUrl()+PatientImage" alt="DoctorImage" class="DocProfilePic">Patient</div> -->
         <div *ngFor="let rating of ratings" class="rating-item col-12 col-sm-6 col-md-3 col-lg-2 mb-2">
-          <!-- <div> <img [src]="getImageUrl() + profileData.picURL" alt="DoctorImage" class="DocProfilePic">Patient</div> -->
+          <div> <img [src]="getImageUrl() + PatientImage" alt="DoctorImage" class="DocProfilePicRate">Patient</div>
           <app-star-rating [averageRating]="rating.ratingValue"></app-star-rating>
           <p>{{ rating.comment }}</p>
-          <p>{{rating.date}}</p>
+          <p>{{rating.date | date: 'MMM dd, hh:mm a'}}</p>
+
         </div>
       </div>
     </div>

@@ -24,4 +24,11 @@ export class DoctorVisitedProfileService {
   checkAuthorizationToAddRating(doctorId: number): Observable<GeneralResponse> {
     return this.http.get<GeneralResponse>(`${environment.baseUrl}/Rating/AuthorizedToRate?doctorId=${doctorId}`);
   }
+
+  checkAuthorizationToReserve(doctorId: number): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/Appointment/AuthorizedToReserve?doctorId=${doctorId}`);
+  }
+  getWorkAppointmentOfDoctor(doctorId: number): Observable<GeneralResponse> {
+    return this.http.get<GeneralResponse>(`${environment.baseUrl}/Doctor/WorkAppointmentOfDoctor?DoctorId=${doctorId}`);
+  }
 }
