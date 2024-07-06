@@ -41,6 +41,7 @@ import { DoctorSliderComponent } from './components/slider/slider.component';
 import { BrowseDoctorsComponent } from './components/browse-doctors/browse-doctors.component';
 import { PageNotFoundComponentComponent } from './components/page-not-found-component/page-not-found-component.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AppointmentsWeeklyComponent } from './components/appointments-weekly/appointments-weekly.component';
 
 
 
@@ -66,6 +67,8 @@ export const routes: Routes = [
   { path: 'AllStories', component: AllStoriesComponent },
   { path: 'story-test', component: StoryTestComponent },
   { path: 'Question', component: QuestionsComponent },
+  { path: 'AcceptedAppointmets', component: AppointmentsWeeklyComponent },
+
 
 
   //Doctor dashboard

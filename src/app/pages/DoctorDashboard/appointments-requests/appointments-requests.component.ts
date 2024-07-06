@@ -70,7 +70,7 @@ export class AppointmentsRequestsComponent implements OnInit {
                 icon: "success",
                 title: 'Appointment Request Confirmed',
                 text: 'You have successfully confirmed the appointment request.',
-                showConfirmButton: true,
+                showConfirmButton: true,  
                 //timer: 1500
               });
             } else {
@@ -99,7 +99,7 @@ export class AppointmentsRequestsComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.appointmentsService.RejectAppointmentRequest(appointmentId).subscribe({
-          next: (response: { isSuccess: boolean; data: string }) => {
+          next: (response) => {
             if (response.isSuccess) {
               console.log(response.data);
               console.log(response);
