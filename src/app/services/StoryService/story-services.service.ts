@@ -20,6 +20,8 @@ import { SubmitStoryTestResponse } from '../../models/Story/submit-story-test-re
 })
 export class StoryServicesService {
  
+    //  baseUrl:"http://localhost:2100/api"
+
   private apiUrl = `${environment.baseUrl}/Story`; // Adjust URL as needed
 
    // Initializing BehaviorSubject with an initial value of undefined
@@ -48,6 +50,7 @@ export class StoryServicesService {
   getAllStoryTests(): Observable<GeneralResponse<StoryInfoDto[]>> {
     return this.http.get<GeneralResponse<StoryInfoDto[]>>(`${this.apiUrl}/AllStorytest`);
   }
+ 
 
   getStoryTestsOfPatient(): Observable<GeneralResponse<StoryDTOs[]>> {
     return this.http.get<GeneralResponse<StoryDTOs[]>>(`${this.apiUrl}`);

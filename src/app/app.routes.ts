@@ -41,6 +41,9 @@ import { DoctorSliderComponent } from './components/slider/slider.component';
 import { BrowseDoctorsComponent } from './components/browse-doctors/browse-doctors.component';
 import { PageNotFoundComponentComponent } from './components/page-not-found-component/page-not-found-component.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { FirstTestComponent } from './components/Test/Specific_Tests/First_test/first-test/first-test.component';
+import { SpecificTestResultComponent } from './components/Test/Specific_Tests/Specific_Test_Result/specific-test-result/specific-test-result.component';
+import { SecondTestComponent } from './components/Test/Specific_Tests/Second_Test/second-test/second-test.component';
 
 
 
@@ -86,6 +89,12 @@ export const routes: Routes = [
   { path: 'slider', component: DoctorSliderComponent },
   { path: 'contactus', component: ContactUsComponent },
 
+  {path:'FirstTestComponent',component:FirstTestComponent},
+
+  {path:'SpecificTestResultComponent' , component:SpecificTestResultComponent},
+
+  
+  {path:'SecondTestComponent' , component:SecondTestComponent},
 
 
   // { path: 'Question/:storyTestId', component: QuestionsComponent },
