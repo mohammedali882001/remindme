@@ -1,5 +1,5 @@
 export interface StoryTestAnswersQuestionsDTO {
-  questionId: number;
-  questionText: string;
-  StoryAnswers:string[];
+  storyId: number;
+  storyQuestion: string;
+  storyAnswers:string[];
 }

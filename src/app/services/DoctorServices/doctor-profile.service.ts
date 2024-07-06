@@ -20,8 +20,8 @@ export class DoctorProfileService {
 
   private availableSlotsUrlrelative = `${environment.baseUrl}/Appointment/available-slotsRelative`;
   private doctorPatientsUrl = `${environment.baseUrl}/PatientDoctor/DoctorPatients`;
+  private updatePhotoUrl = `${this.profileUrl}/UpdatePhoto`;
 
- 
   constructor(private http: HttpClient) {}
 
   getProfile(): Observable<any> {
@@ -52,6 +52,18 @@ export class DoctorProfileService {
     return this.http.get<GeneralResponse<RelativeDTO>>(`${environment.baseUrl}/Relative/Visited/${patientId}`);
 
   }
+  updateDoctorPhoto(image: File): Observable<GeneralResponse> {
+    const formData = new FormData();
+    formData.append('Image', image);
+    return this.http.put<GeneralResponse>(this.updatePhotoUrl, formData);
+  }
+  getWorkAppointmentOfLoggedInDoctor(): Observable<GeneralResponse> {
+    return this.http.get<GeneralResponse>(`${environment.baseUrl}/Doctor/WorkAppointmentOfLoggedInDoctor`);
+  }
+  updateWorkAppointment(workAppointment: any): Observable<GeneralResponse> {
+    return this.http.put<GeneralResponse>(`${environment.baseUrl}/Doctor/StartEndDuratin`, workAppointment);
+  }
 
 
 }
+

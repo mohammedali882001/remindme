@@ -9,7 +9,7 @@
       </a>
     </li>
 
-    
+
     <li>
       <a  routerLink="/Admindashboard"  routerLinkActive="active">
 
@@ -18,9 +18,8 @@
       </a>
     </li>
 
-    <li>
-      <a routerLink="/visits"  routerLinkActive="active">
-
+    <li *ngIf="isAuthorizedToReserve">
+      <a routerLink="/appointmentTimes"  routerLinkActive="active">
         <i class="fa-solid fa-clock"></i>
         <p>Visits</p>
       </a>
@@ -56,7 +55,7 @@
 
     <li>
       <a routerLink="/DoctorDashboard/PatientsRequests"  routerLinkActive="active">
-       
+
         <i class="fa-solid fa-clock"></i>
         <p>Patients Requests</p>
       </a>
@@ -65,7 +64,7 @@
 
       <li>
         <a routerLink="/DoctorDashboard/AppointmentsRequests"  routerLinkActive="active">
-          
+
           <i class="fa-solid fa-clock"></i>
           <p>Appointments Requests</p>
         </a>

@@ -7,7 +7,7 @@ import { DoctorSignUpComponent } from './components/doctor-sign-up/doctor-sign-u
 import { PatientProfileComponent } from './pages/PatientProfile/patientprofile/patient-profile/patient-profile.component';
 
 
-// import { HomeComponent } from './pages/Home/home.component';
+
 import { StickyNotesComponent } from './components/sticky-notes/sticky-notes.component';
 import { PatientVisitedProfileComponent } from './pages/PatientVisitedProfile/patient-visited-profile/patient-visited-profile.component';
 
@@ -23,17 +23,29 @@ import { GameComponent } from './Games/Hangman/game/game.component';
 import { GameBoardComponent } from './Games/MemoryCards/game-board/game-board.component';
 import { BoardComponent } from './Games/NoughtsAndCrosses/board/board.component';
 import { StoryTestComponent } from './components/story-test/story-test.component';
-import { BrowseDoctorsComponent } from './pages/Home/browse-doctors/browse-doctors.component';
+
 import { DoctorVisitedProfileComponent } from './pages/doctor-visited-profile/doctor-visited-profile.component';
+
+import { AppointmentTimesComponent } from './components/appointment-times/appointment-times.component';
+
 
 import { AdminDashboardComponent } from './pages/AdminDashboard/admin-dashboard/admin-dashboard.component';
 
-import { HomeComponent } from './pages/Home/home.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AllTestsComponent } from './components/Test/All_Tests/all-tests/all-tests.component';
+
+import { QuestionTestComponent } from './components/Test/Test_Quesrion/question-test/question-test.component';
+import { TestResultComponent } from './components/Test/ResultTest/test-result/test-result.component';
+
+import { DoctorSliderComponent } from './components/slider/slider.component';
+import { BrowseDoctorsComponent } from './components/browse-doctors/browse-doctors.component';
+import { PageNotFoundComponentComponent } from './components/page-not-found-component/page-not-found-component.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'landing', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'browseDoctors', component: BrowseDoctorsComponent },
   { path: 'landing', component: LandingComponent },
@@ -49,7 +61,8 @@ export const routes: Routes = [
   { path: 'VisitedPatientprofile/:id', component: PatientVisitedProfileComponent },
   { path: 'VisitedDoctorprofile/:id', component: DoctorVisitedProfileComponent },
   { path: 'results-test', component: ResultsTestComponent },
-  //{ path: 'story-test', component: StoryTestComponent },
+  {path:'appointmentTimes',component:AppointmentTimesComponent},
+  { path: 'story-test', component: StoryTestComponent },
   { path: 'AllStories', component: AllStoriesComponent },
   { path: 'story-test', component: StoryTestComponent },
   { path: 'Question', component: QuestionsComponent },
@@ -64,11 +77,18 @@ export const routes: Routes = [
 
   {path : 'Admindashboard' , component : AdminDashboardComponent},
 
-  { path: 'slider', component: SliderComponent },
+  {path:'AllTests', component: AllTestsComponent},
+  // {path:'QuestionTestComponent' , component:QuestionTestComponent}
+  { path: 'question-test', component: QuestionTestComponent },
+  
+  {path:'ResultsTest',component:TestResultComponent}
+,
+  { path: 'slider', component: DoctorSliderComponent },
+  { path: 'contactus', component: ContactUsComponent },
 
 
 
-  { path: 'Question/:storyTestId', component: QuestionsComponent },
+  // { path: 'Question/:storyTestId', component: QuestionsComponent },
 
-
+  { path: '**', component: PageNotFoundComponentComponent }
 ];

@@ -9,11 +9,8 @@
     <div class="profile patientProfile">
       <div class="profileHeader">
         <div>
-          <img
-            src="assets/doctor5.PNG"
-            alt="PatientImage"
-            class="ProfilePic"
-          />
+          <img [src]="getImageUrl() + profileData.patientPicURL" alt="DoctorImage" class="DocProfilePic">
+          <input *ngIf="editMode" type="file" (change)="onFileSelected($event)" />
         </div>
         <div class="btns">
           <app-whatsapp-chat-with-my-doctor [doctorId]="profileData.doctorId"></app-whatsapp-chat-with-my-doctor>
@@ -23,27 +20,14 @@
           <button class="btn d-flex text-align-baseline d-lg-none d-block">
             <i class="fa-regular fa-calendar-check"></i>
           </button>
-
           <button class="d-none d-lg-block btn secBtn ">
-            <a routerLink="/notes" >
-            <i class="fa-regular fa-note-sticky"></i>
-          </a>
+            <btn routerLink="/notes" >
+            <i class="fa-regular fa-note-sticky text-secondary"></i>
+          </btn>
           </button>
       </div>
 
-        <div *ngIf="appointments.length > 0">
-            <h4>Appointment</h4>
-            <ul>
-              <li *ngFor="let appointment of appointments">
-                <p>Date: {{ appointment.date }}</p>
-                <p>Time: {{ appointment.startTime }} - {{ appointment.endTime }}</p>
-              </li>
-            </ul>
-          </div>
-          <div *ngIf="appointments.length === 0">
-            <p>No appointments found.</p>
-          </div>
-        </div>
+
 
       <div class="profileDetails">
         <h3>
@@ -64,6 +48,31 @@
           <span class="thirdBtn">Age: <span *ngIf="!editMode">{{ profileData.patientAge }}</span>
             <span *ngIf="editMode"><input [(ngModel)]="profileData.patientAge" /></span></span>
         </div>
+<hr>
+        <div *ngIf="doctor" class=" responsibleDoctor mt-4">
+          <h3>Responsible Doctor</h3>
+          <a [routerLink]="['/VisitedDoctorprofile', doctor.id]" class="text-decoration-none">
+            <div class="profileDetails subTitel">
+              <p>Dr: {{ doctor.fullName }}</p>
+            </div>
+          </a>
+<hr>
+          <div *ngIf="appointments.length > 0">
+            <h4>Appointment</h4>
+            <ul>
+              <li *ngFor="let appointment of appointments">
+                <p>Date: {{ appointment.date }}</p>
+                <p>Time: {{ appointment.startTime }} - {{ appointment.endTime }}</p>
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="appointments.length === 0">
+            <p>No appointments found.</p>
+          </div>
+        </div>
+
+        </div>
+
       </div>
     </div>
 
@@ -101,18 +110,141 @@
         <div>
           <h5 class="avTitle">Reports</h5>
         </div>
-        <div class="doctoravaliablity d-flex justify-content-center flex-wrap">
-          <div *ngFor="let report of profileData?.reports" class="calender col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-            <div class="card p-3">
-              <strong (click)="viewReport(report.reportID)" style="cursor: pointer;">{{ report.dateTime | date: 'MMM dd, yyyy' }}</strong>
-              <div>{{ report.title }}</div>
+        <div
+          class="doctoravaliablity d-flex justify-content-center flex-nowrap"
+        >
+          <div
+            *ngFor="let report of profileData?.reports"
+            class="report-head d-flex justify-content-between align-items-start px-3 m-3 outercon"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+          >
+            <div
+              (click)="viewReport(report.reportID)"
+              style="cursor: pointer"
+              class="DoctorInfo w-75"
+            >
+              <div class="outer me-4">
+                <img src="../../../assets/logo.svg" alt="">
+              </div>
+              <div class="d-flex align-items-center">
+                <div>
+                  <h6 class="fs-4 fw-semibold">{{ report.doctorName }}</h6>
+                  <p class="fs-6 reportName fw-semibold">{{ report.title }}</p>
+                  <p class="text-secondary">
+                    {{ report.dateTime | date : "MMM dd, yyyy" }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="reportInfo">
+              <!-- <button (click)="downloadReportAsPDF(report)" class="fs-6 fw-semibold btn bg-purpel Download">
+                <i class="fa-solid fa-download"></i>
+              </button> -->
             </div>
           </div>
-          <div *ngIf="profileData?.reports?.length === 0" class="text-center w-100 mt-4">
+          <div
+            *ngIf="profileData?.reports?.length === 0"
+            class="text-center w-100 mt-4"
+          >
             No reports available.
           </div>
         </div>
       </div>
     </div>
+
+    <ng-template #reportModal let-modal>
+      <div class="modal-content">
+        <div class="">
+          <section class="report rounded-3 bg-white p-3 modal-body">
+            <div class="">
+      <div class="report-head d-flex justify-content-between align-items-start p-3 ">
+      <div class="DoctorInfo w-75">
+        <div class="d-flex align-items-center">
+          <div class="w-25 me-4">
+            <img src="../../../assets/logo.svg" alt="">
+          </div>
+          <div class="">
+            <h4 class="fs-4 fw-semibold">Dr. {{ reportDetails.doctorName }}</h4>
+            <p class="fs-6 fw-semibold text-secondary">{{ reportDetails.title }}</p>
+            <p class="mt-2 fw-bold text-secondary fs-4">{{ reportDetails.dateTime  | date : "MMM dd, yyyy" }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="reportInfo">
+        <button (click)="downloadReportAsPDF(reportDetails)" class="fs-6 fw-semibold btn bg-purpel Download"><i class="fa-solid fa-download"></i></button>
+      </div>
+      </div>
+      <div class="report-body position-relative">
+        <div class="overlay "></div>
+        <h4 class="fs-3 fw-semibold text-center mt-3">{{ reportDetails.patientName }}</h4>
+        <p class="m-3">
+          <span class="m-4 fs-1 fw-bold text-purpel" style="font-family:cursive;">RX/</span>
+          {{ reportDetails.description }}
+        </p>
+      </div>
+      <div>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 text-reset">redmindme.com</a>
+      </div>
+      </div>
+          </section>
+        </div>
+      </div>
+
+    </ng-template>
+
   </div>
 </div>
+
+
+<!-- <div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="">
+        <section class="report rounded-3 bg-white p-3 modal-body">
+          <div class="">
+            <div class="report-head d-flex justify-content-between align-items-start p-3 ">
+              <div class="DoctorInfo w-75">
+                <div class="d-flex align-items-center">
+                  <div class="w-25 me-4">
+                    <img src="../../../assets/logo.svg" alt="">
+                  </div>
+                  <div class="">
+                    <h4 class="fs-4 fw-semibold">{{ reportDetails.title }}</h4>
+                    <p class="fs-6 fw-semibold text-secondary">{{ reportDetails.description }}</p>
+                    <p class="mt-2 fw-bold text-secondary fs-4">{{ reportDetails.dateTime }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="reportInfo">
+                <button class="fs-6 fw-semibold btn bg-purpel Download"><i class="fa-solid fa-download"></i></button>
+              </div>
+            </div>
+            <div class="report-body position-relative">
+              <div class="overlay "></div>
+              <h4 class="fs-3 fw-semibold text-center mt-3">{{ reportDetails.patientName }}</h4>
+              <p class="m-3">
+                <span class="m-4 fs-1 fw-bold text-purpel" style="font-family:cursive;">RX/</span>
+              </p>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div> -->
+
+

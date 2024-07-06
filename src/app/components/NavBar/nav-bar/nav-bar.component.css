@@ -79,3 +79,6 @@ color: var(--pprimary-Color);
   background-color:var(--pprimary-Color); /* Example background color: AliceBlue */
   /* Add other styles as needed */
 }
+.clicable{
+  cursor: pointer;
+}
