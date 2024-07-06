@@ -1,70 +1,93 @@
 <nav class="navbar navbar-expand-lg navbar-light sticky-top">
   <div class="container d-flex justify-content-between">
     <img class="logo" src="assets/logo.svg" alt="logo">
-    <button
-      class="navbar-toggler"
-      type="button"
-      (click)="toggleNavbar()"
-      aria-controls="navbarText"
-      aria-expanded="!isNavbarCollapsed"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" aria-controls="navbarText"
+      aria-expanded="!isNavbarCollapsed" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
     </button>
-    <div
-      [ngClass]="{'collapse': isNavbarCollapsed, 'navbar-collapse': true}"
-      id="navbarText" class="navbar-collapse collapse d-lg-flex justify-content-between"
-    >
+    <div [ngClass]="{'collapse': isNavbarCollapsed, 'navbar-collapse': true}" id="navbarText"
+      class="navbar-collapse collapse d-lg-flex justify-content-between">
       <ul class="navbar-nav mb-lg-0 d-flex mr-5">
         <li class="nav-item px-3">
-          <a class="nav-link active p-lg-2" routerLink="/landing" routerLinkActive="bg-info text-light">Welcome</a>
+          <a class="nav-link active p-lg-2" routerLink="/home" routerLinkActive="bg-purpel text-light">Home</a>
         </li>
         <!-- <li class="nav-item px-3">
-          <a class="nav-link active p-lg-2" routerLink="/home" routerLinkActive="bg-info text-light">Home</a>
+          <a class="nav-link active p-lg-2" routerLink="/home" routerLinkActive="bg-purpel text-light">Home</a>
         </li> -->
         <li class="nav-item px-3">
-          <a class="nav-link active p-lg-2" routerLink="/browseDoctors" routerLinkActive="bg-info text-light">Browse Doctors</a>
+          <a class="nav-link active p-lg-2" routerLink="/browseDoctors" routerLinkActive="bg-purpel text-light">Browse
+            Doctors</a>
         </li>
         <li class="nav-item px-3">
-          <a class="nav-link p-lg-2" routerLink="/doctorProfile" routerLinkActive="bg-info text-light">Doctor</a>
+          <a class="nav-link p-lg-2" routerLink="/dashboard" routerLinkActive="bg-purpel text-light">Dasnboard</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link p-lg-2" routerLink="/AllStories" routerLinkActive="bg-purpel text-light">Stories</a>
         </li>
         <li class="nav-item px-3" *ngIf="!isLoggedIn"> <!-- Show login if not logged in -->
-          <a class="nav-link p-lg-2" routerLink="/login" routerLinkActive="bg-info text-light">Login</a>
+          <a class="nav-link p-lg-2" routerLink="/login" routerLinkActive="bg-purpel text-light">Login</a>
         </li>
-        <li class="nav-item px-3">
-          <a class="nav-link p-lg-2" routerLink="/patientProfile" routerLinkActive="bg-info text-light">Patient</a>
-        </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" routerLink="/notes"  routerLinkActive="bg-info text-light">Sticky Notes</a>
+        <!-- <li class="nav-item px-3">
+          <a class="nav-link p-lg-2" routerLink="/patientProfile" routerLinkActive="bg-purpel text-light">Patient</a>
+        </li> -->
+        <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/notes"  routerLinkActive="bg-purpel text-light">Sticky Notes</a>
       </li> -->
 
-      <!-- <li class="nav-item">
-        <a class="nav-link" routerLink="/slider"  routerLinkActive="bg-info text-light">Slider</a>
+        <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/slider"  routerLinkActive="bg-purpel text-light">Slider</a>
       </li> -->
 
-      <!-- <li class="nav-item">
-        <a class="nav-link" routerLink="/xo"  routerLinkActive="bg-info text-light">Noughts and Crosses</a>
+        <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/xo"  routerLinkActive="bg-purpel text-light">Noughts and Crosses</a>
       </li> -->
-      <!-- <li class="nav-item">
-        <a class="nav-link" routerLink="/hangman"  routerLinkActive="bg-info text-light">HangMan</a>
+        <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/hangman"  routerLinkActive="bg-purpel text-light">HangMan</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/memorycards"  routerLinkActive="bg-info text-light">MemoryCards</a>
+        <a class="nav-link" routerLink="/memorycards"  routerLinkActive="bg-purpel text-light">MemoryCards</a>
       </li> -->
         <li class="nav-item px-3">
-          <a class="nav-link p-lg-2" aria-current="page" (click)="scrollToAboutUs($event)" href="#about-us">About</a>
+          <a class="nav-link p-lg-2" aria-current="page" (click)="scrollToAboutUs($event)" routerLink="/aboutus" >About</a>
         </li>
         <li class="nav-item px-3">
-          <a class="nav-link p-lg-2" aria-current="page" (click)="scrollToContactUs($event)" href="#contact-us">Contact Us</a>
+          <a class="nav-link p-lg-2" aria-current="page" (click)="scrollToContactUs($event)" routerLink="/contactus">Contact
+            Us</a>
         </li>
       </ul>
       <div class="search d-none d-lg-flex pr-5 ">
-        <i class="fa-solid fa-magnifying-glass px-3 searchIcon"></i>
-        <i class="fa-regular fa-user px-3"></i>
-        <i class="fa-regular fa-calendar px-3"></i>
-        <i class="fa-regular fa-bell px-3"></i>
+        <i class="fa-solid fa-magnifying-glass px-3 searchIcon clicable " routerLink="/browseDoctors"></i>
+        <i class="fa-regular fa-user px-3 clicable" routerLink="/myProfile"></i>
       </div>
     </div>
-    <button *ngIf="isLoggedIn" (click)="logout()" class="btn rounded-pill main-btn">Log out</button> <!-- Show logout if logged in -->
+    <button data-bs-toggle="modal" data-bs-target="#exampleModal"
+      class="btn rounded-pill main-btn me-2">Register</button>
+    <button routerLink="/login" class="btn rounded-pill main-btn">login</button>
+    <!-- <button *ngIf="isLoggedIn" (click)="logout()" class="btn rounded-pill main-btn">Log out</button>  -->
   </div>
 </nav>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Remind Me</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <p class="fw-bold text-center">Register As A..?</p>
+      <div class="modal-body d-flex justify-content-center align-items-center">
+        <div class="registerDoc btn rounded-2 main-btn me-2 w-25" routerLink="/registerDoctor" data-bs-dismiss="modal" aria-label="Close">
+          <img src="../../../../assets/jpeg/doctor.png" alt="doc" width="100%">
+          Doctor
+        </div>
+        <div class="registerPatient btn rounded-2 main-btn w-25" routerLink="/registerRelative" data-bs-dismiss="modal" aria-label="Close">
+          <img src="../../../../assets/jpeg/patient.png" alt="patient" width="100%">
+          Patient
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

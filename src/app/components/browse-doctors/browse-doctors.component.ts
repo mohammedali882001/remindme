@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { DoctorFilterComponent } from "../../../components/doctor-filter/doctor-filter.component";
-import { DoctorCardComponent } from "../../../components/doctor-card/doctor-card.component";
-import { FilterDoctorDTO } from '../../../models/Doctor/filter-doctor-dto';
-import { DoctorService } from '../../../services/DoctorServices/doctor.service';
-import { DoctorSliderComponent } from "../../../components/slider/slider.component";
+
+
+import { DoctorSliderComponent } from '../slider/slider.component';
+import { DoctorCardComponent } from '../doctor-card/doctor-card.component';
+import { DoctorFilterComponent } from '../doctor-filter/doctor-filter.component';
+import { FilterDoctorDTO } from '../../models/Doctor/filter-doctor-dto';
+import { DoctorService } from '../../services/DoctorServices/doctor.service';
+
 @Component({
     selector: 'app-browse-doctors',
     standalone: true,
@@ -12,6 +15,7 @@ import { DoctorSliderComponent } from "../../../components/slider/slider.compone
     imports: [DoctorFilterComponent, DoctorCardComponent, DoctorSliderComponent]
 })
 export class BrowseDoctorsComponent {
+  
 //   filteredDoctors: FilterDoctorDTO[] = [];
 
 //   updateFilteredDoctors(doctors: FilterDoctorDTO[]): void {

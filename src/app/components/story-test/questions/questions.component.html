@@ -47,12 +47,11 @@
                (click)="selectOption(i, option)">
             <label for="option{{ i }}{{ j }}" class="text-secondary">{{ option }}</label>
             <input type="radio" id="option{{ i }}{{ j }}" name="options{{ i }}" [value]="option"
-                   [(ngModel)]="selectedOptions[i]" />
+                    [(ngModel)]="selectedOptions[i]" />
           </div>
         </div>
       </div>
     </div>
-
     <button type="button" class="btn main-border btnUnderstand" (click)="submitAnswers()">Submit</button>
   </div>
 </section>

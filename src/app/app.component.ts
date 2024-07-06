@@ -11,7 +11,6 @@ import { LandingComponent } from './components/landing/landing.component';
 import { DoctorSignUpComponent } from './components/doctor-sign-up/doctor-sign-up.component';
 import { RestPasswordComponent } from './components/rest-password/rest-password.component';
 import { SharedModule } from './models/shared-module';
-//import { EditDoctorProfileComponent } from './components/Edit-DoctorProfile/edit-doctor-profile/edit-doctor-profile.component';
 import { QuestionsComponent } from './components/story-test/questions/questions.component';
 import { FormsModule } from '@angular/forms';
 import { ResultsTestComponent } from './components/story-test/results-test/results-test.component';
@@ -24,6 +23,8 @@ import { AdminDashboardComponent } from "./pages/AdminDashboard/admin-dashboard/
 
 import { StoryTestComponent } from './components/story-test/story-test.component';
 import { AppointmentTimesComponent } from './components/appointment-times/appointment-times.component';
+import { HomeComponent } from './pages/home/home.component';
+
 import { ReportsComponent } from "./components/reports/reports.component";
 import { AllTestsComponent } from './components/Test/All_Tests/all-tests/all-tests.component';
 import { QuestionTestComponent } from './components/Test/Test_Quesrion/question-test/question-test.component';

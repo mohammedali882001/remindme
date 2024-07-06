@@ -1,5 +1,5 @@
 <section class="signUp">
-    <div class="signUpForm w-75 m-auto bg-white p-5">
+    <div class="signUpForm w-75 m-auto my-4  p-5">
       <h1 class="fw-bolder">Create Your Account</h1>
       <p class="lead">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</p>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mx-4 mt-2">
@@ -125,7 +125,7 @@
           <input id="patientLocation" formControlName="patientLocation" type="text" class="form-control my-3" />
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3"[disabled]="registerForm.invalid">Submit</button>
+        <button type="submit" class="p-2 rounded-2 bg-purpel  mt-3 main-border text-white"[disabled]="registerForm.invalid">Submit</button>
       </form>
     </div>
   </section>

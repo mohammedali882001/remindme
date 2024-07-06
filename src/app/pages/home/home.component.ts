@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { DoctorFilterComponent } from "../../components/doctor-filter/doctor-filter.component";
+import { LandingComponent } from '../../components/landing/landing.component';
+import { DoctorSliderComponent } from '../../components/slider/slider.component';
+import { AlzheimersInfoComponent } from '../../components/alzheimers-info/alzheimers-info.component';
+import { AlzheimersQFAComponent } from '../../components/alzheimers-qfa/alzheimers-qfa.component';
 
 
 @Component({
@@ -7,7 +10,7 @@ import { DoctorFilterComponent } from "../../components/doctor-filter/doctor-fil
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
-    imports: [DoctorFilterComponent]
+    imports: [LandingComponent,DoctorSliderComponent,AlzheimersInfoComponent,AlzheimersQFAComponent]
 })
 export class HomeComponent {
 
