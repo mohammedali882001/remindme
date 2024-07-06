@@ -80,7 +80,12 @@ export class TestServiceService {
     return this.http.get<GeneralResponse<TestDTO[]>>(this.apiUrl);
   }
 
-  getTest(testId: number): Observable<GeneralResponse<TestDTO>> {
+  // getTest(testId: number): Observable<GeneralResponse<TestDTO>> {
+  //   return this.http.get<GeneralResponse<TestDTO>>(`${this.apiUrl}/test/${testId}`);
+  // }
+
+   // Add the method to get the test by ID
+   getTestById(testId: number): Observable<GeneralResponse<TestDTO>> {
     return this.http.get<GeneralResponse<TestDTO>>(`${this.apiUrl}/test/${testId}`);
   }
 //Admin

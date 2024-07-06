@@ -46,32 +46,38 @@
 
 <!-- story-test.component.html -->
 <!-- story-test.component.html -->
-<section class="storyTest d-flex align-items-center justify-content-center position-relative">
+<section class="storyContainer">
   <!-- Story details container -->
-  <div class="storyContainer container main-border">
-    <img *ngIf="storyTest?.storyImageUrl" [src]="Pic_Sound_URl + storyTest?.storyImageUrl" class="img-fluid mb-3" alt="Story Image">
-    <p>{{ storyTest?.storyDescription }}</p>
-  </div>
+  <div class=" container  ">
+  <h2 class="text-center">{{ storyTest?.storyDescription }}</h2>
 
-  <!-- Button to show the modal and play the audio -->
-  <div class="btnTest m-2">
-    <button type="button" class="btn bg-purple btnUnderstand text-white border border-dark" (click)="openModal(attentionModal)">
+    <div class="imgTest main-border rounded-circle m-auto overview-hidden">
+      <img *ngIf="storyTest?.storyImageUrl" [src]="Pic_Sound_URl + storyTest?.storyImageUrl" class="main-border rounded-circle" width="100%" alt="Story Image">
+    </div>
+  </div>
+<div class="d-flex align-items-center justify-content-center">
+  <div class="btnTest m-2 w-50">
+    <button type="button" class="btn border border-dark w-50" (click)="openModal(attentionModal)">
       Play Audio
     </button>
   </div>
 
-  <!-- Button to navigate to questions -->
-  <div class="btnTest mx-2 mb-1">
-    <button type="button" class="btn btn-danger bg-purple btnUnderstand text-white" (click)="goToQuestions(storyTest?.storyId)">
+
+  <div class="btnTest mx-2 mb-1 w-50">
+    <button type="button" class="p-2 border-0 rounded-2 QuestionsBtn text-white w-50" (click)="goToQuestions(storyTest?.storyId)">
       Go to Questions
     </button>
   </div>
+</div>
+
+
 </section>
 
-<!-- Modal for warning -->
 <ng-template #attentionModal>
   <div class="modal-header">
-    <h4 class="modal-title">Attention!</h4>
+    <h4 class="modal-title">
+
+       Attention! <img src="../../../assets/jpeg/warning_2797388.png" alt="" width="10%"></h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismissModal()"></button>
   </div>
   <div class="modal-body">
