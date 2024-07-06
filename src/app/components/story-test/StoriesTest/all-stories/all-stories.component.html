@@ -19,25 +19,43 @@
     {{ errorMessage }}
   </div>
 
-  <div class="row row-cols-1 row-cols-sm-2">
-    <div class="col mb-4 d-flex justify-content-center" *ngFor="let story of stories">
-      <div class="card" style="width: 35rem;">
+  <div class="row ">
+    <div class="col-lg-4 clo-md-6 col-sm-12 mb-3" *ngFor="let story of stories">
+    
+      <div class="card" >
+        <img *ngIf="story.storyImageUrl" [src]="picURl + '/' + story.storyImageUrl" class="" alt="Story Image">
+        <div class="card-body">
+          <h5 class="text-center fs-2 fw-bold ">{{ story.storyDescription }}</h5>
+          <div class="d-flex align-items-center">
+            <p class="card-text fs-5 me-auto">Degree: {{ story.storyDegree }}</p>
+            <button class="card-text fs-4 btn p-0 mb-3" >Delete <i class="fa-solid fa-trash-can text-danger"></i></button>
+          </div>
+         
+          <button class="p-2 rounded-2 main-border " (click)="takeTest(story.storyId)">Take Test</button>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+
+  <!-- <div class="card" style="width: 35rem;">
         <div class="docHead m-2 d-flex align-items-start flex-wrap">
-          <img *ngIf="story.storyImageUrl" [src]="picURl + '/' + story.storyImageUrl" class="DocProfilePic" alt="Story Image">
+          <div class="testImg">
+           
+          </div>
           <div class="card-body">
             <div class="docInfo text-left">
               <h5 class="text-left docName fw-bold cardTitle">
-                {{ story.storyDescription }}
+                
               </h5>
-              <p class="text-secondary">Degree: {{ story.storyDegree }}</p>
+              <p class="text-secondary"></p>
             </div>
           </div>
         </div>
         <div class="docMoreInfo d-flex justify-content-center m-2">
-          <button class="btn btn-primary" (click)="takeTest(story.storyId)">Take Test</button>
+          
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+      </div> -->

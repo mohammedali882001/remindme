@@ -32,12 +32,13 @@ import { TestResultComponent } from './components/Test/ResultTest/test-result/te
 import { FirstTestComponent } from './components/Test/Specific_Tests/First_test/first-test/first-test.component';
 import { SpecificTestResultComponent } from './components/Test/Specific_Tests/Specific_Test_Result/specific-test-result/specific-test-result.component';
 import { SecondTestComponent } from './components/Test/Specific_Tests/Second_Test/second-test/second-test.component';
+import { AddTestComponent } from './components/Test/Admin_Pages/Add_Test/add-test/add-test.component';
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent, DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent, AdminDashboardComponent, ReportsComponent ,AllTestsComponent ,QuestionTestComponent , TestResultComponent , FirstTestComponent , SpecificTestResultComponent , SecondTestComponent]
+    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent, DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent, AdminDashboardComponent, ReportsComponent ,AllTestsComponent ,QuestionTestComponent , TestResultComponent , FirstTestComponent , SpecificTestResultComponent , SecondTestComponent , AddTestComponent]
 })
 export class AppComponent {
   title = "remindme";
