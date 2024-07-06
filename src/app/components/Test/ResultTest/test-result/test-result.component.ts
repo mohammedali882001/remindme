@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResultOfTestDTO } from '../../../../models/Test/result-of-test-dto';
 import { TestServiceService } from '../../../../services/TestService/test-service.service';
 import { CommonModule } from '@angular/common'; // Import CommonModule
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class TestResultComponent implements OnInit {
   result: ResultOfTestDTO | null = null;
   formattedResults: { question: string; patientAnswer: string; correctAnswer: string; isCorrect: boolean }[] = [];
 
-  constructor(private testService: TestServiceService) {}
+  constructor(private testService: TestServiceService , private router: Router) {}
 
   ngOnInit(): void {
     this.testService.getResult().subscribe(result => {
@@ -42,5 +42,7 @@ export class TestResultComponent implements OnInit {
       this.formattedResults = [];
     }
   }
-  
+  goBack(): void {
+    this.router.navigate(['/AllTests']); // Adjust the route as needed
+  }
 }

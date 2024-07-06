@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
   </div>
@@ -10,6 +10,33 @@
         <h5 class="card-title">{{ story.storyDescription }}</h5>
         <p class="card-text">Degree: {{ story.storyDegree }}</p>
         <button class="btn btn-primary" (click)="takeTest(story.storyId)">Take Test</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="container mt-4">
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-2">
+    <div class="col mb-4 d-flex justify-content-center" *ngFor="let story of stories">
+      <div class="card" style="width: 35rem;">
+        <div class="docHead m-2 d-flex align-items-start flex-wrap">
+          <img *ngIf="story.storyImageUrl" [src]="picURl + '/' + story.storyImageUrl" class="DocProfilePic" alt="Story Image">
+
+          <div class="card-body">
+            <div class="docInfo text-left">
+              <h5 class="text-left docName fw-bold cardTitle">
+                {{ story.storyDescription }}
+              </h5>
+              <p class="text-secondary">Degree: {{ story.storyDegree }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="docMoreInfo d-flex text-secondary m-2 justify-content-start flex-wrap">
+          <button class="btn btn-primary" (click)="takeTest(story.storyId)">Take Test</button>
+        </div>
       </div>
     </div>
   </div>
