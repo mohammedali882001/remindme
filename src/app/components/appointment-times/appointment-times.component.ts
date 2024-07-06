@@ -34,14 +34,14 @@ export class AppointmentTimesComponent implements OnInit {
     this.selectedTime = time;
 
     Swal.fire({
-      title: 'Do you want to save the changes?',
+      title: 'Are You Sure that You want to Reserve?',
       input: 'text',
       inputLabel: 'Reason for appointment',
       inputPlaceholder: 'Enter your reason here...',
-      showDenyButton: true,
+      // showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Save',
-      denyButtonText: `Don't save`
+    //  denyButtonText: `Don't save`
     }).then(result => {
       if (result.isConfirmed) {
         const request = {
