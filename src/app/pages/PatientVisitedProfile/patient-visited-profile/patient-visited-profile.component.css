@@ -277,3 +277,6 @@ body, html {
 .reportName{
   color: var(--main-Color)
  }
+a{
+  color: #333 !important;
+}
