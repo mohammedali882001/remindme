@@ -116,7 +116,7 @@ export class LoginComponent {
               if (response.data === 'In Progress') {
                 Swal.fire({
                   title: 'Account Pending',
-                  text: 'Your account is currently pending approval.',
+                  text: 'Your account is currently pending approval... Wait For Mail ',
                   icon: 'question'
                 });
               } else if (response.data === "Your Data That You Entered isn't True Please Register Again") {
@@ -124,7 +124,7 @@ export class LoginComponent {
                   icon: 'error',
                   title: 'Registration Error',
                   text: 'Your data is not correct. Please register again!',
-                 
+
                 });
               } else {
                 this.errorMessage = 'Invalid username or password';

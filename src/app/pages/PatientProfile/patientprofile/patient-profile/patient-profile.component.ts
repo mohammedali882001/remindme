@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { PatientService } from '../../../../services/PatientServices/patient.service';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../../models/shared-module';
@@ -9,6 +9,9 @@ import { WhatsappChatWithMyDoctorComponent } from "../../../../components/whatsa
 import { RouterLink } from '@angular/router';
 import { AppointmentOfPatient } from '../../../../models/Patient/appointment-of-patient';
 import { environment } from '../../../../../environments/environment.development';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import jsPDF from 'jspdf';
+import { PatientVisitedProfileService } from '../../../../services/PatientServices/patient-visited-profile.service';
 
 @Component({
   selector: 'app-patient-profile',
@@ -23,12 +26,19 @@ export class PatientProfileComponent implements OnInit {
   editMode: boolean = false;
   appointments: AppointmentOfPatient[] = [];
   selectedFile: File | null = null;
+  doctor: any = null;
 
-  constructor(private patientService: PatientService) {}
+  @ViewChild('reportModal') reportModal!: TemplateRef<any>;
+  reportDetails: any = {};  // To store report details
+
+  constructor(private patientService: PatientService,
+     private modalService: NgbModal,
+    private patientVisitedProfileService:PatientVisitedProfileService) {}
 
   ngOnInit(): void {
     this.fetchProfileAndReports();
     this.fetchUpcomingAppointment();
+    this.checkDoctorOfPatient(); 
   }
 
   fetchUpcomingAppointment(): void {
@@ -111,6 +121,22 @@ export class PatientProfileComponent implements OnInit {
     }
   }
 
+  checkDoctorOfPatient(): void {
+    this.patientVisitedProfileService.getDoctorOfPatient().subscribe({
+      next: (response) => {
+        if (response.isSuccess) {
+          this.doctor = response.data; // Store doctor details
+        } else {
+          this.doctor = null; // No doctor found
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching doctor of patient:', error);
+        this.doctor = null;
+      }
+    });
+  }
+
   updateProfileData(): void {
     this.patientService.updatePatientProfile(this.profileData).subscribe({
       next: (response) => {
@@ -131,16 +157,10 @@ export class PatientProfileComponent implements OnInit {
   viewReport(reportId: number): void {
     this.patientService.viewReport(reportId).subscribe({
       next: (response) => {
-        const report = response.data;
-        Swal.fire({
-          title: report.title,
-          html: `
-            <p>Description: ${report.description}</p>
-            <p>Patient Name: ${report.patientName}</p>
-            <p>Doctor Name: ${report.doctorName}</p>
-            <p>Date: ${report.dateTime}</p>
-          `
-        });
+        this.reportDetails = response.data;
+        console.log( this.reportDetails);
+
+        this.modalService.open(this.reportModal, { centered: true });
       },
       error: (error) => {
         console.error('Error fetching report:', error);
@@ -152,6 +172,41 @@ export class PatientProfileComponent implements OnInit {
       }
     });
   }
+
+  downloadReportAsPDF(report: any): void {
+  const doc = new jsPDF();
+
+  const title = `Title: ${report.title}`;
+  const patientName = `Patient Name: ${report.patientName}`;
+  const doctorName = `Doctor Name: ${report.doctorName}`;
+  const date = `Date: ${report.dateTime}`;
+
+  // Positioning
+  let y = 10; // Initial vertical position
+
+  // Title
+  doc.text(title, 10, y);
+  y += 10; // Increment y position
+
+  // Description
+  const maxWidth = 190; // Maximum width for text
+  const textLines = doc.splitTextToSize(`Description: ${report.description}`, maxWidth);
+  doc.text(textLines, 10, y);
+  y += (textLines.length * 7); // Adjust y position based on number of lines
+
+  // Patient Name
+  doc.text(patientName, 10, y);
+  y += 10; // Increment y position
+
+  // Doctor Name
+  doc.text(doctorName, 10, y);
+  y += 10; // Increment y position
+
+  // Date
+  doc.text(date, 10, y);
+
+  doc.save(`${report.title}.pdf`);
+}
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];

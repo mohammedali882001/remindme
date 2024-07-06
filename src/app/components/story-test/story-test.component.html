@@ -44,17 +44,13 @@
   </div>
 </ng-template> -->
 
+<!-- story-test.component.html -->
+<!-- story-test.component.html -->
 <section class="storyTest d-flex align-items-center justify-content-center position-relative">
   <!-- Story details container -->
   <div class="storyContainer container main-border">
-    <h1>{{ storyTest?.storyId }}</h1>
     <img *ngIf="storyTest?.storyImageUrl" [src]="Pic_Sound_URl + storyTest?.storyImageUrl" class="img-fluid mb-3" alt="Story Image">
     <p>{{ storyTest?.storyDescription }}</p>
-
-    <audio id="audioPlayer" controls controlsList="nodownload" *ngIf="storyTest?.storySoundPath">
-      <source [src]="Pic_Sound_URl + storyTest?.storySoundPath" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
   </div>
 
   <!-- Button to show the modal and play the audio -->

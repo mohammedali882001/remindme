@@ -12,7 +12,7 @@
         <div class="card" style="width: 35rem;">
           <div class="docHead m-2 d-flex align-items-start flex-wrap">
           <!-- <img [src]="doctor.picURL" class="card-img-top docImg" alt="doctor"/> -->
-          <img [src]="getImageUrl() + doctor.picURL" alt="DoctorImage" class="DocProfilePic">
+          <img [src]="getImageUrl() + doctor.picURL" alt="DoctorImage" class="card-img-top docImg">
           <div class="card-body ">
             <div class="docInfo text-left">
               <a [routerLink]="['/VisitedDoctorprofile', doctor.id]" class="text-decoration-none">

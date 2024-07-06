@@ -9,7 +9,7 @@
       </a>
     </li>
 
-    
+
     <li>
       <a  routerLink="/Admindashboard"  routerLinkActive="active">
 
@@ -18,12 +18,10 @@
       </a>
     </li>
 
-    <li>
+    <li *ngIf="isAuthorizedToReserve">
       <a routerLink="/appointmentTimes"  routerLinkActive="active">
-
         <i class="fa-solid fa-clock"></i>
         <p>Visits</p>
-
       </a>
     </li>
     <li>

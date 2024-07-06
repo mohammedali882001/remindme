@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { StoryInfoDto } from '../../../../models/Story/story-info-dto';
 import { StoryServicesService } from '../../../../services/StoryService/story-services.service';
@@ -18,7 +18,7 @@ import { SharedModule } from '../../../../models/shared-module';
   templateUrl: './all-stories.component.html',
   styleUrl: './all-stories.component.css'
 })
-export class AllStoriesComponent  implements OnInit {
+export class AllStoriesComponent  implements OnInit , AfterViewInit {
   stories: StoryInfoDto[] = [];
   errorMessage: string = '';
   picURl:string= "http://localhost:2100" ;
@@ -27,10 +27,16 @@ export class AllStoriesComponent  implements OnInit {
     private storyService: StoryServicesService,
     private router: Router
   ) { }
-
   ngOnInit(): void {
     this.getAllStories();
   }
+  ngAfterViewInit(): void {
+    this.getAllStories();
+  }
+
+  // AfterViewInit(): void {
+  //   this.getAllStories();
+  // }
 
   getAllStories(): void {
     this.storyService.getAllStoryTests().subscribe(

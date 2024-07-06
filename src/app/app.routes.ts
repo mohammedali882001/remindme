@@ -32,7 +32,10 @@ import { AppointmentTimesComponent } from './components/appointment-times/appoin
 import { AdminDashboardComponent } from './pages/AdminDashboard/admin-dashboard/admin-dashboard.component';
 
 import { HomeComponent } from './pages/home/home.component';
+import { AllTestsComponent } from './components/Test/All_Tests/all-tests/all-tests.component';
 
+import { QuestionTestComponent } from './components/Test/Test_Quesrion/question-test/question-test.component';
+import { TestResultComponent } from './components/Test/ResultTest/test-result/test-result.component';
 
 
 
@@ -68,6 +71,12 @@ export const routes: Routes = [
 
 
   {path : 'Admindashboard' , component : AdminDashboardComponent},
+
+  {path:'AllTests', component: AllTestsComponent},
+  // {path:'QuestionTestComponent' , component:QuestionTestComponent}
+  { path: 'question-test', component: QuestionTestComponent },
+  
+  {path:'ResultsTest',component:TestResultComponent}
 
   // { path: 'slider', component: SliderComponent },
 
