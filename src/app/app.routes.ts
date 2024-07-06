@@ -41,10 +41,14 @@ import { DoctorSliderComponent } from './components/slider/slider.component';
 import { BrowseDoctorsComponent } from './components/browse-doctors/browse-doctors.component';
 import { PageNotFoundComponentComponent } from './components/page-not-found-component/page-not-found-component.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+
+import { AppointmentsWeeklyComponent } from './components/appointments-weekly/appointments-weekly.component';
+
 import { FirstTestComponent } from './components/Test/Specific_Tests/First_test/first-test/first-test.component';
 import { SpecificTestResultComponent } from './components/Test/Specific_Tests/Specific_Test_Result/specific-test-result/specific-test-result.component';
 import { SecondTestComponent } from './components/Test/Specific_Tests/Second_Test/second-test/second-test.component';
 import { AddTestComponent } from './components/Test/Admin_Pages/Add_Test/add-test/add-test.component';
+
 
 
 
@@ -70,6 +74,8 @@ export const routes: Routes = [
   { path: 'AllStories', component: AllStoriesComponent },
   { path: 'story-test', component: StoryTestComponent },
   { path: 'Question', component: QuestionsComponent },
+  { path: 'AcceptedAppointmets', component: AppointmentsWeeklyComponent },
+
 
 
   //Doctor dashboard
