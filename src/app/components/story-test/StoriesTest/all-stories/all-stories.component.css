@@ -1,22 +1,59 @@
-.container {
-  margin-top: 20px;
-}
+  .DocProfilePic {
+    width: 136px;
+    border-radius: 25px;
+    border: 0.6px solid #676767c4;
+    overflow: hidden;
+  }
 
-.card {
-  transition: transform 0.2s;
-}
+  @media (max-width: 540px) {
+    .DocProfilePic {
+      flex-direction: column;
+    }
+  }
 
-.card:hover {
-  transform: scale(1.05);
-}
+  .container {
+    margin-top: 20px;
+  }
 
-.card-img-top {
-  height: 200px;
-  object-fit: cover;
-}
+  .card {
+    transition: transform 0.2s;
+  }
 
-.card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .docInfo .text-left {
+    font-size: 1.25rem;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .docMoreInfo .btn-primary {
+    margin-top: 10px;
+  }
+
+  .docHead {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .docMoreInfo {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .cardTitle {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .text-secondary {
+    color: #6c757d !important;
+  }
