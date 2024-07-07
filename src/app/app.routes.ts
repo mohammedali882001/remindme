@@ -48,6 +48,8 @@ import { FirstTestComponent } from './components/Test/Specific_Tests/First_test/
 import { SpecificTestResultComponent } from './components/Test/Specific_Tests/Specific_Test_Result/specific-test-result/specific-test-result.component';
 import { SecondTestComponent } from './components/Test/Specific_Tests/Second_Test/second-test/second-test.component';
 import { AddTestComponent } from './components/Test/Admin_Pages/Add_Test/add-test/add-test.component';
+import { AdminAllTestsComponent } from './components/Test/Admin_Pages/Admin_All_Test/admin-all-tests/admin-all-tests.component';
+import { EditTestComponent } from './components/Test/Admin_Pages/EditTest/edit-test/edit-test.component';
 
 
 
@@ -104,6 +106,11 @@ export const routes: Routes = [
   {path:'SecondTestComponent' , component:SecondTestComponent},
 
   {path:'AddTestComponent' ,component :AddTestComponent },
+
+  {path:'AdminAllTestsComponent' , component:AdminAllTestsComponent},
+  // {path:'edit-test', component :EditTestComponent},
+  { path: 'edit-test/:id', component: EditTestComponent },
+
 
 
   // { path: 'Question/:storyTestId', component: QuestionsComponent },
