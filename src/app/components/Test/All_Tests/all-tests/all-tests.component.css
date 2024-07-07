@@ -93,14 +93,22 @@
   border-radius: 0 0 40px 40px;
 }
 .clr{
-  background-color: #f4f1f8;
+  color: #150332;
+  background-color: #f3f0f7;
+
  
 
 }
 .clr:hover{
   color: #150332;
-  background-color: #d9c4f9;
+  background-color: #cebbe8;
   font-weight: bold;
   font-size: 1rem; 
 
+}
+.clrr{
+  /* background-color: #f8f7fb; */
+  color: #150332;
+  font-weight: bold;
+  font-size: 1rem; 
 }

@@ -4,3 +4,18 @@
 .backToHome{
     color: var(--dark-blue);
 }
+.clr{
+    color: #150332;
+   
+  
+  }
+  .clr:hover{
+    color: #150332;
+    background-color: #c8b2e9;
+    font-weight: bold;
+    font-size: 1rem; 
+  
+  }
+  .clrr{
+    background-color: #f8f7fb;
+  }
