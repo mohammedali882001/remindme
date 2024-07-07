@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { RelativeDTO } from '../../models/Patient/relative-dto';
+import { GeneralResponse } from '../../models/Story/general-response';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,18 @@ export class PatientService {
 
   updatePhoto(formData: FormData): Observable<any> {
     return this.http.put<any>(this.updatePhotoUrl, formData);
+  }
+  deleteDoctorOfPatient(): Observable<any> {
+    return this.http.delete(`${environment.baseUrl}/PatientDoctor/DoctorOfPatient`);
+  }
+  getTestReviews(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/Test/ReviewTest`);
+  }
+  getReportsCountOfPatient(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/Report/ReportsCountOfPatient`);
+  }
+  getStoryReviews(): Observable<GeneralResponse> {
+    return this.http.get<GeneralResponse>(`${environment.baseUrl}/Story/ReviewTest`);
   }
 }
 

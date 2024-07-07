@@ -31,8 +31,13 @@ export class DoctorVisitedProfileComponent implements OnInit {
   stars: { value: number }[] = Array.from({ length: 5 }, (_, index) => ({ value: index + 1 }));
   canAddRating: boolean = true;
   viewAllRatings: boolean = false;
-  isAuthorizedToReserve: boolean = false;
+  isAuthorizedToAssign: boolean = false;
   workAppointment: any = {};
+  currentPage: number = 1; // Track current page of ratings
+  ratingsPerPage: number = 4; // Number of ratings to display per page
+  paginatedRatings: any[] = [];
+
+
 // dimg="http://localhost:2100/images/a290b2e1-295b-4940-8fb9-f3759d65eb11_Capture2.PNG"
   PatientImage="/images/Patient.png";
   constructor(
@@ -49,11 +54,96 @@ export class DoctorVisitedProfileComponent implements OnInit {
       this.checkAuthorizationToAddRating(this.doctorId);
       this.checkAuthorizationToReserve();
       this.fetchWorkAppointment(this.doctorId);
+      // this.checkRelativePayment();
     });
   }
   getImageUrl(): string {
     return environment.ImgbaseUrl;
   }
+
+  checkPaymentAndAssignDoctor(): void {
+    this.doctorVisitedService.isRelativePayment().subscribe({
+      next: (isPayment) => {
+        if (isPayment) {
+          Swal.fire({
+            title: 'Do you want to reserve this doctor?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.assignDoctor();
+            }
+          });
+        } else {
+          Swal.fire({
+            title: 'Payment Required',
+            text: 'You must pay first before reserving this doctor.',
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonText: 'Pay Now',
+            cancelButtonText: 'Cancel'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.processPayment();
+            }
+          });
+        }
+      },
+      error: (error) => {
+        console.error('Error checking payment status:', error);
+        Swal.fire('Error', 'An error occurred while checking payment status', 'error');
+      }
+    });
+  }
+
+  processPayment(): void {
+    this.doctorVisitedService.createRelativePayment().subscribe({
+      next: (response) => {
+        if (response.isSuccess) {
+          window.open(response.data, '_blank');
+        } else {
+          Swal.fire('Error', 'Failed to initiate payment', 'error');
+        }
+      },
+      error: (error) => {
+        console.error('Error processing payment:', error);
+        Swal.fire('Error', 'An error occurred while processing payment', 'error');
+      }
+    });
+  }
+
+
+  assignDoctor(): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you really want to reserve this doctor?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, reserve it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.doctorVisitedService.reserveDoctor(this.doctorId).subscribe({
+          next: (response) => {
+            if (response.isSuccess) {
+              Swal.fire('Success', 'Request Added Successfully .. Wait For Approval', 'success');
+            } else {
+              Swal.fire('Error', response.data.value, 'error');
+            }
+          },
+          error: (error) => {
+            console.error('Error reserving doctor:', error);
+            Swal.fire('Error', 'An error occurred', 'error');
+          }
+        });
+      }
+    });
+  }
+
+
   fetchWorkAppointment(doctorId: number): void {
     this.doctorVisitedService.getWorkAppointmentOfDoctor(doctorId).subscribe({
       next: (response) => {
@@ -69,17 +159,48 @@ export class DoctorVisitedProfileComponent implements OnInit {
     });
   }
 
+  checkRelativePayment(): void {
+    this.doctorVisitedService.isRelativePayment().subscribe({
+      next: (isPayment) => {
+        if (isPayment) {
+          Swal.fire({
+            title: 'Do you want to reserve this doctor?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.assignDoctor();
+            }
+          });
+        } else {
+          Swal.fire({
+            title: 'Payment Required',
+            text: 'You must pay first before reserving this doctor.',
+            icon: 'error'
+          });
+        }
+      },
+      error: (error) => {
+        console.error('Error checking payment status:', error);
+        Swal.fire('Error', 'An error occurred while checking payment status', 'error');
+      }
+    });
+  }
+
+
   checkAuthorizationToReserve(): void {
     this.doctorVisitedService.checkAuthorizationToReserve(this.doctorId).subscribe({
       next: (response) => {
         console.log("au",response);
 
-        this.isAuthorizedToReserve = response.isSuccess;
-        console.log("au",this.isAuthorizedToReserve);
+        this.isAuthorizedToAssign = response.isSuccess;
+        console.log("au",this.isAuthorizedToAssign);
       },
       error: (error) => {
         console.error('Error checking authorization:', error);
-        this.isAuthorizedToReserve = false;
+        this.isAuthorizedToAssign = false;
       }
     });
   }
@@ -207,6 +328,7 @@ export class DoctorVisitedProfileComponent implements OnInit {
         console.log(response);
         if (response.isSuccess) {
           this.ratings = response.data;
+          this.paginateRatings(); // Initial pagination
         } else {
           console.error('Error fetching ratings:', response);
         }
@@ -215,6 +337,20 @@ export class DoctorVisitedProfileComponent implements OnInit {
         console.error('Error fetching ratings:', error);
       }
     });
+  }
+  paginateRatings(): void {
+    const startIndex = (this.currentPage - 1) * this.ratingsPerPage;
+    const endIndex = startIndex + this.ratingsPerPage;
+    this.paginatedRatings = this.ratings.slice(startIndex, endIndex);
+  }
+
+  changePage(pageNumber: number): void {
+    this.currentPage = pageNumber;
+    this.paginateRatings();
+  }
+
+  totalPages(): number[] {
+    return Array(Math.ceil(this.ratings.length / this.ratingsPerPage)).fill(0).map((x, i) => i + 1);
   }
 }
 

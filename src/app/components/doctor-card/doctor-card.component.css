@@ -55,3 +55,7 @@
   outline: none !important;
   cursor: pointer;
 }
+.disabled {
+  color: grey;
+  pointer-events: none;
+}

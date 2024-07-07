@@ -7,6 +7,7 @@ import { StarRatingComponent } from "../star-rating/star-rating.component";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowseSharedService } from '../../services/browse-shared.service';
 import { environment } from '../../../environments/environment.development';
+import { AuthService } from '../../services/AuthenticationServices/auth.service';
 
 @Component({
     selector: 'app-doctor-card',
@@ -17,22 +18,30 @@ import { environment } from '../../../environments/environment.development';
 })
 export class DoctorCardComponent implements OnInit {
   searchForm: FormGroup;
+  isLoggedIn = false;
   // filteredDoctors: FilterDoctorDTO[] = [];
 
   @Input() filteredDoctors: FilterDoctorDTO[] = [];
 
   constructor(private fb: FormBuilder,
     private doctorService: DoctorService,
-    private sharedService: BrowseSharedService
+    private sharedService: BrowseSharedService,
+    private authService: AuthService,
+
   ) {
     this.searchForm = this.fb.group({
       searchText: ['']
     });
+
   }
 
   ngOnInit() {
     this.loadDoctors(); // Initial load of all doctors
     this.watchSearchInput(); // Watch for changes in search input
+    this.authService.loggedInUser$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+      console.log("User is logged in:", this.isLoggedIn);
+    });
 
   }
   getImageUrl(): string {
@@ -42,7 +51,6 @@ export class DoctorCardComponent implements OnInit {
     this.doctorService.getDoctors().subscribe(
       (response: FilterDoctorDTO[]) => {
         console.log("from load",response);
-
         this.filteredDoctors = response; // Update filteredDoctors with fetched data
 
       },
