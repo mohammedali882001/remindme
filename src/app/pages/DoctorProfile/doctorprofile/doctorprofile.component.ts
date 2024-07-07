@@ -14,6 +14,7 @@ import { environment } from '../../../../environments/environment.development';
 import { DoctorSidebarComponent } from "../../../components/doctor-sidebar/doctor-sidebar.component";
 
 import Swal from 'sweetalert2';
+import { DoctorSidebarComponent } from "../../../components/doctor-sidebar/doctor-sidebar.component";
 
 
 @Component({

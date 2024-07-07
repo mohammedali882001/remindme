@@ -37,6 +37,7 @@ export class PatientsRequestsComponent implements OnInit {
         if (response.isSuccess) {
           this.patients = response.data;
           this.filterPatients = this.patients;
+          console.log(this.filterPatients);
           console.log("Patients Requests", this.patients);
         } else {
           console.error('Error: Unsuccessful response', response);
@@ -50,7 +51,7 @@ export class PatientsRequestsComponent implements OnInit {
     });
   }
 
-  confirmRequest(requestId: number): void {  
+  confirmRequest(requestId: number): void {
     Swal.fire({
       title: 'Are you sure?',
       text: 'Do you want to confirm this patient request?',

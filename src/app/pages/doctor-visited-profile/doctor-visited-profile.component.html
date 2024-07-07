@@ -1,10 +1,8 @@
 
 
 <div class="d-flex">
-  <div class="col-12 col-sm-2 col-lg-3 sideBar d-none d-lg-flex">
-    <app-sidebar [isAuthorizedToReserve]="isAuthorizedToAssign"></app-sidebar>
-  </div>
-  <div class="col-12 col-lg-8 mt-4 mainContent justify-content-center">
+
+  <div class="col-12  mt-4 mainContent justify-content-center mx-auto">
     <div class="title">
       <i class="fa-solid fa-arrow-left"></i> {{ profileData.address }}
       <h4>Doctor's Profile</h4>
@@ -23,9 +21,13 @@
           <button class="btn d-flex text-align-baseline d-lg-none d-block">
             <i class="fa-regular fa-calendar-check"></i>
           </button>
-          <button (click)="checkPaymentAndAssignDoctor()" class="d-none d-lg-block btn secBtn">
+          <button (click)="checkPaymentAndAssignDoctor()" class="d-none d-lg-block btn secBtn" [disabled]="isAssigned">
             Assign
           </button>
+          <button *ngIf="isAuthorizedToAssign"  routerLink="/appointmentTimes"  class="d-none d-lg-block btn secBtn">
+            Reserve
+          </button>
+
 
 
         </div>

@@ -1,7 +1,8 @@
-<div class="d-flex justify-content-between">
-  <div class=" col-sm-2 col-2 col-lg-3 col-md-2 sideBar ">
-    <!-- <app-sidebar></app-sidebar> -->
-     <app-doctor-sidebar></app-doctor-sidebar>
+
+<div class="d-flex">
+  <div class="col-12 col-sm-2 col-lg-3 sideBar d-none d-lg-flex">
+    <app-doctor-sidebar></app-doctor-sidebar>
+
   </div>
   <div class="col-12 col-lg-8 mt-4 mainContent justify-content-center">
     <div class="title">
@@ -11,13 +12,13 @@
     <div class="profile">
     <div class="DocProfileDetals">
         <div>
-       
+
           <img [src]="getImageUrl()" alt="DoctorImage" class="DocProfilePic">
           <input *ngIf="editMode" type="file" (change)="selectImage($event)" />
         </div>
 
         <div class="btns">
-    
+
           <button *ngIf="!editMode" class="btn d-none d-lg-block" (click)="toggleEditMode()">Edit</button>
           <button *ngIf="editMode" class="btn d-none d-lg-block" (click)="saveChanges()">Save</button>
           <button *ngIf="editMode" class="btn d-none d-lg-block" (click)="cancelEdit()">Cancel Edit</button>
@@ -28,7 +29,7 @@
             <i class="fa-regular fa-bookmark"></i>
           </button>
         </div>
-      </div> 
+      </div>
     <div class="doctorTitel">
         <h3>
           <span *ngIf="!editMode">Dr. {{ profileData.firstName }} {{ profileData.lastName }}</span>
@@ -48,7 +49,7 @@
         </p>
         <div class="rating d-flex">
           <app-star-rating [averageRating]="profileData.averageRating"></app-star-rating>
-        
+
         </div>
         <div class="mobile d-flex flex-wrap flex-lg-row">
           <span class="thirdBtn">
@@ -70,8 +71,8 @@
             <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.fullName }}</option>
           </select>
         </div>
-      </div> 
-     </div> 
+      </div>
+     </div>
 
     <div class="description">
       <div class="doctorDesc mt-5">

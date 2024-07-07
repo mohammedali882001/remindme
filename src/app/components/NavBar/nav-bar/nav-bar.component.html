@@ -29,7 +29,15 @@
         </li>
 
         <li *ngIf="userRole === 'Relative'" class="nav-item px-3">
+          <a  class="nav-link p-lg-2" routerLink="/AllTests" routerLinkActive="bg-purpel text-light">Tests</a>
+        </li>
+
+        <li *ngIf="userRole === 'Relative'" class="nav-item px-3">
           <a  class="nav-link p-lg-2" routerLink="/AllStories" routerLinkActive="bg-purpel text-light">Stories</a>
+        </li>
+
+        <li *ngIf="userRole === 'Admin'" class="nav-item px-3">
+          <a  class="nav-link p-lg-2" routerLink="/AdminAllTestsComponent" routerLinkActive="bg-purpel text-light">Add Test</a>
         </li>
 
         <li class="nav-item px-3" *ngIf="!isLoggedIn"> <!-- Show login if not logged in -->

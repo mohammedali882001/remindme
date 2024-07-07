@@ -179,6 +179,12 @@ export class DoctorService {
     return this.http.get<any>(`${environment.baseUrl}/Doctor/TopRated`);
   }
 
+  getDoctorEmail(doctorId: number): Observable<GeneralResponse> {
+    return this.http.get<GeneralResponse>(`${environment.baseUrl}/Doctor/DoctorEmail`, {
+      params: { DoctorId: doctorId.toString() }
+    });
+  }
+
 }
 
 
