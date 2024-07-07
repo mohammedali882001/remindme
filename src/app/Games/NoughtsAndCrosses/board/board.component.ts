@@ -180,13 +180,14 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { EndgameComponent } from "../endgame/endgame.component";
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from "../../../components/Footer/footer/footer.component";
 
 @Component({
-  selector: 'app-board',
-  standalone: true,
-  templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css'],
-  imports: [EndgameComponent, CommonModule]
+    selector: 'app-board',
+    standalone: true,
+    templateUrl: './board.component.html',
+    styleUrls: ['./board.component.css'],
+    imports: [EndgameComponent, CommonModule]
 })
 export class BoardComponent implements OnInit {
   cells: string[] = [];
@@ -219,6 +220,7 @@ export class BoardComponent implements OnInit {
       }
     }
   }
+
 
   turnClick(index: number) {
     if (typeof this.origBoard[index] === 'number') {

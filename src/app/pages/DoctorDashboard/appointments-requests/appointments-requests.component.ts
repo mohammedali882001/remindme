@@ -125,8 +125,6 @@ export class AppointmentsRequestsComponent implements OnInit {
     });
   }
   
-
-  
   patientDetails(patientId : number) : void{
     console.log(patientId);
     this.router.navigateByUrl(`VisitedPatientprofile/:${patientId}`);

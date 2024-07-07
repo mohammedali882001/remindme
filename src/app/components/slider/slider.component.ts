@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DoctorService } from '../../services/DoctorServices/doctor.service';
 import { StarRatingComponent } from "../star-rating/star-rating.component";
 import { environment } from '../../../environments/environment.development';
+import { AuthService } from '../../services/AuthenticationServices/auth.service';
 
 declare var bootstrap: any;
 
@@ -17,10 +18,12 @@ declare var bootstrap: any;
 export class DoctorSliderComponent implements OnInit, AfterViewInit {
   topRatedDoctors: any[] = [];
   chunkedDoctors: any[][] = [];
-
+  isLoggedIn = false;
+  userRole: string | null = null;
+  
   @ViewChild('carousel', { static: true }) carouselElement!: ElementRef;
 
-  constructor(private doctorService: DoctorService) {}
+  constructor(private doctorService: DoctorService,  private authService: AuthService,) {}
 
   ngOnInit(): void {
     this.doctorService.getTopRatedDoctors().subscribe(response => {
@@ -29,6 +32,15 @@ export class DoctorSliderComponent implements OnInit, AfterViewInit {
         this.chunkDoctors();
         this.refreshCarousel();
       }
+    });
+
+    this.authService.loggedInUser$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+      console.log("User is logged in:", this.isLoggedIn);
+    });
+    this.authService.userRole$.subscribe(role => {
+      this.userRole = role;
+      console.log("Role:", this.userRole);
     });
   }
 

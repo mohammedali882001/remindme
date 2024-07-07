@@ -24,9 +24,13 @@ export class PatientProfileComponent implements OnInit {
   profileData: any;
   errorMessage: string = '';
   editMode: boolean = false;
-  appointments: AppointmentOfPatient[] = [];
   selectedFile: File | null = null;
-  doctor: any = null;
+  // doctor: any = null;
+  paginatedReports: any[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 3; // Reports per page
+  totalPages: number = 0; // Initialize totalPages
+  paginationPages: number[] = [];
 
   @ViewChild('reportModal') reportModal!: TemplateRef<any>;
   reportDetails: any = {};  // To store report details
@@ -37,25 +41,6 @@ export class PatientProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchProfileAndReports();
-    this.fetchUpcomingAppointment();
-    this.checkDoctorOfPatient(); 
-  }
-
-  fetchUpcomingAppointment(): void {
-    this.patientService.getAppointmentsOfPatient().subscribe({
-      next: (response) => {
-        console.log(response);
-        this.appointments = response.data;
-      },
-      error: (error) => {
-        console.error('Error fetching upcoming appointment:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error!',
-          text: 'Failed to fetch upcoming appointment. Please try again later.'
-        });
-      }
-    });
   }
 
   getImageUrl(): string {
@@ -70,6 +55,7 @@ export class PatientProfileComponent implements OnInit {
         this.patientService.getAllReports().subscribe({
           next: (reports) => {
             this.profileData.reports = reports.data;
+            this.paginateReports();
           },
           error: (error) => {
             console.error('Error fetching reports:', error);
@@ -119,22 +105,6 @@ export class PatientProfileComponent implements OnInit {
     } else {
       this.updateProfileData();
     }
-  }
-
-  checkDoctorOfPatient(): void {
-    this.patientVisitedProfileService.getDoctorOfPatient().subscribe({
-      next: (response) => {
-        if (response.isSuccess) {
-          this.doctor = response.data; // Store doctor details
-        } else {
-          this.doctor = null; // No doctor found
-        }
-      },
-      error: (error) => {
-        console.error('Error fetching doctor of patient:', error);
-        this.doctor = null;
-      }
-    });
   }
 
   updateProfileData(): void {
@@ -210,5 +180,35 @@ export class PatientProfileComponent implements OnInit {
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
+  }
+  paginateReports(): void {
+    this.totalPages = Math.ceil(this.profileData.reports.length / this.itemsPerPage);
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    this.paginatedReports = this.profileData.reports.slice(startIndex, startIndex + this.itemsPerPage);
+
+    // Generate pagination pages
+    this.paginationPages = Array(this.totalPages).fill(0).map((x, i) => i + 1);
+  }
+
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.paginateReports();
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.paginateReports();
+    }
+  }
+
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.paginateReports();
+    }
   }
 }

@@ -48,28 +48,7 @@
           <span class="thirdBtn">Age: <span *ngIf="!editMode">{{ profileData.patientAge }}</span>
             <span *ngIf="editMode"><input [(ngModel)]="profileData.patientAge" /></span></span>
         </div>
-<hr>
-        <div *ngIf="doctor" class=" responsibleDoctor mt-4">
-          <h3>Responsible Doctor</h3>
-          <a [routerLink]="['/VisitedDoctorprofile', doctor.id]" class="text-decoration-none">
-            <div class="profileDetails subTitel">
-              <p>Dr: {{ doctor.fullName }}</p>
-            </div>
-          </a>
-<hr>
-          <div *ngIf="appointments.length > 0">
-            <h4>Appointment</h4>
-            <ul>
-              <li *ngFor="let appointment of appointments">
-                <p>Date: {{ appointment.date }}</p>
-                <p>Time: {{ appointment.startTime }} - {{ appointment.endTime }}</p>
-              </li>
-            </ul>
-          </div>
-          <div *ngIf="appointments.length === 0">
-            <p>No appointments found.</p>
-          </div>
-        </div>
+
 
         </div>
 
@@ -108,13 +87,13 @@
     <div class="profile reportsSection mt-4">
       <div class="Reports mt-4">
         <div>
-          <h5 class="avTitle">Reports</h5>
+          <h5 class="avTitle" id="count">Reports</h5>
         </div>
         <div
           class="doctoravaliablity d-flex justify-content-center flex-nowrap"
         >
           <div
-            *ngFor="let report of profileData?.reports"
+            *ngFor="let report of paginatedReports"
             class="report-head d-flex justify-content-between align-items-start px-3 m-3 outercon"
             type="button"
             data-bs-toggle="modal"
@@ -152,6 +131,14 @@
           </div>
         </div>
       </div>
+      <div class="pagination mt-4 d-flex justify-content-center align-items-center">
+        <!-- <button class="btn btn-primary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button> -->
+        <ng-container class="pagination" *ngFor="let page of paginationPages">
+          <button class="btn btn-primary   ms-2" (click)="goToPage(page)" [disabled]="currentPage === page">{{ page }}</button>
+        </ng-container>
+        <!-- <button class="btn btn-primary ms-2" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button> -->
+      </div>
+
     </div>
 
     <ng-template #reportModal let-modal>

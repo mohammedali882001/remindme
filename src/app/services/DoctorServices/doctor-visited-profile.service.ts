@@ -31,4 +31,13 @@ export class DoctorVisitedProfileService {
   getWorkAppointmentOfDoctor(doctorId: number): Observable<GeneralResponse> {
     return this.http.get<GeneralResponse>(`${environment.baseUrl}/Doctor/WorkAppointmentOfDoctor?DoctorId=${doctorId}`);
   }
+  reserveDoctor(doctorId: number): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/PatientDoctor/request/${doctorId}`, {});
+  }
+  isRelativePayment(): Observable<boolean> {
+    return this.http.get<boolean>(`${environment.baseUrl}/Payment/IsRelativePayment`);
+  }
+  createRelativePayment(): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/Payment/RelativePayment`, {});
+  }
 }

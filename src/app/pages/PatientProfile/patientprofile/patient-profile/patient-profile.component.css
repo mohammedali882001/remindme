@@ -290,3 +290,18 @@ body, html {
 .reportName{
   color: var(--main-Color)
  }
+
+
+.unfollow-icon {
+  color: red;
+  cursor: pointer;
+  right: 10px;
+  top: 10px;
+}
+
+.unfollow-icon:hover {
+  color: darkred;
+}
+.pagination{
+  text-align: center;
+}

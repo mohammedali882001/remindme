@@ -11,13 +11,17 @@ import { PatientNameDTO } from '../../../models/Doctor/patient-name-dto';
 import { GeneralResponse } from '../../../models/Story/general-response';
 import { RelativeDTO } from '../../../models/Patient/relative-dto';
 import { environment } from '../../../../environments/environment.development';
+import { DoctorSidebarComponent } from "../../../components/doctor-sidebar/doctor-sidebar.component";
+
+import Swal from 'sweetalert2';
+
 
 @Component({
-  selector: 'app-doctorprofile',
-  standalone: true,
-  imports: [SidebarComponent, StarRatingComponent, CommonModule, FormsModule, SharedModule, RouterModule],
-  templateUrl: './doctorprofile.component.html',
-  styleUrls: ['./doctorprofile.component.css']
+    selector: 'app-doctorprofile',
+    standalone: true,
+    templateUrl: './doctorprofile.component.html',
+    styleUrls: ['./doctorprofile.component.css'],
+    imports: [SidebarComponent, StarRatingComponent, CommonModule, FormsModule, SharedModule, RouterModule, DoctorSidebarComponent]
 })
 export class DoctorprofileComponent implements OnInit {
   profileData: any;
@@ -38,8 +42,48 @@ export class DoctorprofileComponent implements OnInit {
     this.fetchAvailableSlots();
     this.fetchDoctorPatients();
     this.fetchWorkAppointment();
+    this.checkDoctorPaymentStatus();
   }
-
+  checkDoctorPaymentStatus(): void {
+    this.doctorProfileService.isDoctorPayment().subscribe({
+      next: (isPayment) => {
+        if (!isPayment) {
+          this.showPaymentPopup();
+        }
+      },
+      error: (error) => {
+        console.error('Error checking payment status:', error);
+      }
+    });
+  }
+  showPaymentPopup(): void {
+    Swal.fire({
+      title: 'Payment Required',
+      text: 'You must pay to deal with patients.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Pay Now'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.initiateDoctorPayment();
+      }
+    });
+  }
+  initiateDoctorPayment(): void {
+    this.doctorProfileService.doctorPayment().subscribe({
+      next: (response) => {
+        if (response.isSuccess) {
+          const paymentUrl = response.data;
+          window.open(paymentUrl, '_blank'); // Open the payment URL in a new window
+        } else {
+          console.error('Error initiating payment:', response);
+        }
+      },
+      error: (error) => {
+        console.error('Error initiating payment:', error);
+      }
+    });
+  }
   fetchProfileData(): void {
     this.doctorProfileService.getProfile().subscribe({
       next: (data) => {
