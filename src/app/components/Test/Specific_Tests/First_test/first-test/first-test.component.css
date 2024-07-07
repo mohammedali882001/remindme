@@ -30,3 +30,31 @@
           border-left: 5px solid rgb(56, 2, 61);
           transition: 0.3s;
   }
+
+  .clr{
+    background-color: #f4f1f8;
+   
+  
+  }
+  .clr:hover{
+    color: #150332;
+    background-color: #d9c4f9;
+    font-weight: bold;
+    font-size: 1rem; 
+  
+  }
+  .clr{
+    color: #150332;
+   
+  
+  }
+  .clr:hover{
+    color: #150332;
+    background-color: #c8b2e9;
+    font-weight: bold;
+    font-size: 1rem; 
+  
+  }
+  .clrr{
+    background-color: #f8f7fb;
+  }

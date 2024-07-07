@@ -8,9 +8,9 @@
       <div class="card">
         <div class="card-image" *ngIf="story.storyImageUrl" [ngStyle]="{'background-image': 'url(' + picURl + '/' + story.storyImageUrl + ')'}"></div>
         <div class="card-description center textColor ">
-          <p class="clr ">{{ story.storyDescription }}</p>
-          <p class=" clr">Degree: {{ story.storyDegree }}</p>
-          <button class="p-2 rounded-2 main-border back-button" (click)="takeTest(story.storyId)">Take Test</button>
+          <p class="clrr ">{{ story.storyDescription }}</p>
+          <p class=" clrr  ">Degree: {{ story.storyDegree }}</p>
+          <button class="p-2 rounded-2 main-border back-button clr  " (click)="takeTest(story.storyId)">Take Test</button>
         </div>
       </div>
     </div>
