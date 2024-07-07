@@ -5,12 +5,14 @@ import { AddTestDTO } from '../../../../../models/Test/add-test-dto';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../../../models/shared-module';
+
 
 @Component({
   selector: 'app-add-test',
   templateUrl: './add-test.component.html',
   standalone: true,
-  imports: [CommonModule , ReactiveFormsModule],
+  imports: [CommonModule , ReactiveFormsModule ,SharedModule],
   styleUrls: ['./add-test.component.css']
 })
  export class AddTestComponent implements OnInit {

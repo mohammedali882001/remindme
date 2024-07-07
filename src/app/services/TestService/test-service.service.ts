@@ -93,9 +93,11 @@ export class TestServiceService {
     return this.http.post<GeneralResponse<TestDTO>>(this.apiUrl, testDTO);
   }
 //Admin
-  updateTest(testId: number, testDTO: AddTestDTO): Observable<GeneralResponse<string>> {
-    return this.http.put<GeneralResponse<string>>(`${this.apiUrl}?testId=${testId}`, testDTO);
-  }
+updateTest(testId: number, testDTO: AddTestDTO): Observable<GeneralResponse<string>> {
+  return this.http.put<GeneralResponse<string>>(`${this.apiUrl}?testId=${testId}`, testDTO);
+}
+
+  
 //Admin
   deleteTest(testId: number): Observable<GeneralResponse<string>> {
     return this.http.delete<GeneralResponse<string>>(`${this.apiUrl}/${testId}`);

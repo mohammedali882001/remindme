@@ -33,12 +33,14 @@ import { FirstTestComponent } from './components/Test/Specific_Tests/First_test/
 import { SpecificTestResultComponent } from './components/Test/Specific_Tests/Specific_Test_Result/specific-test-result/specific-test-result.component';
 import { SecondTestComponent } from './components/Test/Specific_Tests/Second_Test/second-test/second-test.component';
 import { AddTestComponent } from './components/Test/Admin_Pages/Add_Test/add-test/add-test.component';
+import { AdminAllTestsComponent } from './components/Test/Admin_Pages/Admin_All_Test/admin-all-tests/admin-all-tests.component';
+import { EditTestComponent } from './components/Test/Admin_Pages/EditTest/edit-test/edit-test.component';
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent, DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent, AdminDashboardComponent, ReportsComponent ,AllTestsComponent ,QuestionTestComponent , TestResultComponent , FirstTestComponent , SpecificTestResultComponent , SecondTestComponent , AddTestComponent]
+    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent, DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent, AdminDashboardComponent, ReportsComponent ,AllTestsComponent ,QuestionTestComponent , TestResultComponent , FirstTestComponent , SpecificTestResultComponent , SecondTestComponent , AddTestComponent ,AdminAllTestsComponent ,EditTestComponent]
 })
 export class AppComponent {
   title = "remindme";
