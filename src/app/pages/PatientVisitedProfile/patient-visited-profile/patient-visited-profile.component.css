@@ -280,3 +280,25 @@ body, html {
 a{
   color: #333 !important;
 }
+
+
+/* pagination */
+.pagination-controls {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-controls button {
+  background-color: #a7a4b6;
+  color: #fff;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  margin: 0 0.25rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination-controls button.active {
+  background-color: #a7a4b6;
+}

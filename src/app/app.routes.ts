@@ -31,7 +31,7 @@ import { AppointmentTimesComponent } from './components/appointment-times/appoin
 
 import { AdminDashboardComponent } from './pages/AdminDashboard/admin-dashboard/admin-dashboard.component';
 
-import { HomeComponent } from './pages/home/home.component';
+//import { HomeComponent } from './pages/home/home.component';
 import { AllTestsComponent } from './components/Test/All_Tests/all-tests/all-tests.component';
 
 import { QuestionTestComponent } from './components/Test/Test_Quesrion/question-test/question-test.component';
@@ -41,16 +41,17 @@ import { DoctorSliderComponent } from './components/slider/slider.component';
 import { BrowseDoctorsComponent } from './components/browse-doctors/browse-doctors.component';
 import { PageNotFoundComponentComponent } from './components/page-not-found-component/page-not-found-component.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
-
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { HomeComponent } from './pages/Home/home.component';
+import { PatientDashboardComponent } from './components/patient-dashboard/patient-dashboard.component';
 import { AppointmentsWeeklyComponent } from './components/appointments-weekly/appointments-weekly.component';
 
 import { FirstTestComponent } from './components/Test/Specific_Tests/First_test/first-test/first-test.component';
 import { SpecificTestResultComponent } from './components/Test/Specific_Tests/Specific_Test_Result/specific-test-result/specific-test-result.component';
 import { SecondTestComponent } from './components/Test/Specific_Tests/Second_Test/second-test/second-test.component';
 import { AddTestComponent } from './components/Test/Admin_Pages/Add_Test/add-test/add-test.component';
-
-
-
+import { AdminAllTestsComponent } from './components/Test/Admin_Pages/Admin_All_Test/admin-all-tests/admin-all-tests.component';
+import { EditTestComponent } from './components/Test/Admin_Pages/EditTest/edit-test/edit-test.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -71,6 +72,8 @@ export const routes: Routes = [
   { path: 'results-test', component: ResultsTestComponent },
   {path:'appointmentTimes',component:AppointmentTimesComponent},
   { path: 'story-test', component: StoryTestComponent },
+  {path:'aboutus',component:AboutusComponent },
+  {path:'patientDashboard',component:PatientDashboardComponent},
   { path: 'AllStories', component: AllStoriesComponent },
   { path: 'story-test', component: StoryTestComponent },
   { path: 'Question', component: QuestionsComponent },
@@ -90,7 +93,7 @@ export const routes: Routes = [
   {path:'AllTests', component: AllTestsComponent},
   // {path:'QuestionTestComponent' , component:QuestionTestComponent}
   { path: 'question-test', component: QuestionTestComponent },
-  
+
   {path:'ResultsTest',component:TestResultComponent}
 ,
   { path: 'slider', component: DoctorSliderComponent },
@@ -100,13 +103,18 @@ export const routes: Routes = [
 
   {path:'SpecificTestResultComponent' , component:SpecificTestResultComponent},
 
-  
+
   {path:'SecondTestComponent' , component:SecondTestComponent},
 
   {path:'AddTestComponent' ,component :AddTestComponent },
 
+  {path:'AdminAllTestsComponent' , component:AdminAllTestsComponent},
+  {path:'edit-test', component :EditTestComponent},
+  { path: 'edit-test/:id', component: EditTestComponent },
 
-  // { path: 'Question/:storyTestId', component: QuestionsComponent },
+
+
+  { path: 'Question/:storyTestId', component: QuestionsComponent },
 
   { path: '**', component: PageNotFoundComponentComponent }
 ];

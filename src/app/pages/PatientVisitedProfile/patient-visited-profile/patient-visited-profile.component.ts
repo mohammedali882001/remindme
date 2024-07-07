@@ -24,6 +24,13 @@ export class PatientVisitedProfileComponent implements OnInit {
   loggedInDoctorId: number | null = null;
   reportDetails: any = {};
   reportId:number=0;
+
+  reports: any[] = []; // Define the reports property
+  currentPage = 1;
+  itemsPerPage = 3; // Number of reports per page
+  totalReports = 0;
+  numberOfPages: number = 0;
+
   @ViewChild('reportModal') reportModal!: TemplateRef<any>;
 
   constructor(
@@ -65,7 +72,9 @@ export class PatientVisitedProfileComponent implements OnInit {
   fetchProfileAndReports(patientId: number): void {
     this.patientVisitedProfileService.getAllReports(patientId).subscribe({
       next: (reports) => {
-        this.profileDataReport.reports = reports.data;
+        this.reports = reports.data;
+      this.totalReports = this.reports.length;
+      this.numberOfPages = Math.ceil(this.totalReports / this.itemsPerPage);
       },
       error: (error) => {
         console.error('Error fetching reports:', error);
@@ -286,5 +295,18 @@ export class PatientVisitedProfileComponent implements OnInit {
     doc.text(date, 10, y);
 
     doc.save(`${report.title}.pdf`);
+  }
+  get paginatedReports(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.reports.slice(startIndex, endIndex);
+  }
+
+  get pages(): number[] {
+    return Array(this.numberOfPages).fill(0).map((x, i) => i + 1);
+  }
+
+  changePage(page: number): void {
+    this.currentPage = page;
   }
 }

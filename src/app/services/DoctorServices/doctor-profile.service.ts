@@ -64,6 +64,13 @@ export class DoctorProfileService {
     return this.http.put<GeneralResponse>(`${environment.baseUrl}/Doctor/StartEndDuratin`, workAppointment);
   }
 
+  isDoctorPayment(): Observable<boolean> {
+    return this.http.get<boolean>(`${environment.baseUrl}/Payment/IsDoctorPayment`);
+  }
 
+  // New method to initiate payment
+  doctorPayment(): Observable<GeneralResponse<string>> {
+    return this.http.post<GeneralResponse<string>>(`${environment.baseUrl}/Payment/DoctorPayment`, {});
+  }
 }
 
