@@ -10,3 +10,4 @@ export interface AppointmentDto {
     age : number;
     picUrl : string;
 }
+

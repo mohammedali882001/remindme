@@ -28,4 +28,7 @@ export class ResultsTestComponent implements OnInit  {
       }
     });
   }
+  goBack(): void {
+    this.router.navigate(['/AllTests']); // Adjust the route as needed
+  }
 }

@@ -1,0 +1,54 @@
+.container {
+    margin-top: 20px;
+  }
+  
+  .card {
+    transition: transform 0.2s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .card-text {
+    margin-bottom: 1.25rem;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+  .btn-purple {
+    background-color: purple;
+    color: white; /* Text color */
+    border-color: purple; /* Border color */
+  }
+  
+  .btn-purple:hover {
+    background-color: darkviolet; /* Adjust hover background color */
+    border-color: darkviolet; /* Adjust hover border color */
+  }
+  

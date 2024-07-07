@@ -27,16 +27,14 @@ export class AllStoriesComponent  implements OnInit , AfterViewInit {
     private storyService: StoryServicesService,
     private router: Router
   ) { }
+
   ngOnInit(): void {
     this.getAllStories();
   }
+
   ngAfterViewInit(): void {
     this.getAllStories();
   }
-
-  // AfterViewInit(): void {
-  //   this.getAllStories();
-  // }
 
   getAllStories(): void {
     this.storyService.getAllStoryTests().subscribe(
@@ -53,6 +51,7 @@ export class AllStoriesComponent  implements OnInit , AfterViewInit {
       }
     );
   }
+
   takeTest(storyTestId: number): void {
     this.storyService.hasStoryTest(storyTestId).subscribe(
       (response: GeneralResponse<boolean>) => {
