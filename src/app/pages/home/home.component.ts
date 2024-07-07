@@ -4,6 +4,7 @@ import { DoctorSliderComponent } from '../../components/slider/slider.component'
 import { AlzheimersInfoComponent } from '../../components/alzheimers-info/alzheimers-info.component';
 import { AlzheimersQFAComponent } from '../../components/alzheimers-qfa/alzheimers-qfa.component';
 import { GamesSliderComponent } from '../../components/games-slider/games-slider.component';
+import { FooterComponent } from "../../components/Footer/footer/footer.component";
 
 
 @Component({
@@ -11,7 +12,7 @@ import { GamesSliderComponent } from '../../components/games-slider/games-slider
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
-    imports: [LandingComponent,DoctorSliderComponent,AlzheimersInfoComponent,AlzheimersQFAComponent,GamesSliderComponent]
+    imports: [LandingComponent, DoctorSliderComponent, AlzheimersInfoComponent, AlzheimersQFAComponent, GamesSliderComponent, FooterComponent]
 })
 export class HomeComponent {
 

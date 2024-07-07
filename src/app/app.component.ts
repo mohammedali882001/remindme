@@ -50,7 +50,7 @@ import { EditTestComponent } from './components/Test/Admin_Pages/EditTest/edit-t
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
 
-    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent, DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent, AdminDashboardComponent, ReportsComponent ,AllTestsComponent ,QuestionTestComponent , TestResultComponent , FirstTestComponent , SpecificTestResultComponent , SecondTestComponent , AddTestComponent ,AppointmentsWeeklyComponent, DoctorSidebarComponent,AdminAllTestsComponent ,EditTestComponent]
+    imports: [BoardComponent, RouterOutlet, NavBarComponent, FooterComponent, CardComponent, LandingComponent, DoctorSignUpComponent, RouterModule, DoctorprofileComponent, LoginComponent, RestPasswordComponent, RouterOutlet, SharedModule, StoryTestComponent, QuestionsComponent, FormsModule, ResultsTestComponent, DoctorFilterComponent, AllStoriesComponent, AdminDashboardComponent, ReportsComponent ,AllTestsComponent ,QuestionTestComponent , TestResultComponent , FirstTestComponent , SpecificTestResultComponent , SecondTestComponent , AddTestComponent ,AppointmentsWeeklyComponent, DoctorSidebarComponent,AdminAllTestsComponent ,EditTestComponent,CommonModule]
 })
 export class AppComponent implements OnInit {
   showFooter: boolean = true;
@@ -62,7 +62,8 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         // Check the current route to conditionally show or hide the footer
         this.showFooter = event.url === '/home';
-        this.showFooter = event.url==='/aboutus'
+        this.showFooter = event.url==='/aboutus';
+        // this.showFooter= event.url==='/'
       }
     });
   }
