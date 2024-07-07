@@ -38,7 +38,8 @@
         <div class="col-2 col-md-2 col-lg-3 box">
           <i class="fa-regular fa-clipboard"></i>
           <div class="">
-            <p class="count">{{ reportsCount }}</p>
+            <p>Reports:</p>
+            <p class="count" id="count">{{ reportsCount }}</p>
           </div>
         </div>
       </div>
@@ -67,7 +68,7 @@
           <div class="title d-flex justify-content-between">
 
             <div class="test-reviews">
-              <p>Review Tests:</p>
+              <p>Review Story Test:</p>
               <br>
               <ul class="list-unstyled" *ngIf="storyReviews.length > 0">
                 <li *ngFor="let review of storyReviews">

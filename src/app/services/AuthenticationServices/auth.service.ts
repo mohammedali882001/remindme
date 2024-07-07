@@ -107,6 +107,7 @@ export class AuthService {
     if (token) {
       this.http.post(`${environment.baseUrl}/Account/logout`, {}, { headers: { 'Authorization': `Bearer ${token}` } }).subscribe(() => {
         localStorage.removeItem('token');
+        console.log("removed");
         this.setLoggedInState(false);
         this.userRoleSubject.next(null);
       });

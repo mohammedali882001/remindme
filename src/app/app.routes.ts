@@ -103,18 +103,18 @@ export const routes: Routes = [
 
   {path:'SpecificTestResultComponent' , component:SpecificTestResultComponent},
 
-  
+
   {path:'SecondTestComponent' , component:SecondTestComponent},
 
   {path:'AddTestComponent' ,component :AddTestComponent },
 
   {path:'AdminAllTestsComponent' , component:AdminAllTestsComponent},
-  // {path:'edit-test', component :EditTestComponent},
+  {path:'edit-test', component :EditTestComponent},
   { path: 'edit-test/:id', component: EditTestComponent },
 
 
 
-  // { path: 'Question/:storyTestId', component: QuestionsComponent },
+  { path: 'Question/:storyTestId', component: QuestionsComponent },
 
   { path: '**', component: PageNotFoundComponentComponent }
 ];

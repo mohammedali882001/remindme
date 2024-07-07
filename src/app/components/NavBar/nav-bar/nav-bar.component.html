@@ -42,15 +42,18 @@
         </li>
       </ul>
 
-      <div class="search d-none d-lg-flex pr-5 ">
-        <i *ngIf="userRole === 'Relative'" class="fa-solid fa-magnifying-glass px-3 searchIcon clicable " routerLink="/browseDoctors"></i>
-        <ng-container *ngIf="userRole === 'Doctor'; else relativeProfile">
-          <i class="fa-regular fa-user px-3 clickable" routerLink="/doctorProfile"></i>
+      <div class="search d-none d-lg-flex pr-5">
+        <ng-container *ngIf="userRole">
+          <i *ngIf="userRole === 'Relative'" class="fa-solid fa-magnifying-glass px-3 searchIcon clickable" routerLink="/browseDoctors"></i>
+          <ng-container *ngIf="userRole === 'Doctor'; else relativeProfile">
+            <i class="fa-regular fa-user px-3 clickable" routerLink="/doctorProfile"></i>
+          </ng-container>
+          <ng-template #relativeProfile>
+            <i class="fa-regular fa-user px-3 clickable" routerLink="/patientProfile"></i>
+          </ng-template>
         </ng-container>
-        <ng-template #relativeProfile>
-          <i class="fa-regular fa-user px-3 clickable" routerLink="/patientProfile"></i>
-        </ng-template>
       </div>
+
 
     </div>
     <button  *ngIf="!isLoggedIn"  data-bs-toggle="modal" data-bs-target="#exampleModal"
