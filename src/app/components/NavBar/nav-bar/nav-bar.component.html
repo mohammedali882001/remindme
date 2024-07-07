@@ -18,8 +18,14 @@
             Doctors</a>
         </li>
 
+
         <li *ngIf="userRole === 'Relative'" class="nav-item px-3">
           <a class="nav-link p-lg-2" routerLink="/patientDashboard" routerLinkActive="bg-purpel text-light">Dasnboard</a>
+
+        </li>
+        <li *ngIf="userRole === 'Doctor'" class="nav-item px-3">
+          <a class="nav-link p-lg-2" routerLink="/DoctorDashboard" routerLinkActive="bg-purpel text-light">Dashboard</a>
+
         </li>
 
         <li *ngIf="userRole === 'Relative'" class="nav-item px-3">

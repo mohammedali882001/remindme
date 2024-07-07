@@ -12,6 +12,7 @@ export class DataSharingService {
 
   private countSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0); // Initialize with 0 or desired initial value
   private AcceptedAppointmentscountSubject : BehaviorSubject<number> = new BehaviorSubject<number>(0); 
+  private PendingAppointmentscountSubject : BehaviorSubject<number> = new BehaviorSubject<number>(0); 
   
   
   constructor(private doctorDashboardService: DoctorDashboardService, private appointmentsService : AppointmentsService) {
@@ -24,6 +25,17 @@ export class DataSharingService {
       },
       error: (error: any) => {
         console.error('Error fetching initial statistics:', error);
+      }
+    });
+
+    this.doctorDashboardService.getPendingRequestsCount().subscribe({
+      next: (res: { isSuccess: boolean; data: number }) => {
+        if (res.isSuccess) {
+          this.PendingAppointmentscountSubject.next(res.data);
+        }
+      },
+      error: (error: any) => {
+        console.error('Error fetching initial Pending Appointments :', error);
       }
     });
 
@@ -58,6 +70,18 @@ export class DataSharingService {
     const currentValue = this.AcceptedAppointmentscountSubject.value;
     this.AcceptedAppointmentscountSubject.next(currentValue + 1);
   }
+
+
+
+  getPendingAppointmentsCount(): Observable<number> {
+    return this.PendingAppointmentscountSubject.asObservable();
+  }
+
+  DecrementPendingAppointmentsCount(): void {
+    const currentValue = this.PendingAppointmentscountSubject.value;
+    this.PendingAppointmentscountSubject.next(currentValue - 1);
+  }
+
 
 
 

@@ -194,9 +194,9 @@ justify-content: space-between;
 
 
 @media (max-width: 991.98px) {
-  .sideBar {
+  /* .sideBar {
     display: none;
-  }
+  } */
 
   .DocProfilePic {
     width: 80px;
@@ -216,20 +216,20 @@ justify-content: space-between;
   }
 }
 
-@media(max-width:1368px){
+/* @media(max-width:1368px){
   .sideBar{
     display: none;
     visibility: none;
   }
-}
+} */
 
 
 @media screen and (min-width: 1024px) {
 
-/* .sideBar{
-  width: 150px;
+.sideBar{
+  
   overflow: hidden;
-} */
+}
 
 .mainContent{
   margin-left: 25px;

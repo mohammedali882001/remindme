@@ -11,8 +11,11 @@ import { PatientNameDTO } from '../../../models/Doctor/patient-name-dto';
 import { GeneralResponse } from '../../../models/Story/general-response';
 import { RelativeDTO } from '../../../models/Patient/relative-dto';
 import { environment } from '../../../../environments/environment.development';
+import { DoctorSidebarComponent } from "../../../components/doctor-sidebar/doctor-sidebar.component";
+
 import Swal from 'sweetalert2';
 import { DoctorSidebarComponent } from "../../../components/doctor-sidebar/doctor-sidebar.component";
+
 
 @Component({
     selector: 'app-doctorprofile',
