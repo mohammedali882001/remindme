@@ -55,3 +55,16 @@
     font-size: 14px;
   }
   
+  .buttonColor{
+    background-color: var(--pprimary-Color);
+    color: var(--white);
+    /* border-radius: 50%; */
+  }
+
+  .buttonColor:hover
+{
+  background-color: var(--white);
+  border: 1px solid var(--white);
+  color: var(--dark-blue);
+}
+

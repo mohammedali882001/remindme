@@ -15,6 +15,7 @@ export class DoctorDashboardService {
   private Statistics = `${environment.baseUrl}/Doctor/DoctorStatistics`;
   private ConfirmUrl = `${environment.baseUrl}/PatientDoctor/accept?requestId=`;
   private RejectUrl = `${environment.baseUrl}/PatientDoctor/reject?requestId=`;
+  private PendingRequestsCountUrl = `${environment.baseUrl}/Appointment/PendingAppointmentsCountOfDoctor`;
 
   constructor(private http : HttpClient) { }
 
@@ -34,6 +35,11 @@ export class DoctorDashboardService {
 
   rejectRequest(requestId : number) : Observable<any>{
     return this.http.post<any>(`${this.RejectUrl}${requestId}`, {});
+  }
+
+  
+  getPendingRequestsCount() : Observable<{ isSuccess: boolean; data: number }>{
+    return this.http.get<{ isSuccess: boolean; data: number}>(this.PendingRequestsCountUrl);
   }
 
 
