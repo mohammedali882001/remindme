@@ -1,61 +1,18 @@
-<!-- <div class="container">
-  <div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
-  </div>
-
-  <div class="row">
-    <div *ngFor="let story of stories" class="card"> 
-      <img *ngIf="story.storyImageUrl" [src]="picURl + '/' + story.storyImageUrl" class="card-img-top" alt="Story Image">
-      <div class="card-body">
-        <h5 class="card-title">{{ story.storyDescription }}</h5>
-        <p class="card-text">Degree: {{ story.storyDegree }}</p>
-        <button class="btn btn-primary" (click)="takeTest(story.storyId)">Take Test</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 <div class="container mt-4">
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
   </div>
 
-  <div class="row ">
-    <div class="col-lg-4 clo-md-6 col-sm-12 mb-3" *ngFor="let story of stories">
-    
-      <div class="card" >
-        <img *ngIf="story.storyImageUrl" [src]="picURl + '/' + story.storyImageUrl" class="" alt="Story Image">
-        <div class="card-body">
-          <h5 class="text-center fs-2 fw-bold ">{{ story.storyDescription }}</h5>
-          <div class="d-flex align-items-center">
-            <p class="card-text fs-5 me-auto">Degree: {{ story.storyDegree }}</p>
-            <!-- <button class="card-text fs-4 btn p-0 mb-3" >Delete <i class="fa-solid fa-trash-can text-danger"></i></button> -->
-          </div>
-         
-          <button class="p-2 rounded-2 main-border " (click)="takeTest(story.storyId)">Take Test</button>
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 mb-3" *ngFor="let story of stories">
+      <div class="card">
+        <div class="card-image" *ngIf="story.storyImageUrl" [ngStyle]="{'background-image': 'url(' + picURl + '/' + story.storyImageUrl + ')'}"></div>
+        <div class="card-description center textColor ">
+          <p class="clr ">{{ story.storyDescription }}</p>
+          <p class=" clr">Degree: {{ story.storyDegree }}</p>
+          <button class="p-2 rounded-2 main-border back-button" (click)="takeTest(story.storyId)">Take Test</button>
         </div>
       </div>
-
     </div>
-
-
   </div>
 </div>
-
-  <!-- <div class="card" style="width: 35rem;">
-        <div class="docHead m-2 d-flex align-items-start flex-wrap">
-          <div class="testImg">
-           
-          </div>
-          <div class="card-body">
-            <div class="docInfo text-left">
-              <h5 class="text-left docName fw-bold cardTitle">
-                
-              </h5>
-              <p class="text-secondary"></p>
-            </div>
-          </div>
-        </div>
-        <div class="docMoreInfo d-flex justify-content-center m-2">
-          
-        </div>
-      </div> -->
