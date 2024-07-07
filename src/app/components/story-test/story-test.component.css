@@ -6,15 +6,18 @@
   padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
+  background: no-repeat center url('../../../assets/jpeg/bg.jpg');
+ /* background-color: linear-gradient(to right, #3c0649, #942285);  ; */
+  background-size: cover;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Fullscreen height for the section */
-.storyTest {
+/* .storyTest {
   background: center no-repeat url("../../../assets/jpeg/2148470220.jpg");
   background-size: cover;
   height: 100vh;
-}
+} */
 
 /* Image styling */
 .storyContainer img {
@@ -46,4 +49,11 @@
 .btnUnderstand:hover {
   border: 1px solid var(--main-Color); 
   color: var(--main-Color) !important;
+}
+.imgTest{
+  width: 400px;
+  height: 400px;
+}
+.QuestionsBtn{
+  background-color: var(--main-Color);
 }
