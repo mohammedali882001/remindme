@@ -47,6 +47,26 @@ export class DoctorCardComponent implements OnInit {
   getImageUrl(): string {
     return environment.ImgbaseUrl;
   }
+
+  openEmailClient(event: Event, doctorId: number) {
+    event.preventDefault(); // Prevent default anchor behavior
+    this.doctorService.getDoctorEmail(doctorId).subscribe(
+      (response) => {
+        if (response.isSuccess) {
+          const email = response.data;
+          console.log(email);
+          window.location.href = `mailto:${email}`;
+        } else {
+          console.error('Email not found');
+        }
+      },
+      (error) => {
+        console.error('Error fetching email:', error);
+      }
+    );
+  }
+
+
   loadDoctors() {
     this.doctorService.getDoctors().subscribe(
       (response: FilterDoctorDTO[]) => {

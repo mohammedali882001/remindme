@@ -40,4 +40,7 @@ export class DoctorVisitedProfileService {
   createRelativePayment(): Observable<any> {
     return this.http.post<any>(`${environment.baseUrl}/Payment/RelativePayment`, {});
   }
+  isPatientAssignedToDoctor(doctorId: number): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/PatientDoctor/IsPatientAssignedToDoctor?doctorId=${doctorId}`);
+  }
 }

@@ -76,7 +76,7 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
   private loggedInUserSubject: BehaviorSubject<boolean>;
   public loggedInUser$: Observable<boolean>;
-  private userRoleSubject: BehaviorSubject<string | null>;
+  public userRoleSubject: BehaviorSubject<string | null>;
   public userRole$: Observable<string | null>;
 
   constructor(private http: HttpClient) {

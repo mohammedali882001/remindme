@@ -36,7 +36,7 @@ export class DoctorVisitedProfileComponent implements OnInit {
   currentPage: number = 1; // Track current page of ratings
   ratingsPerPage: number = 4; // Number of ratings to display per page
   paginatedRatings: any[] = [];
-
+  isAssigned: boolean = false;
 
 // dimg="http://localhost:2100/images/a290b2e1-295b-4940-8fb9-f3759d65eb11_Capture2.PNG"
   PatientImage="/images/Patient.png";
@@ -55,11 +55,25 @@ export class DoctorVisitedProfileComponent implements OnInit {
       this.checkAuthorizationToReserve();
       this.fetchWorkAppointment(this.doctorId);
       // this.checkRelativePayment();
+      this.checkIfPatientIsAssigned(this.doctorId);
     });
   }
   getImageUrl(): string {
     return environment.ImgbaseUrl;
   }
+
+  checkIfPatientIsAssigned(doctorId: number): void {
+    this.doctorVisitedService.isPatientAssignedToDoctor(doctorId).subscribe({
+      next: (response) => {
+        this.isAssigned = response.isSuccess;
+      },
+      error: (error) => {
+        console.error('Error checking if patient is assigned:', error);
+      }
+    });
+  }
+
+
 
   checkPaymentAndAssignDoctor(): void {
     this.doctorVisitedService.isRelativePayment().subscribe({
@@ -97,6 +111,8 @@ export class DoctorVisitedProfileComponent implements OnInit {
       }
     });
   }
+
+
 
   processPayment(): void {
     this.doctorVisitedService.createRelativePayment().subscribe({

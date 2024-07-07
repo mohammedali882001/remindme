@@ -12,13 +12,14 @@ import { GeneralResponse } from '../../../models/Story/general-response';
 import { RelativeDTO } from '../../../models/Patient/relative-dto';
 import { environment } from '../../../../environments/environment.development';
 import Swal from 'sweetalert2';
+import { DoctorSidebarComponent } from "../../../components/doctor-sidebar/doctor-sidebar.component";
 
 @Component({
-  selector: 'app-doctorprofile',
-  standalone: true,
-  imports: [SidebarComponent, StarRatingComponent, CommonModule, FormsModule, SharedModule, RouterModule],
-  templateUrl: './doctorprofile.component.html',
-  styleUrls: ['./doctorprofile.component.css']
+    selector: 'app-doctorprofile',
+    standalone: true,
+    templateUrl: './doctorprofile.component.html',
+    styleUrls: ['./doctorprofile.component.css'],
+    imports: [SidebarComponent, StarRatingComponent, CommonModule, FormsModule, SharedModule, RouterModule, DoctorSidebarComponent]
 })
 export class DoctorprofileComponent implements OnInit {
   profileData: any;
