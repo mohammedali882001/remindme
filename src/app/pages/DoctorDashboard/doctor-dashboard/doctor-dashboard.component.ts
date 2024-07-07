@@ -9,13 +9,14 @@ import { DoctorDashboardService } from '../../../services/DoctorServices/doctor-
 import { Subscription } from 'rxjs';
 import { DataSharingService } from '../../../services/data-sharing-service.service';
 import { AppointmentsService } from '../../../services/AppointmentsServices/appointments.service';
+import { DoctorSidebarComponent } from "../../../components/doctor-sidebar/doctor-sidebar.component";
 
 @Component({
-  selector: 'app-doctor-dashboard',
-  standalone: true,
-  imports: [SidebarComponent, DonightChartComponent, RouterOutlet,AppointmentsRequestsComponent,PatientsRequestsComponent ],
-  templateUrl: './doctor-dashboard.component.html',
-  styleUrls: ['./doctor-dashboard.component.css']
+    selector: 'app-doctor-dashboard',
+    standalone: true,
+    templateUrl: './doctor-dashboard.component.html',
+    styleUrls: ['./doctor-dashboard.component.css'],
+    imports: [SidebarComponent, DonightChartComponent, RouterOutlet, AppointmentsRequestsComponent, PatientsRequestsComponent, DoctorSidebarComponent]
 })
 export class DoctorDashboardComponent implements OnInit {
 
@@ -26,6 +27,7 @@ export class DoctorDashboardComponent implements OnInit {
    numberOfPendingAppointments : number = 0; 
   private PatientscountSubscription: Subscription | undefined;
   private AcceptedAppointmentscountSubscription: Subscription | undefined;
+  private PendingAppointmentscountSubscription: Subscription | undefined;
 
   constructor(
     private doctorDashboardService: DoctorDashboardService,
@@ -36,6 +38,8 @@ export class DoctorDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getStatistics();
     this.getAcceptedAppointmentsAccount();
+    this.getPendingAppointmetsCount();
+
     this.PatientscountSubscription = this.dataSharingService.getCount().subscribe((count: number) => {
      
         this.numberOfPatients = count;
@@ -46,6 +50,13 @@ export class DoctorDashboardComponent implements OnInit {
         this.numberOfAcceptedAppointments = count;
       
     });
+
+    this.PendingAppointmentscountSubscription = this.dataSharingService.getPendingAppointmentsCount().subscribe((count: number) => {
+      
+      this.numberOfPendingAppointments = count;
+    
+  });
+
 
   }
 
@@ -81,6 +92,26 @@ export class DoctorDashboardComponent implements OnInit {
     });
   }
 
+
+  getPendingAppointmetsCount() : void{
+
+    this.doctorDashboardService.getPendingRequestsCount().subscribe({
+      next: (response: { isSuccess: boolean; data: number }) => {
+        if (response.isSuccess) {
+          this.numberOfPendingAppointments = response.data;
+          console.log("Pending Appointments", this.numberOfPendingAppointments);
+        } else {
+          console.error('Error: Unsuccessful response', response);
+          this.errorMessage = 'Error fetching Pending Appointments. Please try again later.';
+        }
+      },
+      error: (error: any) => {
+        console.error('Error fetching Pending Appointments :', error);
+        this.errorMessage = 'Error fetching Pending Appointments. Please try again later.';
+      }
+    });
+
+  }
 
 
   ngOnDestroy(): void {

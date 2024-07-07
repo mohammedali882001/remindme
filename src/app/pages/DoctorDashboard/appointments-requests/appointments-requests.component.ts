@@ -64,7 +64,8 @@ export class AppointmentsRequestsComponent implements OnInit {
               console.log(response);
               this.filterAppointments = this.filterAppointments.filter(appointment => appointment.id !== appointmentId);
               this.dataSharingService.incrementAcceptedAppointmentsCount();
-              
+              this.dataSharingService.DecrementPendingAppointmentsCount();
+
               Swal.fire({
                 position: "center",
                 icon: "success",
@@ -104,7 +105,8 @@ export class AppointmentsRequestsComponent implements OnInit {
               console.log(response.data);
               console.log(response);
               this.filterAppointments = this.filterAppointments.filter(appointment => appointment.id !== appointmentId);
-  
+              this.dataSharingService.DecrementPendingAppointmentsCount();
+              
               Swal.fire({
                 position: "center",
                 icon: "success",
@@ -126,7 +128,8 @@ export class AppointmentsRequestsComponent implements OnInit {
   }
   
   patientDetails(patientId : number) : void{
-    console.log(patientId);
+    console.log( "rrrrr",patientId);
+    
     this.router.navigateByUrl(`VisitedPatientprofile/:${patientId}`);
   }
 
