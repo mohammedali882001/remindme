@@ -42,11 +42,22 @@
 }
 
 .clr{
-  color: #664b92;
+  color: #150332;
+ 
+
+}
+.clr:hover{
+  color: #150332;
+  background-color: #c8b2e9;
   font-weight: bold;
   font-size: 1rem; 
 
 }
+.clrr{
+ color: #150332;
+  /* background-color: #c8b2e9; */
+  font-weight: bold;
+  font-size: 1rem; }
 
 .text-body {
   font-size: 1rem;
