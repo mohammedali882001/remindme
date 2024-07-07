@@ -17,9 +17,15 @@ export class AppointmentsService {
   private RejectedAppointmentsCountOfDoctorUrl = `${environment.baseUrl}/Appointment/RejectedAppointmentsCountOfDoctor`;
   private AcceptAppointmentRequestUrl =  `${environment.baseUrl}/Appointment/accept`;
   private RejectAppointmentRequestUrl =  `${environment.baseUrl}/Appointment/reject`;
+  private GetAcceptedAppointmentsUrl = `${environment.baseUrl}/Appointment/Accepted`;
+  private DeleteAppointmentFromDoctorUrl =  `${environment.baseUrl}/Appointment/DeleteAppointmentById?appointmentId=`;
 
   GetPendingRequests() : Observable<{ isSuccess: boolean; data: AppointmentDto[] }>{
     return this.http.get<{isSuccess: boolean; data: AppointmentDto[]}>(this.GetPendingAppointmentsRequestsUrl);
+  }
+
+  GetAcceptedAppointments() : Observable<{ isSuccess: boolean; data: AppointmentDto[] }>{
+    return this.http.get<{isSuccess: boolean; data: AppointmentDto[]}>(this.GetAcceptedAppointmentsUrl);
   }
 
   GetAcceptAppointmentsCount() : Observable<{ isSuccess: boolean; data: number }>{
@@ -43,5 +49,8 @@ export class AppointmentsService {
   RejectAppointmentRequest(appoinmentId : number) : Observable<{ isSuccess: boolean; data: string }>{
     return this.http.post<any>(`${this.RejectAppointmentRequestUrl}/${appoinmentId}`, {});
   }
-
+  DeleteAppointmentFromDoctor(appointmentId: number): Observable<{ isSuccess: boolean; data: string }> {
+    const url = `${environment.baseUrl}/Appointment/DeleteAppointmentById?appointmentId=${appointmentId}`;
+    return this.http.delete<{ isSuccess: boolean; data: string }>(url);
+  }
 }
