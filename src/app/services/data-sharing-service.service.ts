@@ -43,6 +43,7 @@ export class DataSharingService {
       next: (res: { isSuccess: boolean; data: number }) => {
         if (res.isSuccess) {
           this.countSubject.next(res.data);
+          console.log(res.data);
         }
       },
       error: (error: any) => {
@@ -58,7 +59,11 @@ export class DataSharingService {
 
   incrementCount(): void {
     const currentValue = this.countSubject.value;
+    console.log(this.countSubject.value);
     this.countSubject.next(currentValue + 1);
+
+    console.log(currentValue);
+    console.log(this.countSubject.value);
   }
 
 

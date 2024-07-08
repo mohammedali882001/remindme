@@ -68,7 +68,9 @@ export class PatientsRequestsComponent implements OnInit {
             if (response.isSuccess) {
               console.log('Request accepted successfully');
               this.filterPatients = this.filterPatients.filter(patient => patient.id !== requestId);
+              
               this.dataSharingService.incrementCount(); // Update count in DataSharingService
+             
               Swal.fire({
                 position: "center",
                 icon: "success",
