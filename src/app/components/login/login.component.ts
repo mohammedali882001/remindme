@@ -102,9 +102,9 @@ export class LoginComponent {
 
             // Redirect to dashboard or profile based on roles
             if (response.data.roles.includes('Doctor')) {
-              this.router.navigate(['/doctorProfile']);
+              this.router.navigate(['/home']);
             } else if (response.data.roles.includes('Relative')) {
-              this.router.navigate(['/patientProfile']);
+              this.router.navigate(['/home']);
             } else if (response.data.roles.includes('Admin')) {
               this.router.navigate(['/home']);
             } else {

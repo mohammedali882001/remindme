@@ -13,7 +13,7 @@ export class AppointmentTimesService {
   constructor(private http: HttpClient) {}
 
   getAvailableAppointments(): Observable<GeneralResponseForAvailableAppointments> {
-    return this.http.get<GeneralResponseForAvailableAppointments>(`${environment.baseUrl}/Appointment/AvailableAppointmentsToReserve`);
+    return this.http.get<GeneralResponseForAvailableAppointments>(`${environment.baseUrl}/Appointment/AvailableAppointments`);
   }
 
   addAppointmentRequest(request: RequestAppointmentDTO): Observable<GeneralResponseForAvailableAppointments> {
