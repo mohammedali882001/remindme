@@ -25,3 +25,7 @@ a {
   font-size: 1.2rem; /* Adjust size as needed */
   color: orange;
 }
+
+.docImg{
+  height: 15rem;
+}
